@@ -21,16 +21,41 @@ $query->execute();
 $resultmatiere = $query->fetchAll(PDO::FETCH_ASSOC);
 //require_once('closematiere.php');
 
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+// require('connectcommande.php');
+// $sql = "select * from production order by dates";
+// //     // $sql = "SELECT * FROM `commande` WHERE `id` = :idcommande"; 
+// // }
+// // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+// // On prépare la requête
+// $query = $db->prepare($sql);
+// // On exécute la requête
+// $query->execute();
+
+// // On stocke le résultat dans un tableau associatif
+// $prod = $query->fetchAll(PDO::FETCH_ASSOC);
+// // echo "<pre>";
+// // print_r($prod);
+// // echo "</pre>";
+// // echo gettype($prod[2]['qte']);
+// // echo gettype($matiere[0]['prix']);
+// // echo ($matiere[2]['qte']*1.0);
+// // echo ($matiere[0]['prix'])*1.0;
+// // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 require('connectcommande.php');
-$sql = "SELECT * FROM `commande` where not (etat like '%5/%') and not (etat like '%6/%') 
-and not (etat like '%2/%') and not (etat like '%3/%') and not (etat like '%4/%')";
+// foreach ($prod as $prod0) {
+    
+
+$sql = "SELECT * FROM `commande` where not( id in (SELECT idcommande FROM `production` WHERE idcommande))  and not (etat like '%5/%') and not (etat like '%6/%') 
+and not (etat like '%2/%') and not (etat like '%3/%') and not (etat like '%4/%') ";
 
 // On prépare la requête
 $query = $db->prepare($sql);
-
+// }
 // On exécute la requête
 $query->execute();
+
 
 // On stocke le résultat dans un tableau associatif 
 $resultcommande = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -39,6 +64,14 @@ require_once('closecommande.php');
 // echo "<pre>";
 // print_r($resultcommande);
 // echo "</pre>";
+
+//print_r("-------------------------------------------------------------------");
+
+// die();
+
+
+
+
 if ($_POST) {
     if (
         isset($_POST['idcommande']) && !empty($_POST['idcommande'])
@@ -436,7 +469,7 @@ if ($_POST) {
 
    
 
- //       die();
+        die();
 
 
 
@@ -629,17 +662,36 @@ if ($_POST) {
                             // On boucle sur la variable result
 
                             foreach ($resultcommande as $commande) {
+                              
                                 if ($idclientSel == $commande['idclient']) {
+                                   
                                     if ($idcommandeSel == $commande['id']) {
+                                       // foreach ($prod as $prod0) {
+                                                // if ($prod0['idcommande']  == $idcommandeSel) {
+
+                                                //                                 echo "selected";
+                                                //                                 $_SESSION['idimprime'] = $commande['idimprime']; 
+
+                                                                          
+                                                                         
+
+                                                //                                }
+                                    //    }
+                            
                                         echo "selected";
                                         $_SESSION['idimprime'] = $commande['idimprime'];
                                     }
+                                    //    foreach ($prod as $prod0) {
+                                    //              if ($prod0['idcommande']  == $idcommandeSel) {
 
-                            ?>
+                                                            
+                                ?>
                                     <option value="<?php echo  $commande['id']."/".$commande['quantite'] ?>">
                                         <?php echo 'Commande N°' . $commande['id'] . " " . $commande['imprime'] . ' Qté ' . $commande['quantite'] ?>
                                     </option>
                             <?php
+                                                            //  }
+                                                            // }                                  
                                 }
                             } // fin foreach
                             ?>
