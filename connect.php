@@ -8,7 +8,7 @@ if (session_status()!=PHP_SESSION_ACTIVE) {
 //     header('Location: ../login.php');
 //     die;
 // }
-require_once('serveur.php');
+require('serveur.php');
 try{
     if ($serveur=="local") $db = new PDO('mysql:host=localhost;dbname=globa932_demo01', 'globa932_globa932', 'exp2581exp');
     if ($serveur=="distant")$db = new PDO('mysql:dbname=globa932_demo01;host=204.44.192.59' , 'globa932_globa932', 'exp2581exp');

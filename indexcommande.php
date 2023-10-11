@@ -2,6 +2,84 @@
 // les constantes 
 require_once "const.php";
 
+function appelimprime(){
+    require('./connect.php');
+    $sql = "SELECT * FROM `imprimes` WHERE `id`=363";
+
+    //$sql = "SELECT * FROM `imprimes` ";
+
+    // On prépare la requête
+    $query = $db->prepare($sql);
+
+    // On exécute la requête
+    $query->execute();
+
+    // On stocke le résultat dans un tableau associatif 
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    echo "<br>";
+    echo "<br>";
+     echo "<pre>";
+    print_r($result);
+    echo "</pre>";
+    echo "<br>";
+    require_once('./close.php');
+    $typ = @$result['typ'];
+    $chaine = @$result['etapes'];
+    $chainedecoupe=explode(",",$chaine);
+    $typdecoupe = explode(",", $typ);
+    $compt=count($chainedecoupe);
+    $compt0 = count($typdecoupe);
+    @$formatfinie = $result['formatfinie'];//
+
+
+    echo "</pre>";
+    echo "<br>";
+    echo "<pre>";
+    print_r($typdecoupe);
+    echo "<br>";
+    print_r($chainedecoupe);
+    echo "<br>";
+    print_r($formatfinie);
+    echo "<br>";
+    print_r($compt);
+    echo "<br>";
+    print_r($compt0);
+
+    echo "</pre>";
+    $carnet=$typdecoupe[0];
+    @$exemplaire=explode(' ', $typdecoupe[1]);
+    $exemplaire=$exemplaire[0];
+
+
+    $carnet = $typdecoupe[0];
+    @$qtecarnet = explode(' ', $typdecoupe[1]);//
+    $qtecarnet = $qtecarnet[0];
+    @$exemplaire = explode(' ', $typdecoupe[2]);//
+    $exemplaire = $exemplaire[0];
+
+    echo "<br>";
+    print_r($exemplaire);
+
+
+
+
+
+
+    //$idcommande =$prod['idcommande']; 
+
+    // $idclient = $prod['idclient'];
+    // $idmatiere = $prod['idmatiere'];
+    // $qteaconsommer = $prod['qteaconsommer'];
+    // // <td class="table-primary"><?= @$prod[$i]['qteaconsommer']*@$prod[$i]['nbreposecoupe'] ? ></td>
+    // $formatcoupe = $prod['formatcoupe'];
+    // $nbreposecoupe = $prod['nbreposecoupe'];
+    // $formatTirage = $prod['formatTirage'];
+    // $nbretirage = $qteaconsommer * $nbreposecoupe;
+    // $nbreposetirage = $prod['nbreposetirage'];
+    // $nbreplaque = $prod['nbreplaque'];
+    // $formatchute = $prod['formatchute'];
+} // $$$$$$$$$$$$$$
+
 // $pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0' ? : $pageWasRefreshed=0;
 // echo $pageWasRefreshed;
 // if(!$pageWasRefreshed ) {
@@ -541,6 +619,10 @@ if (@$resultcommande != []) {
     $debut = ($page - 1) * $nbr_element_page;
 }
 
+
+// appelimprime();
+// die();
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -770,7 +852,7 @@ if (@$resultcommande != []) {
                             <th class="table-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class='fa fa-calendar' style='font-size:<?= ICONFONT ?>;color:black' aria-hidden='true'></i></th>
 
                             <th class="table-primary">ID Client</th>
-
+                            <td class="table-primary"><?= "duree" ?></td>
                             <th class="table-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class='fa fa-user-circle' style='font-size:<?= ICONFONT ?>;color:black' aria-hidden='true'></i></th>
 
                             <th class="table-primary">ID Imp</th>
@@ -894,6 +976,9 @@ if (@$resultcommande != []) {
 
                                     <td class="table-success"><?= $jour . ' ' . $datefr ?></td>
                                     <td class="table-primary"><?= $resultcommande[$i]['idclient'] ?></td>
+                                    <!-- // duree moyenne commande -->
+                                    <?php $duree=$resultcommande[$i]['total']/10000;?>
+                                    <td class="table-primary"><?= $duree?></td>
                                     <td class="table-info" style="background-color:blue;color:white"><?= $resultcommande[$i]['nomclient'] ?></td>
                                     <td class="table-primary"><?= $resultcommande[$i]['idimprime'] ?></td>
                                     <td class="table-warning"><?= $resultcommande[$i]['imprime'] ?></td>

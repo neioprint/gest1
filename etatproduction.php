@@ -1,5 +1,6 @@
 <?php
 //require_once "const.php";
+// bonjour ca va
 if (session_status() != PHP_SESSION_ACTIVE) {
     session_start();
 }
@@ -32,7 +33,7 @@ if (!empty($_SESSION['message'])) {
     <button type="button" class="close" data-dismiss="alert">&times;</button>
             ' . $_SESSION['message'] . '
         </div>';
-        
+
     $_SESSION['message'] = "";
 }
 
@@ -57,11 +58,11 @@ if (isset($_GET['idcommande'])) {
     // // On stocke le résultat dans un tableau associatif
     $prod = $query->fetch(PDO::FETCH_ASSOC);
     require_once('closeproduction.php');
-//     echo "<br>";
-//     echo "<pre>";
-//    print_r($prod);
-//    echo "</pre>";
-//    echo "<br>";
+    //     echo "<br>";
+    //     echo "<pre>";
+    //    print_r($prod);
+    //    echo "</pre>";
+    //    echo "<br>";
     //   print_r($prod);
     //die();
     if ($prod != "") {
@@ -69,23 +70,23 @@ if (isset($_GET['idcommande'])) {
 
 
 
-        
+
         $idprod = $prod['idprod'];
         $dates = $prod['dates'];
         $idcommande = $prod['idcommande'];
         $idimprime = $prod['idimprime'];
-        if ($idimprime==0) $_SESSION['erreur'] .= "Id imprime Vide dans table production";
+        if ($idimprime == 0) $_SESSION['erreur'] .= "Id imprime Vide dans table production";
 
         require('./connect.php');
 
         $sql = "SELECT * FROM `imprimes` WHERE `id`=$idimprime";
-   
+
         // On prépare la requête
         $query = $db->prepare($sql);
-   
+
         // On exécute la requête
         $query->execute();
-   
+
         // On stocke le résultat dans un tableau associatif 
         $result = $query->fetch(PDO::FETCH_ASSOC);
         // echo "<br>";
@@ -95,15 +96,15 @@ if (isset($_GET['idcommande'])) {
         // echo "</pre>";
         // echo "<br>";
         require_once('./close.php');
-        $typ=@$result['typ'];
-        $chaine=@$result['etapes'];
+        $typ = @$result['typ'];
+        $chaine = @$result['etapes'];
         //$chainedecoupe=explode(",",$chaine);
-        $typdecoupe=explode(",",$typ);
+        $typdecoupe = explode(",", $typ);
         //$compt=count($chainedecoupe);
-        $compt0=count($typdecoupe);
-        $formatfinie=$result['formatfinie'];
-    
-   
+        $compt0 = count($typdecoupe);
+        $formatfinie = $result['formatfinie'];
+
+
         // echo "</pre>";
         // echo "<br>";
         // echo "<pre>";
@@ -112,14 +113,14 @@ if (isset($_GET['idcommande'])) {
         // $carnet=$typdecoupe[0];
         // $exemplaire=explode(' ', $typdecoupe[1]);
         // $exemplaire=$exemplaire[0];
-      
- 
-        $carnet=$typdecoupe[0];
-        $qtecarnet=explode(' ', $typdecoupe[1]);
-        $qtecarnet=$qtecarnet[0];
-        $exemplaire=explode(' ', $typdecoupe[2]);
-        $exemplaire=$exemplaire[0];
-     
+
+
+        $carnet = $typdecoupe[0];
+        $qtecarnet = explode(' ', $typdecoupe[1]);
+        $qtecarnet = $qtecarnet[0];
+        $exemplaire = explode(' ', $typdecoupe[2]);
+        $exemplaire = $exemplaire[0];
+
         // echo "<br>";
         // print_r($exemplaire);
 
@@ -141,7 +142,6 @@ if (isset($_GET['idcommande'])) {
         $nbreposetirage = $prod['nbreposetirage'];
         $nbreplaque = $prod['nbreplaque'];
         $formatchute = $prod['formatchute'];
-        
     } else {
         $_SESSION['erreur'] = "pas de fiche de production pour cette commande";
 
@@ -307,14 +307,12 @@ require_once('closematiere.php');
 
         <h1>Imprimerie NEIO</h1>
         <h5><?= $resultcommande['nomclient'] ?></h5>
-        <h5>Imprimé:<?= $resultcommande['imprime']." Format: $formatfinie"?></h5>
-       
-        <?php if ($carnet=="carnet" & $exemplaire>1) { ?>
-                                    <h5><?= "Quantité " . $resultcommande['quantite'] . " $carnet(s) de $qtecarnet feuilles de $exemplaire ex" ?></h5>'
-                                    <?php echo "<h3>la quantité mentionnée est pour un seul exemplaire <br> multiplier la qte par $exemplaire</h3>";
+        <h5>Imprimé:<?= $resultcommande['imprime'] . " Format: $formatfinie" ?></h5>
 
-
-                                    } ?>
+        <?php if ($carnet == "carnet" & $exemplaire > 1) { ?>
+            <h5><?= "Quantité " . $resultcommande['quantite'] . " $carnet(s) de $qtecarnet feuilles de $exemplaire ex" ?></h5>'
+        <?php echo "<h3>la quantité mentionnée est pour un seul exemplaire <br> multiplier la qte par $exemplaire</h3>";
+        } ?>
         <?php
         $extension = substr($resultcommande['images'], strrpos($resultcommande['images'], "."));
         if ($extension != ".pdf") echo '<img src="' . 'uploads/' . $resultcommande['images'] . '"  width="350" height="auto">' ?>
@@ -325,7 +323,7 @@ require_once('closematiere.php');
     <hr>
     <!-- <h3>< ?= $resultcommande['remarque'] ?></h3> -->
     <?php
-    $dateprod = date('d-m-Y') . ' à ' . date("H:i");;
+    $dateprod = date('d-m-Y') . ' à ' . date("H:i");
     ?>
     <p>Edité le <?= $dates ?></p>
     <p>Etat production N° <?= $idprod ?></p>
@@ -352,12 +350,10 @@ require_once('closematiere.php');
 
 
     <p>Quantité à consommer: <br> <?= "<span style='color:red'>" . $qteaconsommer . "</span> Feuilles de /" . $resultmatiere['matiere'] . "/ Format " . "<span style='color:red'>" . $resultmatiere['formatxxyy'] . "</span>" . " Grammage " . "<span style='color:red'>" . $resultmatiere['grammage'] . "</span>" . "Gr" ?></p>
-    <?php if ($carnet=="carnet" & $exemplaire>1) {
-                                    echo "<p>la quantité mentionnée est pour un seul exemplaire <br> multiplier la qte par $exemplaire</p>";
+    <?php if ($carnet == "carnet" & $exemplaire > 1) {
+        echo "<p>la quantité mentionnée est pour un seul exemplaire <br> multiplier la qte par $exemplaire</p>";
+    } ?>
 
-
-                                    } ?>
-        
     <p>Format coupe <?= $formatcoupe . "cm" ?>//Nombre de poses coupe <?= $nbreposecoupe . "poses" ?></p>
     <p>Format Tirage <?= "<span style='color:red'>" . $formatTirage . "</span>cm" ?></p>
     <p>Nombre de tirage <?= "<span style='color:red'>" . $nbretirage . "</span>Tirages" ?>//Nombre de pose Tirage <?= $nbreposetirage . "poses" ?></p>
@@ -366,21 +362,20 @@ require_once('closematiere.php');
 
 
 
-<
-    </div>
-    <!-- <a id="bouton" href="" class="btn btn-primary btn-block">Retourner ou Annuler</a> -->
-    <a id="bouton" href="#" class="btn btn-primary btn-lg btn-info btn-block" onClick="history.back()">Retour</a>
-    <a id="bouton" href="canvas3.php?formatpapier=<?=$resultmatiere['formatxxyy']?>&formatmodel=<?=$formatcoupe?>&portrait=1" class="btn btn-primary btn-lg btn-info btn-block">Shema de coupe</a>
+     </div>
+        <!-- <a id="bouton" href="" class="btn btn-primary btn-block">Retourner ou Annuler</a> -->
+        <a id="bouton" href="#" class="btn btn-primary btn-lg btn-info btn-block" onClick="history.back()">Retour</a>
+        <a id="bouton" href="canvas3.php?formatpapier=<?= $resultmatiere['formatxxyy'] ?>&formatmodel=<?= $formatcoupe ?>&portrait=1" class="btn btn-primary btn-lg btn-info btn-block">Shema de coupe</a>
 
-    <!-- <a id="bouton" href="validerbl.php?idclient=<?= $trieclientid ?>" class="btn btn-primary btn-block">Valider le Bon de livraison</a> -->
-    <!-- <a id="bouton" href="testheader.php" class="btn btn-primary btn-block">Telecharger le pdf du bon de production</a> -->
-    <a id="bouton" href="" class="btn btn-primary btn-block" OnClick="javascript:window.print()">Imprimer le Bon de production</a>
-    <!-- <a id="bouton" href="sms/envoismsok.php?idclient=< ?= $trieclientid ?>" class="btn btn-primary btn-block">Envoyer Sms de livraison</a> -->
+        <!-- <a id="bouton" href="validerbl.php?idclient=<?= $trieclientid ?>" class="btn btn-primary btn-block">Valider le Bon de livraison</a> -->
+        <!-- <a id="bouton" href="testheader.php" class="btn btn-primary btn-block">Telecharger le pdf du bon de production</a> -->
+        <a id="bouton" href="" class="btn btn-primary btn-block" OnClick="javascript:window.print()">Imprimer le Bon de production</a>
+        <!-- <a id="bouton" href="sms/envoismsok.php?idclient=< ?= $trieclientid ?>" class="btn btn-primary btn-block">Envoyer Sms de livraison</a> -->
 
-    <!-- <a id="bouton" href="javascript:if(confirm('&Ecirc;tes-vous sûr de vouloir Envoyer Sms ?')) document.location.href='sms/envoismsok.php?idclient=<?= $idclient ?>&message=<?= $requette2 ?>'" 
+        <!-- <a id="bouton" href="javascript:if(confirm('&Ecirc;tes-vous sûr de vouloir Envoyer Sms ?')) document.location.href='sms/envoismsok.php?idclient=<?= $idclient ?>&message=<?= $requette2 ?>'" 
     class="btn btn-primary btn-block">Envoyer Sms de livraison</a>             -->
-<br>
-<br>
+        <br>
+        <br>
 </body>
 
 </html>

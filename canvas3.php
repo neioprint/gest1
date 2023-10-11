@@ -1,5 +1,6 @@
 <?php
   session_start();
+  // okkokokokoko
 if (isset($_GET['formatpapier']) && !empty($_GET['formatpapier'])) {
     $formatpapier=$_GET['formatpapier'];
 } else $formatpapier="65X100";
@@ -379,13 +380,13 @@ ctx.stroke();
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 // cas ou la coupe  est droite ou transversale 
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-// console.log("$portrait="+<?=$portrait?>)
-//         console.log("$nbpose1="+<?=$nbpose1 ?>);
-//         console.log("$nbpose2="+<?=$nbpose2 ?>);
-//         console.log("$formatmodely="+<?=$formatmodely*10 ?>);
-//         console.log("$formatmodelx="+<?=$formatmodelx*10 ?>);
-//         console.log("$formatpapierx="+<?=$formatpapierx*10 ?>);
-//         console.log("$formatpapiery="+<?=$formatpapiery*10 ?>);
+// console.log("$portrait="+< ?=$portrait?>)
+//         console.log("$nbpose1="+< ?=$nbpose1 ?>);
+//         console.log("$nbpose2="+< ?=$nbpose2 ?>);
+//         console.log("$formatmodely="+< ?=$formatmodely*10 ?>);
+//         console.log("$formatmodelx="+< ?=$formatmodelx*10 ?>);
+//         console.log("$formatpapierx="+< ?=$formatpapierx*10 ?>);
+//         console.log("$formatpapiery="+< ?=$formatpapiery*10 ?>);
 
 //         console.log("longposex="+longposex);
 //         console.log("longposey="+longposey);
@@ -399,16 +400,16 @@ ctx.stroke();
         if (<?=$nbpose1 ?>><?= $nbpose2 ?>) {
                                         var bouclei=<?= $coupeintx?>;
                                         var bouclej=<?= $coupeinty?>;
-                                        console.log("bouclei="+bouclei);
-                                        console.log("bouclej="+bouclej);
+                                        // console.log("bouclei="+bouclei);
+                                        // console.log("bouclej="+bouclej);
                                         } 
                                     else                          
                                     {
                                     
                                         var bouclei=<?= $coupeintxtrans?>;
                                         bouclej=<?= $coupeintytrans?>;
-                                        console.log("bouclei="+bouclei);
-                                        console.log("bouclej="+bouclej);
+                                        // console.log("bouclei="+bouclei);
+                                        // console.log("bouclej="+bouclej);
                                        
                                         }
 
@@ -442,9 +443,14 @@ ctx.stroke();
         // ctx.arc(95, 50, 25, 0, 2 * Math.PI);
         // ctx.stroke();
 
+        textnbpose="Y=<?=$formatpapiery ?>cm  et "+bouclej+" poses";
+        ctx.fillText(textnbpose, canvas.width/2, <?=$formatpapierx*10+20 ?>);
+        ctx.fillText("Total poses "+bouclei*bouclej, canvas.width/2, <?=$formatpapierx*10+40 ?>);
 
-        ctx.fillText("Y=<?=$formatpapiery ?>cm", canvas.width/2, <?=$formatpapierx*10+20 ?>);
+
         ctx.fillText("X=<?=$formatpapierx ?>cm", <?=$formatpapiery*10 ?>,canvas.height/2);
+        ctx.fillText("et "+bouclei+" poses", <?=$formatpapiery*10 ?>,canvas.height/2+20);
+
         // boucle verticale bouclei
         for (let i = 0; i <bouclei; i++) 
                                         {
@@ -495,7 +501,7 @@ ctx.stroke();
                                             
 
                                             if (<?=$formatmodelx?>>5 &&  <?=$formatmodely?>>5) 
-                                            ctx.fillText(<?=$formatmodelx?>+"X"+<?=$formatmodely?>,50+<?=$formatmodelx*10 ?>*j,50+<?=$formatmodely*10 ?>*i);
+                                            ctx.fillText(<?=$formatmodelx?>+"X"+<?=$formatmodely?>,30+<?=$formatmodelx*10 ?>*j,40+<?=$formatmodely*10 ?>*i);
                                             else if (j==0)ctx.fillText(" <?=$formatmodelx?>X<?=$formatmodely?> ",<?=$formatmodely*10 ?>+<?=$formatmodely*10 ?>/2,20+<?=$formatmodelx*10 ?>);
 
 

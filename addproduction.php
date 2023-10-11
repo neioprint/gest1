@@ -469,7 +469,7 @@ if ($_POST) {
 
    
 
-        die();
+        //die();
 
 
 
@@ -485,7 +485,7 @@ if ($_POST) {
             $db->exec('SET NAMES "UTF8"');
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
-            die();
+            die("prob");
         }
 
         $sql = 'INSERT INTO 
@@ -660,29 +660,24 @@ if ($_POST) {
                             <!-- <option disabled value="">Sélectionnez votre le client</option>  -->
                             <?php
                             // On boucle sur la variable result
+// foreach ($variable as $key => $value) {
+//     # code...
+// }
 
+
+                            $nbcomm=0;
                             foreach ($resultcommande as $commande) {
-                              
+                               
                                 if ($idclientSel == $commande['idclient']) {
                                    
                                     if ($idcommandeSel == $commande['id']) {
-                                       // foreach ($prod as $prod0) {
-                                                // if ($prod0['idcommande']  == $idcommandeSel) {
-
-                                                //                                 echo "selected";
-                                                //                                 $_SESSION['idimprime'] = $commande['idimprime']; 
-
-                                                                          
-                                                                         
-
-                                                //                                }
-                                    //    }
+                                     
                             
                                         echo "selected";
                                         $_SESSION['idimprime'] = $commande['idimprime'];
+                                      
                                     }
-                                    //    foreach ($prod as $prod0) {
-                                    //              if ($prod0['idcommande']  == $idcommandeSel) {
+                              
 
                                                             
                                 ?>
@@ -691,9 +686,12 @@ if ($_POST) {
                                     </option>
                             <?php
                                                             //  }
-                                                            // }                                  
-                                }
+                                                            // }    
+                                $nbcomm++;                              
+                                } 
+                               
                             } // fin foreach
+                            if ($nbcomm==0) {?> <option value="">pas de commande en cours</option> <?php }
                             ?>
                         </select>
 

@@ -71,9 +71,9 @@ if ($pointages != "") {
   $msg = "de " . $salarie . " le " . $dates . " à " . $heurepointage;
 
 
-  $headers = 'FROM:  contact@global2-pub.com';
+  $headers = 'FROM:  contact@global2pub.com';
 
-  mail("pointageneio@gmail.com", "Pointage ", $msg, $headers);
+  mail("pointageneio@gmail.com", "urgent pointage de $salarie", $msg, $headers);
   if ($pointage == false) {
     // echo "vide";
     if ($pointages == 1) $entree1 = $heurepointage;
@@ -163,9 +163,9 @@ if ($pointages != "") {
 
 <body>
 <div class="loader-container">
-        <div class="loader">
+        <!-- <div class="loader">
           
-        </div>
+        </div> -->
 </div>
   <?php include('./navbarok.php') ?>
   <h2 class="entete center">Pointage Journalier</h2>

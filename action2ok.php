@@ -4,7 +4,7 @@ $valeur=0;
 
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 function calculduree($etat,$tabsuivi1,$tabsuivi2) {
-  // if (2==2) 
+  // if (2==2) okookokokokokokokokook
   if ($etat==2) 
   {
   // echo $tabsuivi0[0][0];
@@ -54,19 +54,19 @@ function calculduree($etat,$tabsuivi1,$tabsuivi2) {
       $diff = $h2 - $h1  ;
       // print_r ($datedebut);echo "<br>";
       // print_r ($datefin);echo "<br>";
-      $date1=date_create($datedebut);
+      $date1=date_create($datedebut." ".$heuredebut);
   //    die();
   //  print_r ($date1);echo "<br>";
    
-      $date2=date_create(@$datefin);
+      $date2=date_create(@$datefin." ".$heurefin);
  //     print_r( $date2);echo "<br>";
       $diff2=date_diff($date1,$date2);
 //       echo "<pre>";
 // print_r($diff2);
 // echo "</pre>";
-         $GLOBALS['valeur']=$diff2->format("%a"); 
-      //  echo "<pre>";
-      //  if ($valeur>0) echo($valeur." Jours ");
+         //$GLOBALS['valeur']=$diff2->format("%a"); 
+      //   echo "<pre>";
+      //   echo($GLOBALS['valeur']." Jours ");
       //  echo "</pre>";
 //       $d2=date_create("2023-09-15");
 //       $d1=date_create("2023-09-16");
@@ -86,10 +86,11 @@ function calculduree($etat,$tabsuivi1,$tabsuivi2) {
       //$totaldiff=strtotime(date($totaldiff))+strtotime(date($diff)); 
   } 
       
-      return $diff;
+      return $diff2;
   
   
-  } else return 0;
+  } 
+  else return 0;
   
   }
   
@@ -487,28 +488,45 @@ $tabsuivi=unserialize($commande['etapesvalidee']);
 
 
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
- $totalduree=0;
- $totalvaleur=0;
+ $totaldureejour=0;
+ $totaldureeminute=0;
+ $totaldureeheure=0;
+
+
+ //$totalvaleur=0;
  for ($i=0; $i <$compt ; $i++) { 
   
 
 if (@$tabsuivi[$i][0]==2) {
-              $duree= calculduree($tabsuivi[$i][0],$tabsuivi[$i][1],$tabsuivi[$i][2]);
+              $inter= calculduree($tabsuivi[$i][0],$tabsuivi[$i][1],$tabsuivi[$i][2]);
               //echo "$chainedecoupe[$i] à durée $valeur jours ".date("H:i",$duree)."Mn<br>";
+             //echo @$chainedecoupe[$i]." Duree jour ".@$inter->d." heure ".@$inter->h. " min ".@$inter->i;
 
-$totalduree+=$duree;
-@$totalvaleur+=@$valeur;
+//$totalduree+=$duree;
+//@$totalvaleur+=@$valeur;
+// $jours=0;
+// $minutes=0;
+// $heures=0;
+if ($inter->d>0) $jours=$inter->d;
+if ($inter->h>0) $heures=$inter->h;
+if ($inter->i>0) $minutes=$inter->i;
 
 
-$totalduree=$totalduree;
-
+@$totaldureejour+=$jours;
+@$totaldureeheure+=$heures;
+@$totaldureeminute+=$minutes;
 
 
 } else if (@$tabsuivi[$i][0]==2 && @$tabsuivi[$i][2]=="") {
-                                                      // echo "erreur <br>";
-                                                      // $_SESSION['erreur'].="Erreur calcul duree commande";
+                                                       echo "erreur <br>";
+                                                       $_SESSION['erreur'].="Erreur calcul duree commande";
                                                         }
  }
+//  print_r($totaldureejour);echo "<br>";
+//  print_r($totaldureeheure);echo "<br>";
+//  print_r($totaldureeminute);echo "<br>";
+
+
 // date("H:i", @$diff);
 // echo "<br>";
 // echo $diff2->format("%R%a Jours");
@@ -520,15 +538,22 @@ $totalduree=$totalduree;
 
 // echo "<br>";echo "<br>";
 echo "<br>";
-
- if ($totalvaleur!=0 or  $totalduree!=0) { ?>
+// if ($totalvaleur!=0 or  $totalduree!=0) { ? >
+ if (  0==0) { ?>
                                            <!-- echo @$totalvaleur." jours et ".date("H:i",@$totalduree)."<br>"; ? > -->
                                            <div class="d-grid gap-3 container">
                                           <a  class="btn btn-lg btn-info btn-block" >
                         
                                           <?php 
-                                         
-                                         echo @$totalvaleur." jours et ".date("H:i",@$totalduree)." mn<br>";?>
+                                          $chaineaff="";
+                                          if ($totaldureejour>0) $chaineaff.=$totaldureejour." jours ";
+                                          if ($totaldureeheure>0) $chaineaff.=$totaldureeheure." heures ";
+                                          if ($totaldureeminute>0) $chaineaff.=$totaldureeminute." minutes ";
+                                          @$affichage=" Duree totale=".$chaineaff;
+                                      
+                                          echo $affichage;
+                                   
+                                           ?>
                                           </a>
                                           </div>
                                           <?php } 
@@ -565,7 +590,7 @@ echo "<br>";
 //die();
 
 // if ($etatsuivi == 1 or $etatsuivi == 3) {
-if ($etatsuivi != 0) {
+if ($etatsuivi != 0 && $etatsuivi != 6) {
     //$messageJson=[];
                     for ($i=0; $i <$compt ; $i++) {
                     
@@ -598,6 +623,7 @@ if ($etatsuivi != 0) {
         
         //);            
                         }
+                        
                         //array(0,0,0,0,0,0,0,0);
                         if (@$tabsuivi[$i][0]==0) $bouton='btn-danger'; else if (@$tabsuivi[$i][0]==1) $bouton='btn-warning'; else $bouton='btn-success'; 
                          ?>
@@ -606,10 +632,24 @@ if ($etatsuivi != 0) {
                         <a id="etat<?= $i ?>" class="btn btn-lg <?=$bouton?> btn-block" onclick="togglestate(<?=$i?>,'<?= $chainedecoupe[$i] ?>',<?=$tabsuivi[$i][0]?>,<?= $resultcommande ?>)">
                         
                         <?php 
-                        if (@$tabsuivi[$i][0]==2) @$inter=@calculduree(@$tabsuivi[$i][0],@$tabsuivi[$i][1],@$tabsuivi[$i][2]); else $inter=0;
-                        if ($inter>0)
-                         echo @$chainedecoupe[$i]." Duree ".@date('H:i',$inter)." Mn";
-                         else   echo @$chainedecoupe[$i];
+                        if (@$tabsuivi[$i][0]==2 ) {
+                                                  @$inter=@calculduree(@$tabsuivi[$i][0],@$tabsuivi[$i][1],@$tabsuivi[$i][2]);
+                                                  $chaineaff="";
+                                                  if ($inter->d>0) $chaineaff.=$inter->d." jours ";
+                                                  if ($inter->h>0) $chaineaff.=$inter->h." heures ";
+                                                  if ($inter->i>0) $chaineaff.=$inter->i." minutes ";
+                                                  $affichage="$chainedecoupe[$i] Duree=".$chaineaff;
+                                                  //.@$inter->d."jour ".@$inter->h." heure ".@$inter->h.  @$inter->i." min";
+                                                  echo $affichage;
+                                                  }
+                                                  else {
+                                                        $inter="";
+                                                        echo @$chainedecoupe[$i];
+                                                      }
+                        //  if (date('H:i',$inter)!="00:00")
+                      
+                        //  echo @$chainedecoupe[$i]." Duree ".@date('H:i',$inter)." mn";
+                          // else   echo @$chainedecoupe[$i];
                          
                          ?>
                         </a>
