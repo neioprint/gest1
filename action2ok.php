@@ -478,7 +478,7 @@ require_once('./close.php');
     //$tabsuivi=
     //array(0,0,0,0,0);
 
-    $tabsuivi = unserialize($commande['etapesvalidee']);
+    if ($commande['etapesvalidee'] != null) $tabsuivi = unserialize($commande['etapesvalidee']);
     // print_r(count($tabsuivi));
     // echo "<pre>";
     // print_r($tabsuivi);

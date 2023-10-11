@@ -114,12 +114,16 @@ if (isset($_GET['idcommande'])) {
         // $exemplaire=explode(' ', $typdecoupe[1]);
         // $exemplaire=$exemplaire[0];
 
-
+      
         $carnet = $typdecoupe[0];
+        // if (array_key_exists(2, $typdecoupe)){
         $qtecarnet = explode(' ', $typdecoupe[1]);
         $qtecarnet = $qtecarnet[0];
-        $exemplaire = explode(' ', $typdecoupe[2]);
+        // echo count($typdecoupe);
+        // die();
+         $exemplaire = explode(' ', $typdecoupe[2]);
         $exemplaire = $exemplaire[0];
+        // }
 
         // echo "<br>";
         // print_r($exemplaire);
@@ -362,20 +366,20 @@ require_once('closematiere.php');
 
 
 
-     </div>
-        <!-- <a id="bouton" href="" class="btn btn-primary btn-block">Retourner ou Annuler</a> -->
-        <a id="bouton" href="#" class="btn btn-primary btn-lg btn-info btn-block" onClick="history.back()">Retour</a>
-        <a id="bouton" href="canvas3.php?formatpapier=<?= $resultmatiere['formatxxyy'] ?>&formatmodel=<?= $formatcoupe ?>&portrait=1" class="btn btn-primary btn-lg btn-info btn-block">Shema de coupe</a>
+    </div>
+    <!-- <a id="bouton" href="" class="btn btn-primary btn-block">Retourner ou Annuler</a> -->
+    <a id="bouton" href="#" class="btn btn-primary btn-lg btn-info btn-block" onClick="history.back()">Retour</a>
+    <a id="bouton" href="canvas3.php?formatpapier=<?= $resultmatiere['formatxxyy'] ?>&formatmodel=<?= $formatcoupe ?>&portrait=1" class="btn btn-primary btn-lg btn-info btn-block">Shema de coupe</a>
 
-        <!-- <a id="bouton" href="validerbl.php?idclient=<?= $trieclientid ?>" class="btn btn-primary btn-block">Valider le Bon de livraison</a> -->
-        <!-- <a id="bouton" href="testheader.php" class="btn btn-primary btn-block">Telecharger le pdf du bon de production</a> -->
-        <a id="bouton" href="" class="btn btn-primary btn-block" OnClick="javascript:window.print()">Imprimer le Bon de production</a>
-        <!-- <a id="bouton" href="sms/envoismsok.php?idclient=< ?= $trieclientid ?>" class="btn btn-primary btn-block">Envoyer Sms de livraison</a> -->
+    <!-- <a id="bouton" href="validerbl.php?idclient=<?= $trieclientid ?>" class="btn btn-primary btn-block">Valider le Bon de livraison</a> -->
+    <!-- <a id="bouton" href="testheader.php" class="btn btn-primary btn-block">Telecharger le pdf du bon de production</a> -->
+    <a id="bouton" href="" class="btn btn-primary btn-block" OnClick="javascript:window.print()">Imprimer le Bon de production</a>
+    <!-- <a id="bouton" href="sms/envoismsok.php?idclient=< ?= $trieclientid ?>" class="btn btn-primary btn-block">Envoyer Sms de livraison</a> -->
 
-        <!-- <a id="bouton" href="javascript:if(confirm('&Ecirc;tes-vous sûr de vouloir Envoyer Sms ?')) document.location.href='sms/envoismsok.php?idclient=<?= $idclient ?>&message=<?= $requette2 ?>'" 
+    <!-- <a id="bouton" href="javascript:if(confirm('&Ecirc;tes-vous sûr de vouloir Envoyer Sms ?')) document.location.href='sms/envoismsok.php?idclient=<?= $idclient ?>&message=<?= $requette2 ?>'" 
     class="btn btn-primary btn-block">Envoyer Sms de livraison</a>             -->
-        <br>
-        <br>
+    <br>
+    <br>
 </body>
 
 </html>
