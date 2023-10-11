@@ -1,0 +1,244 @@
+ /* le 1 juillet 2022 à tlemcen 
+ dans cette version index4.js et gestion4.php et base4.php correction bug affichage des commandes par dates
+ qui ne stocke pas dazns le localstorazge du fait d'un bug probazblement sur la festion dates anterieures
+ actuctuelle et future de l'enregistrement des commandes */
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+body {
+    /* border: 3px solid green; */
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* width: 100%; */
+
+
+}
+.radio{
+    display:flex;
+    color:red;
+}
+
+
+
+
+.entete {
+    display: flex;
+    margin:10px;
+    color: maroon;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+/* h1 {
+    
+    text-transform: uppercase;
+    font-size:1.6em;
+    color: maroon;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+   
+} */
+/* .logo {
+    border: 3px solid green;
+} */
+
+#nbCommandes h3 {
+    margin: 0;
+    padding: 0;
+    color: green;
+    text-align: center;
+}
+
+.boutonAjouterImprime,
+.boutonSupprimerImprime {
+    cursor: pointer;
+    border: 3px solid red;
+    font-size: 1.5rem;
+
+    background-color: green;
+    color: white;
+    /* position:absolute; */
+
+
+
+}
+
+#bidon {
+    /* border: 3px solid green; */
+    text-align: center;
+    padding-top: 0;
+    font-size: 1.5rem;
+    width: 75%;
+    max-width: 350px;
+    height: auto;
+    background-color: green;
+    color: rgba(255, 255, 255, 0.7);
+
+}
+
+.vanilla-calendar {
+  
+    max-width: 800%;  
+    border: 3px solid green;
+    /* width:auto; */
+    max-width: 600px;
+    min-width: 100px;
+    /* width:100%; */
+
+
+}
+
+#commande-list {
+    width:80%;
+    /* border: 3px solid green; */
+    margin: 10px;
+    padding: 10px;
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+
+
+/* h3{
+    color: green;
+    text-align: center;  
+} */
+
+h2,
+
+h4 {
+    /* text-transform: capitalize; */
+    color: green;
+    text-align: center;
+    margin: 15px;
+    padding: 0;
+    /* transform: translateY(-20%); */
+}
+
+.danger {
+    color: red;
+}
+
+/* .center {
+    text-align: center;
+    border: 3px solid green;
+} */
+
+form {
+    /* border: 3px solid green; */
+
+    font-size: 1.3rem;
+    margin: 20px;
+}
+
+form label {
+    color: black;
+    display: block;
+    font-weight: 800;
+    border: 3px solid green;
+}
+
+form select {
+    position: relative;
+    /* border: 3px solid red; */
+    /* justify-content: center; */
+    color: green;
+    height: fit-content;
+    /* width:100%; */
+    font-size: 0.9em;
+    width: 300px;
+    border: solid 3px green;
+
+}
+
+input {
+    /* border: 3px solid green; */
+    text-align: center;
+    /* width: 100%; */
+    padding: 0.5em;
+    /* background-color: #538fcd; */
+    background-color: green;
+    color: white;
+    font-size: 1em;
+    width: 300px;
+}
+
+ input[type="radio"] {
+    width: 100%;
+    padding: 0.5em;
+    background-color: #538fcd;
+    color: white;
+    font-size: 1.1em;
+  }
+  /* input[type="number"] {
+    width: 100%;
+    padding: 0.5em;
+    background-color: #538fcd;
+    color: white;
+    font-size: 1.1em;
+  }
+  input[type="price"] {
+    width: 100%;
+    padding: 0.5em;
+    background-color: #538fcd;
+    color: white;
+    font-size: 1.1em;
+  }  */
+
+::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1em;
+}
+
+form button {
+    width: 100%;
+    margin: 1px;
+    display: block;
+    color: white;
+    background-color: green;
+    text-align: center;
+    /* width: 100%; */
+    /* background-color: #538fcd; */
+    /* color: rgb(255, 255, 255); */
+    font-size: 1.2em;
+    border: 0;
+    box-shadow: none;
+
+    cursor: pointer;
+}
+
+.delete {
+    border: 0;
+    height: 40px;
+    box-shadow: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #ff5a5f;
+    cursor: pointer;
+}
+
+.delete2 {
+    border: 0;
+    height: 40px;
+    box-shadow: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: green;
+    cursor: pointer;
+}
+
+.delete3 {
+    border: 0;
+    height: 40px;
+    box-shadow: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: blue;
+    cursor: pointer;
+}

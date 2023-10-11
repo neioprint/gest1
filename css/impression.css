@@ -1,0 +1,51 @@
+/* #bouton,#bouton1,#bouton2,#bouton3
+{
+display:none!important;
+
+} */
+
+.stylebl {
+    display:inline-block;
+    /* border: 3px solid black; */
+    border:none;
+    font-size:20px;
+    font-weight: bold;
+    padding:10px;
+  border-radius: 15px;
+    line-height: 1.2;
+  }
+  .tab{
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  .entete { 
+    visibility:hidden;
+    /* font-size: 20px; */
+    /* width: 80%; */
+    /* border: 3px solid black; */
+   
+    
+}
+.cachet{
+  margin-left: auto;
+  margin-right: 15px;
+  display: block;
+  
+}
+.invisible{
+  /* display:none; */
+visibility:hidden;
+
+
+}
+#bouton
+{
+visibility:hidden;
+}
+
+
+.footer {
+
+  visibility:hidden;
+  
+  }

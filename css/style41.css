@@ -1,0 +1,295 @@
+/* le 1 juillet 2022 à tlemcen 
+ dans cette version index4.js et gestion4.php et base4.php correction bug affichage des commandes par dates
+ qui ne stocke pas dazns le localstorazge du fait d'un bug probazblement sur la festion dates anterieures
+ actuctuelle et future de l'enregistrement des commandes */
+
+ @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Oswald:wght@500&family=Pacifico&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap');
+ @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+ 
+ /* * {
+  background-color:black!important;
+  color:white!important;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+   
+  }  */
+
+body {
+ 
+  /* margin-left: 50px; */
+  /* max-width: 900px; */
+    /* margin: 10px; */
+    /* padding: 15px;
+    margin:15px; */
+    box-sizing: border-box;
+    background-color:rgb(15, 3, 95)!important;
+    /* background-image: url(/images/annonce2.png), url(/images/logoneio.png)!important;
+  background-position: right bottom, left top!important;
+  background-repeat: no-repeat, repeat!important; */
+
+    text-decoration: none;
+    color:grey!important; 
+    
+  
+  
+}
+/* #fond{
+  background-image: url(/images/annonce2.png), url(/images/logoneio.png)!important;
+  background-position: right bottom, left top;
+  background-repeat: no-repeat, repeat;
+} */
+.jaune {
+  background-color: yellow!important;
+}
+
+/* .btn-block{
+  max-width:500px!important;
+} */
+
+/* body {
+  font-size: 18px;
+  color: rgb(4, 17, 155);
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+} */
+/* .nav{
+  color: blue!important;
+ 
+} */
+.avatar{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  /* margin:15px; */
+
+  
+  /* border-radius: 50%; */
+  /* border: 3px solid green; */
+  /* background: url(../images/banner1.jpg); */
+  /* width:400px;
+  height:100px; */
+}
+/* span.entete  {
+  display: block!important;
+} */
+/* .entete img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ 
+} */
+.centerimage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* width: 50%; */
+}
+.entete{ 
+  text-shadow: 5px 5px 9px rgb(17, 81, 38);
+  text-align: center;
+  display:flex;
+  /* margin:auto; */
+  align-items: center;
+  justify-content: center;
+  /* margin:5px; */
+  
+  color:rgb(6, 210, 6);
+  font-family: 'Oswald', sans-serif;
+  font-size: 25px; 
+  /* color:rgb(4, 17, 155) ;
+
+  /* font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+}
+.gauche{ 
+  text-shadow: 5px 5px 9px rgb(17, 81, 38);
+  text-align: left;
+  display:flex;
+  /* margin:auto; */
+  align-items: left;
+  justify-content: left;
+  /* margin:5px; */
+  
+  color:rgb(6, 210, 6);
+  font-family: 'Oswald';
+  font-size: 25px; 
+  /* color:rgb(4, 17, 155) ;
+
+  /* font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+}
+.entete1{ 
+  /* text-shadow: 5px 5px 9px rgb(17, 81, 38); */
+  font-family: 'Cairo' !important;
+  
+  text-align: center;
+  display:flex;
+  /* margin:auto; */
+  align-items: center;
+  justify-content: center;
+  /* margin:5px; */
+  
+  /* color:rgb(249, 248, 250); */
+  color:#FFC436;
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px; 
+  /* color:rgb(4, 17, 155) ;
+
+  /* font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+}
+.entetefr{ 
+  /* text-shadow: 5px 5px 9px rgb(17, 81, 38); */
+  font-family: 'Oswald' !important;
+  
+  text-align: center;
+  display:flex;
+  /* margin:auto; */
+  align-items: center;
+  justify-content: center;
+  /* margin:5px; */
+  
+  /* color:rgb(249, 248, 250); */
+  color:#f9fbfc;
+  /* font-family: 'Oswald', sans-serif; */
+  font-size: 20px; 
+  /* color:rgb(4, 17, 155) ;
+
+  /* font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+}
+legend{
+  color:red!important;
+  font-family:'Roboto'!important;
+}
+p,h1 {
+    display: flex;
+    /* margin:5px;
+    padding:3px; */
+    color:orange;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* border: 2px solid green; */
+    border-radius: 5px;
+    /* font-size: 20px; */
+    /* font-weight: bold; */
+}
+.tab{
+  /* padding:20px; */
+font-size: 13px!important;
+color: rgb(7, 7, 7)!important;
+/* line-height: 1!important; */
+line-height: 0.9!important;
+background-color:rgb(253, 249, 249)!important;
+
+}
+
+
+input{
+  font-size: 20px!important;
+  color:whitesmoke!important;
+  background-color:lightseagreen!important ;
+  /* max-width:400px!important; */
+  /* margin-left: 0!important; */
+}
+input[type="checkbox"] {
+  margin:0!important;
+  padding:0!important;
+ 
+}
+label{
+  font-size: 20px;
+  /* color:rgb(9, 179, 6); */
+  color: yellow;
+  /* font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+  font-family:'Roboto'!important;
+ margin-left: 0!important;
+  /* font-weight: bold; */
+}
+option .jaune {
+  color:white!important;
+}
+select{
+  font-size: 20px!important;
+  color:black!important;
+  text-transform: capitalize !important;
+  background-color:lightseagreen!important ;
+  font-family:'Roboto'!important;
+}
+/* input[type="radio"] {
+  width: 100%;
+  padding: 0.5em;
+  background-color: #538fcd;
+  color: white;
+  font-size: 1.1em;
+} */
+::placeholder {
+  color:darkblue!important;
+  font-family: 'Roboto'!important;
+}
+/* button{
+  z-index: -1!important;
+
+} */
+/* .container{
+  display: relative;
+} */
+/* #deplacement{
+
+  display:absolute!important;
+  top: 380px!important;
+  color:black!important;
+} */
+
+
+.footer {
+
+ 
+ 
+
+
+
+
+
+ 
+background-color: rgb(92,184,91);
+color:black!important;
+
+text-align: center;
+position: fixed;
+bottom: 0;
+right: 0;
+left:0;
+}
+
+
+
+
+
+.button1 {
+  font-size: 16px;
+  padding: 1em 3.3em;
+  transform: perspective(200px) rotateX(15deg);
+  color: white;
+  font-weight: 900;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(0deg, rgba(63,94,251,1) 0%, rgba(70,135,252,1) 100%);
+  box-shadow: rgba(63,94,251,0.2) 0px 40px 29px 0px;
+  will-change: transform;
+  transition: all 0.3s;
+  border-bottom: 2px solid rgba(70,135,252,1);
+}
+
+.button1:hover {
+  transform: perspective(180px) rotateX(30deg) translateY(2px);
+}
+
+.button1:active {
+  transform: perspective(170px) rotateX(36deg) translateY(5px);
+}
+
+
+
+
+
+
+

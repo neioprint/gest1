@@ -1,0 +1,30 @@
+body {
+ 
+    /* margin-left: 50px; */
+    /* max-width: 900px; */
+      /* margin: 10px; */
+      /* padding: 15px;
+      margin:15px; */
+      box-sizing: border-box;
+      background-color:rgb(72, 70, 70)!important;
+      /* background-image: url(/images/annonce2.png), url(/images/logoneio.png)!important;
+    background-position: right bottom, left top!important;
+    background-repeat: no-repeat, repeat!important; */
+  
+      text-decoration: none;
+      color:white!important; 
+      background-image:url(../images/logooptimise.avif);
+      background-repeat:no-repeat;
+      background-position:center center; 
+       background-attachment:fixed;
+        opacity: 0.9;
+    
+    
+  }
+
+
+#fond{
+    background-image: url(/images/logoneio.png);
+    background-position: right bottom, left top;
+    background-repeat: no-repeat, repeat;
+  }

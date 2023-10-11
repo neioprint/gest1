@@ -1,0 +1,102 @@
+body {
+    /* max-width: 900px; */
+   
+      padding: 0px;
+      box-sizing: border-box;
+    
+      /* color:white!important; */
+    
+    
+     
+  }
+.container{
+
+     max-width:900px !important; 
+    /* border: 3px solid black; */
+display:flex;
+/* justify-content: space-between ; */
+margin:0;
+padding:0;
+
+/* border: 3px solid black; */
+}
+.logo{
+   
+  color:black;
+    /* width: 20%; */
+    /* border: 3px solid black; */
+}
+
+.bordure {
+  margin:5px;
+  padding:5px; 
+    font-size: 20px!important;;
+    color: red;
+    /* width: 80%; */
+    /* border: 3px solid blue; */
+    /* line-height: 1; */
+    
+}
+
+p { 
+  margin:5px;
+  padding:5px; 
+  font-size:20px!important;
+  /* width: 80%; */
+  /* border: 3px solid black; */
+  /* line-height: 1; */
+  
+}
+
+
+.containerbl{
+    display:flex;
+    align-content: center;
+    justify-content: space-around ;
+    
+}
+.stylebl {
+    display:inline-block;
+    /* width:30%; */
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+    /* border: 3px solid black; */
+    font-size:16px;
+    font-weight: bold;
+    padding:2px;
+    margin:2px;
+  border-radius: 15px;  
+    /* line-height: 1; */
+  }
+.gras{
+    font-weight: bold;
+    font-size: 19px;
+    text-decoration: none;
+    
+} 
+table .tab{
+    font-size: 11px;
+    line-height: 0.8;
+    vertical-align: middle!important;
+    padding: 0px;
+  
+    /* line-height: 1!important; */
+    
+    }
+.basdepage{
+    margin:5px;
+    display:flex;
+    color:red;
+    font-weight: bold;
+    justify-content: space-between ;
+}
+.cachet{
+  margin-left: auto;
+  margin-right: 15px;
+  display: block;
+  display:none;
+}
+/* .invisible {
+  display:none;
+} */
