@@ -1,0 +1,116 @@
+HostPapa <info@hostpapasupport.com>
+lun. 5 avr. 2021 22:59
+ À moi
+
+Hello Sid,
+
+Welcome to the HostPapa family! We appreciate your business and would like to let you know that your new HostPapa web hosting account has been created.
+
+This email contains key information unique to your HostPapa account. You will need to reference it when configuring your account. When you’re ready to begin, please keep this email handy and visit the following web page:
+
+https://www.hostpapa.com/welcome
+________________________________________________
+
+QUICK START - GET YOUR WEBSITE LIVE IN MINUTES!
+
+Ready to get started building your new website? With your HostPapa web hosting account, you can use any tools or software to build your website.
+
+HostPapa offers several free and fee-based website building programs. This includes popular free tools, such as WordPress, Joomla!, and Drupal.
+
+We highly recommend that you try out HostPapa’s own Website Builder tool. The Starter Edition is included with your web hosting package and allows you to create your first two pages absolutely free. No other software or website designer is needed - with a large library of professional templates, and an easy-to-use interface, you can get a professional website up and running in minutes. Best of all, you can do it yourself - no coding required! Simply activate and start using your Website Builder in your dashboard in the “My Website” tab. Learn more here: https://www.hostpapa.com/knowledgebase/getting-started-website-builder/
+________________________________________________
+
+HOSTPAPA DASHBOARD ACCOUNT INFORMATION:
+
+NOTE: If you did not provide the required domain information during checkout, you will be prompted to do so after logging into your HostPapa dashboard. Please complete the form with all the necessary information to avoid delays and possible domain loss.
+
+Your HostPapa dashboard puts a range of services at your fingertips, including the ability to access your website hosting control panel (commonly known as cPanel), manage your domains, add and make changes to services on your account, access support tickets, update your contact and billing information, and more. Access it here:
+
+https://www.hostpapa.com/dashboard
+
+Client ID: 529235
+
+Password: bpw654m2sn
+________________________________________________
+
+HOSTPAPA ACCOUNT INFORMATION:
+
+Domain Name: global2-pub.com
+
+Hosting Plan: COM-Web Hosting Business (global2-pub.com)
+
+Server location: United States
+
+Shared IP Address: 204.44.192.59
+________________________________________________
+
+cPANEL INFORMATION:
+
+You can access your web hosting and email control panel (cPanel) at any time by clicking on the “My cPanel” tab in your HostPapa dashboard.
+
+cPanel Username: globa932
+
+cPanel Password: bpw654m2sn
+
+For more info on cPanel, go here: https://www.hostpapa.com/knowledgebase/cpanel-control-panel-overview/
+________________________________________________
+
+FTP INFORMATION:
+
+To connect to the server and in order to FTP your files, please use either your domain name, i.e. global2-pub.com, or - if prior to propagation - the IP address associated with your account, i.e. 204.44.192.59
+
+Your FTP information:
+
+FTP: global2-pub.com
+
+Username: globa932
+
+Password: bpw654m2sn
+
+FTP directory: www/
+
+Please note: Some FTP programs will not require the final slash ("/") in the FTP directory setting.
+
+
+________________________________________________
+
+CUSTOMER SUPPORT:
+
+If at any time you require further assistance with any of our services, you can contact our PapaSquad Customer Support Team and we would be happy to help.
+
+HostPapa is proud to offer all of our customers award-winning support 24 hours a day, seven days a week in four languages (English, French, Spanish and German). You can call, chat or email with any questions you may have about our products or services. HostPapa also has an in-depth Knowledge Base and a library of useful video tutorials as well.
+
+Knowledge Base help articles:https://www.hostpapa.com/knowledgebase/
+
+Video tutorials: https://www.hostpapa.com/tutorials/video.shtml
+
+Submit a support ticket or chat with an online agent: https://www.hostpapa.com/dashboard/my-support/OpenTicket
+
+Live Chat: On our website through your account dashboard
+
+Call us:
+1-888-959-PAPA [7272]
+(905) 315-3455
+
+Do you want to bring your website or domain name to HostPapa? Let's get started.
+
+We would also be happy to hear from you with any suggestions regarding our services and appreciate the feedback. You may also receive some customer surveys asking for your feedback.
+
+If you do decide that you no longer require the service and would like to cancel, you may do so at any time by following the cancellation process: https://www.hostpapa.com/terms/cancellation/
+
+You can contact us for cancellation through one of the following methods: a) by contacting us in writing through email to support@hostpapasupport.com, using the subject line 529235 Cancellation Request, b) by opening a support ticket through your account dashboard for our billing team or c) through your account dashboard by following the cancellation button next to the service you intend to cancel.
+
+For certain services, if you decide to cancel within the first thirty (30) days you may be eligible to receive a full refund. For detailed information please consult our Money-Back Guarantee Period: https://www.hostpapa.com/terms/cancellation/.
+
+Please note, you are still responsible for any outstanding charges or any fees and charges that may have accrued prior to the effectiveness of such cancellation. If necessary, our billing team will contact you to verify the details of your cancellation request.
+________________________________________________
+
+SPECIAL PROMOTIONAL PRICES:
+If you received a special offer, promotional price, discount or coupon upon signup, these are available to new customers only and valid for the initial term only. All plans are prepaid and will renew at regular rates automatically using the payment method you provide to us, until you notify us of your intent to cancel. Regular pricing information regarding your renewals for our services can be viewed here: https://www.hostpapa.com/renewal-pricing/
+_______________________________________________
+
+Thank you for choosing HostPapa!
+
+Sincerely,
+
+HostPapa Customer Care

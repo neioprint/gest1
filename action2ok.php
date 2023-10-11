@@ -1,10 +1,12 @@
 <?php
 require_once "const.php";
 $valeur=0;
-
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 function calculduree($etat,$tabsuivi1,$tabsuivi2) {
   // if (2==2) okookokokokokokokokook
+  // okokokokokokok
   if ($etat==2) 
   {
   // echo $tabsuivi0[0][0];
