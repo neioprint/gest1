@@ -91,7 +91,7 @@ function calculduree($etat, $tabsuivi1, $tabsuivi2)
       //$totaldiff=strtotime(date($totaldiff))+strtotime(date($diff)); 
     }
 
-    return $diff2;
+    return @$diff2;
   } else return 0;
 }
 
@@ -332,7 +332,7 @@ require_once('./close.php');
           //print_r($_SESSION['user']['role']);
           if ($_SESSION['user']['role'] != 'ADMIN') { ?>
             <a class="btn btn-primary btn-lg btn-success" href="indexcommandesimplifie.php?niveau=ins">
-              <i class='fa fa-undo' style='font-size:30px;color:black' aria-hidden='true'></i>
+              <i class='fa fa-undo' style='font-size:27px;color:black' aria-hidden='true'></i>
             </a>
           <?php } ?>
           <?php
@@ -341,33 +341,33 @@ require_once('./close.php');
             // print_r($_SESSION['user']['role']);
           ?>
             <a class="btn btn-primary btn-lg btn-success" href="indexcommande.php?niveau=<?= @$_SESSION['niveau'] ?>">
-              <i class='fa fa-undo' style='font-size:30px;color:black' aria-hidden='true'></i>
+              <i class='fa fa-undo' style='font-size:27px;color:black' aria-hidden='true'></i>
             </a>
             <a class="btn btn-primary btn-lg btn-success" href="./detailscommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
-              <i class='fa fa-desktop' style='font-size:30px;color:black' aria-hidden='true'></i></a>
+              <i class='fa fa-desktop' style='font-size:27px;color:black' aria-hidden='true'></i></a>
 
 
             <a class="btn btn-primary btn-lg" href="./editcommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
-              <i class='fa fa-pencil-square-o' style='font-size:30px;color:black' aria-hidden='true'></i>
+              <i class='fa fa-pencil-square-o' style='font-size:27px;color:black' aria-hidden='true'></i>
             </a>
 
             <a class="btn btn-primary btn-lg btn-warning" href="./deletecommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
-              <i class='fa fa-trash' style='font-size:30px;color:black' aria-hidden='true'></i>
+              <i class='fa fa-trash' style='font-size:27px;color:black' aria-hidden='true'></i>
             </a>
 
             <a class="btn btn-primary btn-lg btn-info" href="./etatcommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
-              <i class='fa fa-desktop' style='font-size:30px;color:black' aria-hidden='true'></i>
-              <i class='fa fa-address-card' style='font-size:30px;color:black' aria-hidden='true'></i></a>
+              <i class='fa fa-desktop' style='font-size:27px;color:black' aria-hidden='true'></i>
+              <i class='fa fa-address-card' style='font-size:27px;color:black' aria-hidden='true'></i></a>
 
 
             <a class="btn btn-primary btn-lg btn-info" href="./editetatcommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
 
-              <i class='fa fa-pencil-square-o' style='font-size:30px;color:black' aria-hidden='true'></i>
-              <i class='fa fa-address-card' style='font-size:30px;color:black' aria-hidden='true'></i>
+              <i class='fa fa-pencil-square-o' style='font-size:27px;color:black' aria-hidden='true'></i>
+              <i class='fa fa-address-card' style='font-size:27px;color:black' aria-hidden='true'></i>
             </a>
 
             <a class="btn btn-primary btn-lg btn-danger" href="./tagger.php?id=<?= $resultcommande ?>&suite=9&page=<?= $page ?>">
-              <i class='fa fa-tag' style='font-size:30px;color:black' aria-hidden='true'></i>
+              <i class='fa fa-tag' style='font-size:27px;color:black' aria-hidden='true'></i>
             </a>
 
           <?php } ?>
@@ -384,10 +384,10 @@ require_once('./close.php');
 
         <!-- <a class="btn btn-primary btn-lg btn-success" > Etape Suivante </a> -->
         <!-- <button class="button1">Etape Suivante</button> -->
-        <!-- <i class="fa fa-arrow-right" style='font-size:30px;color:red' aria-hidden="true"></i>    -->
+        <!-- <i class="fa fa-arrow-right" style='font-size:27px;color:red' aria-hidden="true"></i>    -->
 
         <!-- <a class="btn btn-primary btn-lg btn-success" href="indexcommande.php?niveau=< ?=@$_SESSION['niveau']?>">
-            <i class='fa fa-undo' style='font-size:30px;color:black'  aria-hidden='true'></i>
+            <i class='fa fa-undo' style='font-size:27px;color:black'  aria-hidden='true'></i>
             </a> -->
         <?php
 
@@ -402,7 +402,7 @@ require_once('./close.php');
 
         ?>
           <a class="button 1 btn btn-primary btn-lg btn-danger" onclick="confirmer(1)">Terminer</a>
-          <a class="button 1 btn btn-primary btn-lg btn-info" onclick="confirmer(11)">Terminer Partiel</a>
+          <a class="button 1 btn btn-primary btn-lg btn-info" onclick="confirmer(11)">Terminer Partiellement</a>
         <?php } ?>
         <!-- < ?php if ($etatsuivi == 10) { 
        
@@ -430,7 +430,7 @@ require_once('./close.php');
         <?php } ?>
         <?php if ($etatsuivi == 11) { ?>
           <!-- <a class="btn btn-primary btn-lg btn-danger" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Livrer commande</a> -->
-          <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(12)">Livrer commande Partiel</a>
+          <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(12)">Livrer commande Partielle</a>
           <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(17)">Reprise</a>
         <?php } ?>
         <?php if ($etatsuivi == 12) { ?>
@@ -507,9 +507,9 @@ require_once('./close.php');
         // $jours=0;
         // $minutes=0;
         // $heures=0;
-        if ($inter->d > 0) $jours = $inter->d;
-        if ($inter->h > 0) $heures = $inter->h;
-        if ($inter->i > 0) $minutes = $inter->i;
+        if (@$inter->d > 0) $jours = $inter->d;
+        if (@$inter->h > 0) $heures = $inter->h;
+        if (@$inter->i > 0) $minutes = $inter->i;
 
 
         @$totaldureejour += $jours;
@@ -634,9 +634,9 @@ require_once('./close.php');
               if (@$tabsuivi[$i][0] == 2) {
                 @$inter = @calculduree(@$tabsuivi[$i][0], @$tabsuivi[$i][1], @$tabsuivi[$i][2]);
                 $chaineaff = "";
-                if ($inter->d > 0) $chaineaff .= $inter->d . " jours ";
-                if ($inter->h > 0) $chaineaff .= $inter->h . " heures ";
-                if ($inter->i > 0) $chaineaff .= $inter->i . " minutes ";
+                if (@$inter->d > 0) $chaineaff .= $inter->d . " jours ";
+                if (@$inter->h > 0) $chaineaff .= $inter->h . " heures ";
+                if (@$inter->i > 0) $chaineaff .= $inter->i . " minutes ";
                 $affichage = "$chainedecoupe[$i] Duree=" . $chaineaff;
                 //.@$inter->d."jour ".@$inter->h." heure ".@$inter->h.  @$inter->i." min";
                 echo $affichage;

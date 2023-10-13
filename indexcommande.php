@@ -619,9 +619,9 @@ if (@$resultcommande != []) {
     $debut = ($page - 1) * $nbr_element_page;
 }
 
-
+//echo "ok";
 // appelimprime();
-// die();
+//  die();
 
 ?>
 <!DOCTYPE html>
