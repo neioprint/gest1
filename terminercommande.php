@@ -168,7 +168,6 @@ if (($_GET['suite'] == 1) or ($_GET['suite'] == 0) or
     }
 
     if ($_GET['suite'] == 11) {
-        $_SESSION['message'] .= 'Changement etat commande reussie ';
         $etat = "11/Terminé Partiel le " . $datecom . " par " . $_SESSION['login'];
         //echo "ok";
         $msg.=" ".$etat;

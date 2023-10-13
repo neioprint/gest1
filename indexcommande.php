@@ -1064,7 +1064,7 @@ if (@$resultcommande != []) {
                                                 <i class='fa-solid fa-newspaper fa-fw fa-3x'   aria-hidden='true'></i><span style='color:blue;font-weight:bold'></span>
 
                                              <?php }
-                                             if ($etatcolor[0][0] == 12) { ?>
+                                             if ($etatcolor[0][0] == 12 or $etatcolor[0][0] == 11) { ?>
                                                 <i class='fa-solid fa-clock fa-shake fa-fw fa-3x'   aria-hidden='true'></i><span style='color:blue;font-weight:bold'></span>
 
                                              <?php }
