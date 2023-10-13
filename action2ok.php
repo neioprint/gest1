@@ -31,7 +31,7 @@ function calculduree($etat, $tabsuivi1, $tabsuivi2)
 
     // echo "<br>";
 
-    $diff = 0;
+    //$diff = 0;
     //opoopopopopopopopopopopopo
     // ok
     if ($tabsuivi2 != null) {
@@ -56,7 +56,7 @@ function calculduree($etat, $tabsuivi1, $tabsuivi2)
 
       $h2 = strtotime($heurefin);
       $h1 = strtotime($heuredebut);
-      $diff = $h2 - $h1;
+      //$diff = $h2 - $h1;
       // print_r ($datedebut);echo "<br>";
       // print_r ($datefin);echo "<br>";
       $date1 = date_create($datedebut . " " . $heuredebut);
@@ -617,10 +617,10 @@ require_once('./close.php');
               // array(0,'',''),
               // array(0,'',''),
 
-
+              
               //);            
             }
-
+            
             //array(0,0,0,0,0,0,0,0);
             if (@$tabsuivi[$i][0] == 0) $bouton = 'btn-danger';
             else if (@$tabsuivi[$i][0] == 1) $bouton = 'btn-warning';
@@ -628,12 +628,13 @@ require_once('./close.php');
             ?>
             <!-- <a  class="btn btn-lg btn-primary btn-block">< ?="Debut ".@$tabsuivi[$i][1]." Fin ".@$tabsuivi[$i][2]?>
                         </a> -->
-            <a id="etat<?= $i ?>" class="btn btn-lg <?= $bouton ?> btn-block" onclick="togglestate(<?= $i ?>,'<?= $chainedecoupe[$i] ?>',<?= $tabsuivi[$i][0] ?>,<?= $resultcommande ?>)">
-
+                        <a id="etat<?= $i ?>" class="btn btn-lg <?= $bouton ?> btn-block" onclick="togglestate(<?= $i ?>,'<?= $chainedecoupe[$i] ?>',<?= $tabsuivi[$i][0] ?>,<?= $resultcommande ?>)">
+                        
               <?php
               if (@$tabsuivi[$i][0] == 2) {
                 @$inter = @calculduree(@$tabsuivi[$i][0], @$tabsuivi[$i][1], @$tabsuivi[$i][2]);
                 $chaineaff = "";
+                
                 if (@$inter->d > 0) $chaineaff .= $inter->d . " jours ";
                 if (@$inter->h > 0) $chaineaff .= $inter->h . " heures ";
                 if (@$inter->i > 0) $chaineaff .= $inter->i . " minutes ";
