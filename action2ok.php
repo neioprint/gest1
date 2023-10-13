@@ -637,9 +637,16 @@ require_once('./close.php');
                 if (@$inter->d > 0) $chaineaff .= $inter->d . " jours ";
                 if (@$inter->h > 0) $chaineaff .= $inter->h . " heures ";
                 if (@$inter->i > 0) $chaineaff .= $inter->i . " minutes ";
-                $affichage = "$chainedecoupe[$i] Duree=" . $chaineaff;
+                if (@$inter->d==0 && @$inter->h==0 && @$inter->i==0)  {
+                                              
+                                                                      $affichage="";  echo @$chainedecoupe[$i];
+                                                                      }
+                                                                       else {
+                  $affichage = @$chainedecoupe[$i]."$chainedecoupe[$i] Duree=" . $chaineaff;
+                  echo $affichage;
+                }
                 //.@$inter->d."jour ".@$inter->h." heure ".@$inter->h.  @$inter->i." min";
-                echo $affichage;
+              
               } else {
                 $inter = "";
                 echo @$chainedecoupe[$i];
@@ -752,6 +759,7 @@ require_once('./close.php');
 
                     });
                 }; //fin du tes if
+                  // < ?php header("location:./"); ?>// vers la page courante
                 //window.location.href="action2ok.php?variable="+variable+"&id="+< ?= $resultcommande ?>+"&page="+< ?=$page?>+"&etat="+< ?=$etat?>+"&idclient="+< ?=$trieclientid?>;
                 // a:4:{i:0;a:3:{i:0;i:2;i:1;s:27:"2023-09-16 à 09:48 par sid";i:2;s:27:"2023-09-15 à 22:53 par sid";}i:1;a:3:{i:0;i:2;i:1;s:27:"2023-09-16 à 09:48 par sid";i:2;s:27:"2023-09-15 à 22:59 par sid";}i:2;a:3:{i:0;i:2;i:1;s:27:"2023-09-16 à 09:59 par sid";i:2;s:27:"2023-09-16 à 09:59 par sid";}i:3;a:3:{i:0;i:2;i:1;s:27:"2023-09-16 à 10:01 par sid";i:2;s:0:"";}}                                        
 
@@ -796,6 +804,7 @@ require_once('./close.php');
                     });
                 }; //fin du tes if
               }
+              // < ?php header("location:./"); ?>// vers la page courante
               //window.location.href="action2ok.php?variable="+variable+"&id="+< ?= $resultcommande ?>+"&page="+< ?=$page?>+"&etat="+< ?=$etat?>+"&idclient="+< ?=$trieclientid?>;
 
               //die();
