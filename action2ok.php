@@ -212,7 +212,7 @@ require_once('./close.php');
 
 // die()
 
-
+// okokkokokokok
 
 
 // if (isset($variable)) {
@@ -479,10 +479,10 @@ require_once('./close.php');
     //array(0,0,0,0,0);
 
     if ($commande['etapesvalidee'] != null) $tabsuivi = unserialize($commande['etapesvalidee']);
-    // print_r(count($tabsuivi));
-    // echo "<pre>";
-    // print_r($tabsuivi);
-    // echo "</pre>";
+    print_r(count($tabsuivi));
+    echo "<pre>";
+    print_r($tabsuivi);
+    echo "</pre>";
 
     //echo $_SERVER['HTTP_REFERER'];
 
@@ -640,10 +640,11 @@ require_once('./close.php');
                 if (@$inter->i > 0) $chaineaff .= $inter->i . " minutes ";
                 if (@$inter->d==0 && @$inter->h==0 && @$inter->i==0)  {
                                               
-                                                                      $affichage="";  echo @$chainedecoupe[$i];
+                                                                      $affichage="";  
+                                                                      echo @$chainedecoupe[$i];
                                                                       }
                                                                        else {
-                  $affichage = @$chainedecoupe[$i]."$chainedecoupe[$i] Duree=" . $chaineaff;
+                  $affichage = @$chainedecoupe[$i]." Duree=" . $chaineaff;
                   echo $affichage;
                 }
                 //.@$inter->d."jour ".@$inter->h." heure ".@$inter->h.  @$inter->i." min";

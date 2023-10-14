@@ -1,5 +1,6 @@
 <?php
 // les constantes 
+// require 'vendor/autoload.php';
 require_once "const.php";
 
 function appelimprime(){

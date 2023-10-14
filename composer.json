@@ -2,6 +2,7 @@
     "require": {
         "google/apiclient": "^2.15.0",
         "dompdf/dompdf": "^2.0",
-        "statickidz/php-google-translate-free": "^1.2"
+        "statickidz/php-google-translate-free": "^1.2",
+        "mistic100/randomcolor": "^1.0"
     }
 }
