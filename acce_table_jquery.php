@@ -41,9 +41,9 @@ $commande = $query->fetch();
 $tabsuivi=$commande['etapesvalidee'];
 $tabsuivi=unserialize($tabsuivi);
 
-if ($tabsuivi[$variable][0]<2) {
-                            $tabsuivi[$variable][0]+=1;
-                            $tabsuivi[$variable][$tableau]=date('Y-m-d'). " à ".date('H:i'). " par " . $_SESSION['login'];
+if ($tabsuivi[0][$variable][0]<2) {
+                            $tabsuivi[0][$variable][0]+=1;
+                            $tabsuivi[0][$variable][$tableau]=date('Y-m-d'). " à ".date('H:i'). " par " . $_SESSION['login'];
                             $tableau+=1;
                             //$tabsuivi[$variable][$tableau]=date('Y-m-d'). " à ".date('H:i'). " par " . $_SESSION['login'];
                             }

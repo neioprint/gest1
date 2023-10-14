@@ -355,8 +355,8 @@ $debut = ($page - 1) * $nbr_element_page;
                                     <td class="table-primary">
                                         <?php
 
-                                        //print_r($etatcolor[0][0]);
-                                        // die();
+                                        // print_r($etatcolor[0][0]);
+                                        //  die();
                                         //$resultcommande[$i]['etat'] .
                                         if ($etatcolor[0][0] == 0) { ?>
 
@@ -372,7 +372,7 @@ $debut = ($page - 1) * $nbr_element_page;
                                             <!-- echo "<i class='fa  fa-cogs' style='font-size:30px;color:black' aria-hidden='true'></i><span style='background-color:blue;color:white;font-weight:bold'>" .  "</span>"; -->
                                             <i class="fa-solid fa-gear fa-spin fa-3x" style='color:blue'></i>
                                         <?php }
-                                         if ($etatcolor[0][0] == 2) {?>
+                                         if ($etatcolor[0][0] == 2 or $etatcolor[0][0] == 11) {?>
 
                                             <!-- echo "<i class='fa fa-check-square' style='font-size:30px;color:blue'  aria-hidden='true'></i><span style='background-color:green;color:black;font-weight:bold'>"  . "</span>"; -->
                                             <i class='fa fa-check-square fa-fw fa-3x' style='color:blue'  aria-hidden='true'></i><span style='background-color:green;color:black;font-weight:bold'></span>
@@ -392,6 +392,19 @@ $debut = ($page - 1) * $nbr_element_page;
                                             <!-- // echo "<i class='fa fa-ban' style='font-size:30px;color: DarkRed'  aria-hidden='true'></i> <span style='background-color:red;color:black;font-weight:bold'>"  . "</span>"; -->
                                             <i class='fa fa-ban fa-fw fa-3x' style='color: DarkRed'  aria-hidden='true'></i> 
                                             <?php } ?>
+
+                                            <?php 
+                                             if ($etatcolor[0][0] == 12 or $etatcolor[0][0] == 11) { ?>
+                                                <i class='fa-solid fa-clock fa-shake fa-fw fa-3x'   aria-hidden='true'></i><span style='color:blue;font-weight:bold'></span>
+
+                                             <?php }
+                                            ?>
+
+
+
+
+
+                                            
                                             <!-- <span style='background-color:red;color:black;font-weight:bold'></span> -->
                                             <?php if ($etatcolor[0][0] == 5) { ?>
 
@@ -405,12 +418,12 @@ $debut = ($page - 1) * $nbr_element_page;
 
                                                 <?php } ?>
 
-                                                <?php
+                                                <!-- < ?php
                                                 // if ($etatcolor[0][0] == 6) { ? >
                                                 // <i class='fa fa-newspaper-o fa-fw fa-3x' style='color:blue'  aria-hidden='true'></i><span style='color:blue;font-weight:bold'></span>
 
                                                 // < ?php }
-                                                ?>
+                                                ? > -->
                                             <!-- <span style="background-color:yellow;color:black;font-weight:bold" > -->
                                             <!-- < ?= $resultcommande[$i]['etat'] ?> -->
 
