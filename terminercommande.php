@@ -8,7 +8,7 @@ require_once "const.php";
 //     die;
 // }
 // Est-ce que l'id existe et n'est pas vide dans l'URL
-$msg="";
+
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     require('connectcommande.php');
 
@@ -134,12 +134,12 @@ if (($_GET['suite'] == 1) or ($_GET['suite'] == 0) or
                         } else  $_SESSION['erreur'].="Pas de mail pour ce client";
     }
     if ($_GET['suite'] == 17) {
-        // $etat = "1/Reprise En cours le " . $datecom . " par " . $_SESSION['login'];
-        $etat = "1/En cours de Reprise le " . $datecom . " par " . $_SESSION['login'];
+        $etat = "1/Reprise En cours le " . $datecom . " par " . $_SESSION['login'];
         // ici changement d'etat vers termine
         $_SESSION['message'] .= 'Changement etat commande reussie ';
         // inclure le changement d'etat pour la production aussi
         $msg.=" ".$etat;
+        // ajout de la suite du tableau apres reprise de la commande
         if ($email!="")  {
            
                         // mail($to, "Urgent! Commande de $nomclient", $msg, $headers);
@@ -168,6 +168,7 @@ if (($_GET['suite'] == 1) or ($_GET['suite'] == 0) or
     }
 
     if ($_GET['suite'] == 11) {
+        $_SESSION['message'] .= 'Changement etat commande reussie ';
         $etat = "11/Terminé Partiel le " . $datecom . " par " . $_SESSION['login'];
         //echo "ok";
         $msg.=" ".$etat;
@@ -297,7 +298,7 @@ if (($_GET['suite'] == 1) or ($_GET['suite'] == 0) or
     // die();
 } 
 
-  header("Location: action2ok.php?id=$commande[id]&page=1&etat=$etat&idclient=$commande[idclient]");
+  header("Location: action2ok.php?id=$commande[id]&page=1&etat=$etat&idclient=$commande[nomclient]");
  die();
 //  header("Location: ./terminercommande.php?id=$commande[id]&suite=$etatsuivi");
 //  die();

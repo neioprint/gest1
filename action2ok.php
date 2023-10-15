@@ -488,17 +488,20 @@ require_once('./close.php');
 
 
     // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    //echo count($tabsuivi);
+    $dim=count($tabsuivi)-1;
+    //if ($etatsuivi==12) $dim=1;
     $totaldureejour = 0;
     $totaldureeminute = 0;
     $totaldureeheure = 0;
 
-
+//echo $etatsuivi;
     //$totalvaleur=0;
     for ($i = 0; $i < $compt; $i++) {
 
 
-      if (@$tabsuivi[$i][0] == 2) {
-        $inter = calculduree($tabsuivi[$i][0], $tabsuivi[$i][1], $tabsuivi[$i][2]);
+      if (@$tabsuivi[$dim][$i][0] == 2) {
+        $inter = calculduree($tabsuivi[$dim][$i][0], $tabsuivi[$dim][$i][1], $tabsuivi[$dim][$i][2]);
         //echo "$chainedecoupe[$i] à durée $valeur jours ".date("H:i",$duree)."Mn<br>";
         //echo @$chainedecoupe[$i]." Duree jour ".@$inter->d." heure ".@$inter->h. " min ".@$inter->i;
 
@@ -515,7 +518,7 @@ require_once('./close.php');
         @$totaldureejour += $jours;
         @$totaldureeheure += $heures;
         @$totaldureeminute += $minutes;
-      } else if (@$tabsuivi[$i][0] == 2 && @$tabsuivi[$i][2] == "") {
+      } else if (@$tabsuivi[$dim][$i][0] == 2 && @$tabsuivi[$dim][$i][2] == "") {
         echo "erreur <br>";
         $_SESSION['erreur'] .= "Erreur calcul duree commande";
       }
@@ -598,41 +601,31 @@ require_once('./close.php');
         <div class="container mt-3">
           <div class="d-grid gap-3">
             <?php
-            if (!$tabsuivi) {
-              $tabsuivi = [[]];
-              //$chainedecoupe;
-              for ($i = 0; $i < $compt; $i++) {
-                $tabsuivi[$i][0] = 0;
-                $tabsuivi[$i][1] = "";
-                $tabsuivi[$i][2] = "";
-              }
+            // if (!$tabsuivi) {
+            //   $tabsuivi = [[]];
+            //   //$chainedecoupe;
+            //   for ($i = 0; $i < $compt; $i++) {
+            //     $tabsuivi[$i][0] = 0;
+            //     $tabsuivi[$i][1] = "";
+            //     $tabsuivi[$i][2] = "";
+            //   }
 
-
-              // $tabsuivi=array(array(0,'',''),
-              // array(0,'',''),
-              // array(0,'',''),
-              // array(0,'',''),
-              // array(0,'',''),
-              // array(0,'',''),
-              // array(0,'',''),
-              // array(0,'',''),
 
               
-              //);            
-            }
+            // }
             
             //array(0,0,0,0,0,0,0,0);
-            if (@$tabsuivi[$i][0] == 0) $bouton = 'btn-danger';
-            else if (@$tabsuivi[$i][0] == 1) $bouton = 'btn-warning';
+            if (@$tabsuivi[$dim][$i][0] == 0) $bouton = 'btn-danger';
+            else if (@$tabsuivi[$dim][$i][0] == 1) $bouton = 'btn-warning';
             else $bouton = 'btn-success';
             ?>
             <!-- <a  class="btn btn-lg btn-primary btn-block">< ?="Debut ".@$tabsuivi[$i][1]." Fin ".@$tabsuivi[$i][2]?>
                         </a> -->
-                        <a id="etat<?= $i ?>" class="btn btn-lg <?= $bouton ?> btn-block" onclick="togglestate(<?= $i ?>,'<?= $chainedecoupe[$i] ?>',<?= $tabsuivi[$i][0] ?>,<?= $resultcommande ?>)">
+                        <a id="etat<?= $i ?>" class="btn btn-lg <?= $bouton ?> btn-block" onclick="togglestate(<?= $i ?>,'<?= $chainedecoupe[$i] ?>',<?= $tabsuivi[$dim][$i][0] ?>,<?= $resultcommande ?>)">
                         
               <?php
-              if (@$tabsuivi[$i][0] == 2) {
-                @$inter = @calculduree(@$tabsuivi[$i][0], @$tabsuivi[$i][1], @$tabsuivi[$i][2]);
+              if (@$tabsuivi[$dim][$i][0] == 2) {
+                @$inter = @calculduree(@$tabsuivi[$dim][$i][0], @$tabsuivi[$dim][$i][1], @$tabsuivi[$dim][$i][2]);
                 $chaineaff = "";
                 
                 if (@$inter->d > 0) $chaineaff .= $inter->d . " jours ";
@@ -845,7 +838,7 @@ require_once('./close.php');
 
   <script>
     function confirmer(etat) {
-      console.log(etat);
+      //console.log(etat);
       // mavar=document.getElementById(j).innerHTML;
 
       // j=0;

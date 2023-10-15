@@ -36,14 +36,13 @@ $commande = $query->fetch();
 
 
 
-
 // misa  à jour la base de donnee debut
 $tabsuivi=$commande['etapesvalidee'];
 $tabsuivi=unserialize($tabsuivi);
-
-if ($tabsuivi[0][$variable][0]<2) {
-                            $tabsuivi[0][$variable][0]+=1;
-                            $tabsuivi[0][$variable][$tableau]=date('Y-m-d'). " à ".date('H:i'). " par " . $_SESSION['login'];
+$dim=count($tabsuivi)-1;
+if ($tabsuivi[$dim][$variable][0]<2) {
+                            $tabsuivi[$dim][$variable][0]+=1;
+                            $tabsuivi[$dim][$variable][$tableau]=date('Y-m-d'). " à ".date('H:i'). " par " . $_SESSION['login'];
                             $tableau+=1;
                             //$tabsuivi[$variable][$tableau]=date('Y-m-d'). " à ".date('H:i'). " par " . $_SESSION['login'];
                             }

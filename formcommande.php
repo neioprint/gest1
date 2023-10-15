@@ -130,7 +130,7 @@ if (isset($_POST["submit1"]) && !empty($_POST["submit1"])) {
              $tabsuivi[$i][2]="";
 
         }       
-
+        $tabsuivi=array($tabsuivi);
         // echo '<pre>';
         // print_r($tabsuivi);
         // echo '</pre>'; 
