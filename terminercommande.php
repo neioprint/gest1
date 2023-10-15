@@ -33,6 +33,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     if (!$commande) {
         $_SESSION['erreur'] = "Cet id n'existe pas";
         header('Location: indexcommande.php');
+        die();
     }
     $etat = $commande['etat'];
     $montant = $commande['total'];
@@ -41,9 +42,12 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $idcommande=$commande['id'];
     $imprime=$commande['imprime'];
     $prix=$commande['prix'];
+    $tabsuivi=unserialize($commande['etapesvalidee']);
     //$total=$commande['total'];
     // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     $idclient = $commande['idclient'];
+ 
+    
     require('./connectclient.php');
 
     //$sql = 'SELECT * FROM `client` order by client asc';
@@ -123,8 +127,10 @@ if (($_GET['suite'] == 1) or ($_GET['suite'] == 0) or
     $datecom = date('d-m-Y') . ' à ' . date("H:i");
     if ($_GET['suite'] == 0) {
         $etat = "1/En cours le " . $datecom . " par " . $_SESSION['login'];
+        $_SESSION['message'] .=$etat;
+
         // ici changement d'etat vers termine
-        $_SESSION['message'] .= 'Changement etat commande reussie ';
+        //$_SESSION['message'] .= 'Changement etat commande reussie ';
         // inclure le changement d'etat pour la production aussi
         $msg.=" ".$etat;
         if ($email!="")  {
@@ -135,11 +141,48 @@ if (($_GET['suite'] == 1) or ($_GET['suite'] == 0) or
     }
     if ($_GET['suite'] == 17) {
         $etat = "1/Reprise En cours le " . $datecom . " par " . $_SESSION['login'];
+        $_SESSION['message'] .=$etat;
+
         // ici changement d'etat vers termine
-        $_SESSION['message'] .= 'Changement etat commande reussie ';
+        //$_SESSION['message'] .= 'Changement etat commande reussie ';
         // inclure le changement d'etat pour la production aussi
-        $msg.=" ".$etat;
+        @$msg.=" ".@$etat;
         // ajout de la suite du tableau apres reprise de la commande
+        // echo "<pre>";
+        // print_r($commande);
+        // echo "</pre>";
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        // $tabsuivi=unserialize($commande['etapesvalidee']);
+        $dim=count($tabsuivi);
+       
+        //$typ=@$result['typ'];
+        // $chaine=@$result['etapes'];
+        // $chainedecoupe=explode(",",$chaine);
+        //$typdecoupe=explode(",",$typ);
+        $compt=count($tabsuivi[$dim-1]);
+        //count($chainedecoupe);
+        // echo "<br>";
+        // print_r( $compt);
+        // echo "<br>";
+        // echo $dim;
+        //$compt0=count($typdecoupe);
+        //$tabsuivi=[];
+        //$tabsuivi=[[]];
+        //$chainedecoupe;
+        for ($i=0; $i <$compt ; $i++) { 
+             $tabsuivi[$dim][$i][0]=0;
+             $tabsuivi[$dim][$i][1]="";
+             $tabsuivi[$dim][$i][2]="";
+
+        }   
+        $dim+=1;
+        // $tabsuivi=serialize($tabsuivi);
+        // echo "<br>";
+        // echo "<pre>";
+        // print_r($tabsuivi);
+        // echo "</pre>";    
+        //,$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
         if ($email!="")  {
            
                         // mail($to, "Urgent! Commande de $nomclient", $msg, $headers);
@@ -149,8 +192,11 @@ if (($_GET['suite'] == 1) or ($_GET['suite'] == 0) or
 
 
     if ($_GET['suite'] == 1) {
-        $_SESSION['message'] .= 'Changement etat commande reussie ';
+        //$_SESSION['message'] .= 'Changement etat commande reussie ';
+
         $etat = "2/Terminé le " . $datecom . " par " . $_SESSION['login'];
+        $_SESSION['message'] .=$etat;
+
         //echo "ok";
         $msg.=" ".$etat;
         if ($email!="") {
@@ -168,8 +214,10 @@ if (($_GET['suite'] == 1) or ($_GET['suite'] == 0) or
     }
 
     if ($_GET['suite'] == 11) {
-        $_SESSION['message'] .= 'Changement etat commande reussie ';
+        //$_SESSION['message'] .= 'Changement etat commande reussie ';
         $etat = "11/Terminé Partiel le " . $datecom . " par " . $_SESSION['login'];
+        $_SESSION['message'] .=$etat;
+
         //echo "ok";
         $msg.=" ".$etat;
         if ($email!="") {
@@ -184,8 +232,10 @@ if (($_GET['suite'] == 1) or ($_GET['suite'] == 0) or
     }
 
     if ($_GET['suite'] == 12) {
-        $_SESSION['message'] .= 'Changement etat commande reussie ';
+        //$_SESSION['message'] .= 'Changement etat commande reussie ';
+       
         $etat = "12/Livraison Partiel le " . $datecom . " par " . $_SESSION['login'];
+        $_SESSION['message'] .=$etat;
         //echo "ok";
         $msg.=" ".$etat;
         if ($email!="") {
@@ -203,7 +253,8 @@ if (($_GET['suite'] == 1) or ($_GET['suite'] == 0) or
 
     if ($_GET['suite'] == 6) {
         $etat = "0/En Attente " . $datecom . " par " . $_SESSION['login'];
-        $_SESSION['message'] .= 'Changement etat commande reussie ';
+        //$_SESSION['message'] .= 'Changement etat commande reussie ';
+        $_SESSION['message'] .=$etat;
         // inclure le changement d'etat pour la production aussi
         // $sql = 'UPDATE `client` SET `solde`=:solde WHERE `id`=:idclient;';
 
@@ -223,8 +274,9 @@ if (($_GET['suite'] == 1) or ($_GET['suite'] == 0) or
     }
 
     if ($_GET['suite'] == 2) {
-        $_SESSION['message'] .= 'Changement etat commande reussie ';
+        //$_SESSION['message'] .= 'Changement etat commande reussie ';
         $etat = "3/Livrée le " . $datecom . " par " . $_SESSION['login'];
+        $_SESSION['message'] .=$etat;
         $msg.=" ".$etat;
         if ($email!="" && $msg!="") {
                                    
@@ -250,20 +302,30 @@ if (($_GET['suite'] == 1) or ($_GET['suite'] == 0) or
         // require('closeclient.php');
     }
     if ($_GET['suite'] == 3) {
-        $_SESSION['message'] .= 'Changement etat commande reussie ';
+        
         $etat = "5/Archivée le " . $datecom . " par " . $_SESSION['login'];
+        $_SESSION['message'] .=$etat;
         // inclure le changement d'etat pour la production aussi
     }
+    
+
+
+
+
+
+    //die();
     //require('connectcommande.php');
     //    $etatseq.=$commande['etatseq'].$etat.'//';
     $etatprod = $etat; // relatif à la mise à jour dans la table production
+    $tabsuivi=serialize($tabsuivi);
     //echo $etatseq;
-    $sql = 'UPDATE `commande` SET `etat`=:etat,`etatseq`=:etatseq WHERE `id`=:id;';
+    $sql = 'UPDATE `commande` SET `etat`=:etat,`etatseq`=:etatseq,`etapesvalidee`=:etapesvalidee WHERE `id`=:id;';
     // Prepare statement
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->bindValue(':etat', $etat, PDO::PARAM_STR);
     $stmt->bindValue(':etatseq', $etatseq, PDO::PARAM_STR);
+    $stmt->bindValue(':etapesvalidee', $tabsuivi, PDO::PARAM_STR);
 
     // execute the query
     $stmt->execute();
