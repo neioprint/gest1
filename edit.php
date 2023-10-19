@@ -45,21 +45,43 @@ $typ = $_POST['typ'];
         //if ($typ="carnet") $carnet=implode(',',$_POST['carnet']);
         $etapes = implode(',', $_POST['etapes']);
         // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-        // $typ=@$result['typ'];
-        // $chaine=$etapes;
-        // $chainedecoupe=explode(",",$chaine);
-        // // $typdecoupe=explode(",",$typ);
-        // $compt=count($chainedecoupe);
-        // // $compt0=count($typdecoupe);
+        
+//         $typ=@$result['typ'];
+//         $chaine=$etapes;
+//         $chainedecoupe=explode(",",$chaine);
+//         // $typdecoupe=explode(",",$typ);
+//         $compt=count($chainedecoupe);
+//         // $compt0=count($typdecoupe);
       
-        // $tabsuivi=[[]];
+//         $tabsuivi=[[]];
       
-        // for ($i=0; $i <$compt ; $i++) { 
-        //      $tabsuivi[$i][0]=0;
-        //      $tabsuivi[$i][1]="";
-        //      $tabsuivi[$i][2]="";
+//         for ($i=0; $i <$compt ; $i++) { 
+//              $tabsuivi[$i][0]=0;
+//              $tabsuivi[$i][1]="";
+//              $tabsuivi[$i][2]="";
 
-        // }       
+//         }   
+//         $tabsuivi=array($tabsuivi);
+//         echo "<pre>";
+//         print_r($tabsuivi);
+//         echo "</pre>";
+//         //$etapesvalidee=$tabsuivi;
+//         $etapesvalidee =serialize($tabsuivi);
+        
+        
+// // update etapesvalidee
+// $sql = 'UPDATE `commande` SET `etapesvalidee`=:etapesvalidee WHERE `id`=:id;';
+// // Prepare statement
+// $stmt = $db->prepare($sql);
+// $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+// $stmt->bindValue(':etapesvalidee', $tabsuivi, PDO::PARAM_STR);
+
+// // execute the query
+// $stmt->execute();
+// require_once('closecommande.php');
+
+// update etapesvalidee
         // print_r($typ);
         // echo "<br>";
         // print_r($etapes);

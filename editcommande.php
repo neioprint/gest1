@@ -1,7 +1,46 @@
 <?php
 // version fonctionnelle copié le 1 sep 2023 sous le nom editcommande00.php
 require_once "const.php";
+// Est-ce que l'id existe et n'est pas vide dans l'URL
+if (isset($_GET['id']) && !empty($_GET['id'])) {
 
+    require('connectcommande.php');
+
+    // On nettoie l'id envoyé
+    $id = strip_tags($_GET['id']);
+
+    $sql = 'SELECT * FROM `commande` WHERE `id` = :id;';
+
+    // On prépare la requête
+    $query = $db->prepare($sql);
+
+    // On "accroche" les paramètre (id)
+    $query->bindValue(':id', $id, PDO::PARAM_INT);
+
+    // On exécute la requête
+    $query->execute();
+
+    // On récupère le produit
+    $commande = $query->fetch();
+
+    // On vérifie si le produit existe
+    if (!$id) {
+        $_SESSION['erreur'] = "Cet id n'existe pas";
+        header("Location: indexcommande.php?page=$page");
+        die();
+    } else {
+        // memoriser l'ancienne valeur de la commande avant modification
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        $ancientotal = $commande['total'];
+        $_SESSION['ancientotal'] = $ancientotal;
+
+        
+    }
+} else {
+    $_SESSION['erreur'] = "URL invalide";
+    header("Location: indexcommande.php?page=$page");
+    die();
+}
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 //$page=intval($page);
 if (@$_POST['submit']) {
@@ -21,8 +60,8 @@ if (@$_POST['submit']) {
         //&& !empty($_POST["prepress"]) remarque 0 est considere comme non empty(vide)
     ) {
 
-       //  echo '<pre>';
-        // print_r($_POST);
+    //     echo '<pre>';
+    //     print_r($_POST);
     //    echo '</pre>';
         
         // On inclut la connexion à la base
@@ -81,7 +120,8 @@ if (@$_POST['submit']) {
     
         // On récupère le produit
         $imprime0 = $query->fetch();
-    //    print_r($imprime0);
+        $result=$imprime0;
+        //print_r($imprime0);
       
         $imprime=$imprime0['imprime'];
    //     die();
@@ -120,16 +160,49 @@ if (@$_POST['submit']) {
             $_SESSION['message'] .= " Solde modifié  ";
             require('./closeclient.php');
         }
+        
         // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-        //$etat = strip_tags($_POST['etat']);
-        //$etat=$commande['etat'];
-        //$paiement = strip_tags($_POST['paiement']);
-        //$etatseq="";
-        // $sql = 'UPDATE `commande` SET `client`=:client WHERE `id`=:id;';
+        //$typ = @$result['typ'];
+        // echo "<pre>";
+        // print_r($result);
+        // echo "</pre>";
+        echo "<pre>";
+        print_r($commande);
+        echo "</pre>";
+        if ($commande['etapesvalidee']=="") 
+            {
+            $chaine = @$result['etapes'];
+            $chainedecoupe = explode(",", $chaine);
+            //$typdecoupe = explode(",", $typ);
+            $compt = count($chainedecoupe);
+            //$compt0 = count($typdecoupe);
+            $tabsuivi=[[]];
+            //$chainedecoupe;
+            for ($i=0; $i <$compt ; $i++) { 
+                $tabsuivi[$i][0]=0;
+                $tabsuivi[$i][1]="";
+                $tabsuivi[$i][2]="";
+
+            }       
+            $tabsuivi=array($tabsuivi);
+            echo "<pre>";
+            print_r($tabsuivi);
+            echo "</pre>";
+            echo "<br>";
+            $etapesvalidee=serialize($tabsuivi);
+            print_r($etapesvalidee);
+            // die();       
+        } else $etapesvalidee="";
+        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+        die();
+        //UPDATE `pointage` SET `sortie2` = '17:00' WHERE `pointage`.`id` = 509;
+
+
+          
         require('connectcommande.php');
         $sql = 'UPDATE `commande` SET `dates`=:dates, `idclient`=:idclient, `nomclient`=:nomclient,
         `idimprime`=:idimprime, `imprime`=:imprime, `quantite`=:quantite, `prix`=:prix,  `prepress`=:prepress, `total`=:total, 
-        `remarque`=:remarque WHERE  `id`=:id;';
+        `remarque`=:remarque,`etapesvalidee`=:etapesvalidee WHERE  `id`=:id;';
 // $sql = 'UPDATE `commande` SET `dates`=:dates, `idclient`=:idclient, `nomclient`=:nomclient,
 // `idimprime`=:idimprime, `imprime`=:imprime, `quantite`=:quantite, `prix`=:prix,  `prepress`=:prepress, `total`=:total, 
 // `remarque`=:remarque,`tag`=:tag WHERE  `id`=:id;';
@@ -149,6 +222,8 @@ if (@$_POST['submit']) {
         $query->bindValue(':prepress', $prepress, PDO::PARAM_STR);
         $query->bindValue(':total', $total, PDO::PARAM_STR);
         $query->bindValue(':remarque', $remarque, PDO::PARAM_STR);
+        $query->bindValue(':etapesvalidee', $etapesvalidee, PDO::PARAM_STR);
+
         // $query->bindValue(':tag', $tag, PDO::PARAM_INT);
 
 
@@ -276,46 +351,7 @@ die();*/
 }
 }
 
-// Est-ce que l'id existe et n'est pas vide dans l'URL
-if (isset($_GET['id']) && !empty($_GET['id'])) {
 
-    require('connectcommande.php');
-
-    // On nettoie l'id envoyé
-    $id = strip_tags($_GET['id']);
-
-    $sql = 'SELECT * FROM `commande` WHERE `id` = :id;';
-
-    // On prépare la requête
-    $query = $db->prepare($sql);
-
-    // On "accroche" les paramètre (id)
-    $query->bindValue(':id', $id, PDO::PARAM_INT);
-
-    // On exécute la requête
-    $query->execute();
-
-    // On récupère le produit
-    $commande = $query->fetch();
-
-    // On vérifie si le produit existe
-    if (!$id) {
-        $_SESSION['erreur'] = "Cet id n'existe pas";
-        header("Location: indexcommande.php?page=$page");
-        die();
-    } else {
-        // memoriser l'ancienne valeur de la commande avant modification
-        // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-        $ancientotal = $commande['total'];
-        $_SESSION['ancientotal'] = $ancientotal;
-
-        
-    }
-} else {
-    $_SESSION['erreur'] = "URL invalide";
-    header("Location: indexcommande.php?page=$page");
-    die();
-}
 
 
 // print_r($ancientotal);

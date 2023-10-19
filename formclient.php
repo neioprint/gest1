@@ -256,6 +256,8 @@ if ($id != 0) {
             $solde = $total;
             $_SESSION["image"] = "";
             $_SESSION["bondecommande"] = "";
+
+            
             $sql = 'INSERT INTO `commande` 
         (`dates`, `idclient`, `nomclient`, `idimprime`, `imprime`, `quantite`, `prix`,
          `prepress`, `total`, `remarque`, `etat`,etatseq, `paiement`,`images`,`bc`,`tag`,`solde`,`etapesvalidee`) 

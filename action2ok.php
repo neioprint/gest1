@@ -479,7 +479,7 @@ require_once('./close.php');
     //array(0,0,0,0,0);
 
     if ($commande['etapesvalidee'] != null) $tabsuivi = unserialize($commande['etapesvalidee']);
-    print_r(count($tabsuivi));
+    print_r(count(@$tabsuivi));
     echo "<pre>";
     print_r($tabsuivi);
     echo "</pre>";
@@ -501,7 +501,7 @@ require_once('./close.php');
 
 
       if (@$tabsuivi[$dim][$i][0] == 2) {
-        $inter = calculduree($tabsuivi[$dim][$i][0], $tabsuivi[$dim][$i][1], $tabsuivi[$dim][$i][2]);
+        $inter = @calculduree(@$tabsuivi[$dim][$i][0], @$tabsuivi[$dim][$i][1], @$tabsuivi[$dim][$i][2]);
         //echo "$chainedecoupe[$i] à durée $valeur jours ".date("H:i",$duree)."Mn<br>";
         //echo @$chainedecoupe[$i]." Duree jour ".@$inter->d." heure ".@$inter->h. " min ".@$inter->i;
 
