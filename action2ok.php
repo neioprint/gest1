@@ -1,10 +1,22 @@
 <?php
 require_once "const.php";
+//require 'vendor/autoload.php';
+//require __DIR__.'/vendor/autoload.php';
+
+// create a variable, which could be anything!
+
+// $someVar="";
+// dump($someVar);
+
+// // dump() returns the passed value, so you can dump an object and keep using it
+// dump($someObject)->someMethod();
 $valeur = 0;
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
+//if ($tabsuivi2 != null) {
+  
+//}
 function calculduree($etat, $tabsuivi1, $tabsuivi2)
 {
   // if (2==2) okookokokokokokokokook
@@ -14,14 +26,14 @@ function calculduree($etat, $tabsuivi1, $tabsuivi2)
     // echo $etat;
     // echo "<br>";
     // echo $tabsuivi1;
-    // //$tabsuivi[0][1]="2023-09-21//13:32//houari//";
+    //$tabsuivi[0][1]="2023-09-21//13:32//houari//";
     // echo "<br>";
     // echo $tabsuivi2;
     // echo "<br>";
-    $debut = explode('à', $tabsuivi1);
-    $datedebut = $debut[0];
-    $heuredebut = explode('par', @$debut[1]);
-    $heuredebut = $heuredebut[0];
+    // $debut = explode('à', $tabsuivi1);
+    // $datedebut = $debut[0];
+    // $heuredebut = explode('par', @$debut[1]);
+    // $heuredebut = $heuredebut[0];
     // echo "<br>";
     // print_r($debut);
     // echo "<br>";
@@ -482,6 +494,7 @@ require_once('./close.php');
     print_r(count(@$tabsuivi));
     echo "<pre>";
     print_r($tabsuivi);
+    //dump($someObject)->someMethod();
     echo "</pre>";
 
     //echo $_SERVER['HTTP_REFERER'];
@@ -637,7 +650,7 @@ require_once('./close.php');
                                                                       echo @$chainedecoupe[$i];
                                                                       }
                                                                        else {
-                  $affichage = @$chainedecoupe[$i]." Duree=" . $chaineaff;
+                  $affichage = "Du ".@$chainedecoupe[$i]." Duree=" . $chaineaff;
                   echo $affichage;
                 }
                 //.@$inter->d."jour ".@$inter->h." heure ".@$inter->h.  @$inter->i." min";

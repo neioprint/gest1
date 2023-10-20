@@ -1,4 +1,6 @@
 <?php
+// url 
+// http://localhost:8888/neio.global2pub.com/invoice/envoimailpj.php?idc=708&dates=2023-10-18&idclient=67&nomclient=SCCO&idimprime=52&imprime=Bon%20de%20charg&quantite=50&prix=300&email=scco.oran@gmail.com
 // version fonctionnelle copié le 1 sep 2023 sous le nom editcommande00.php
 require_once "const.php";
 // Est-ce que l'id existe et n'est pas vide dans l'URL
@@ -166,9 +168,9 @@ if (@$_POST['submit']) {
         // echo "<pre>";
         // print_r($result);
         // echo "</pre>";
-        echo "<pre>";
-        print_r($commande);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($commande);
+        // echo "</pre>";
         if ($commande['etapesvalidee']=="") 
             {
             $chaine = @$result['etapes'];
@@ -194,7 +196,7 @@ if (@$_POST['submit']) {
             // die();       
         } else $etapesvalidee="";
         // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-        die();
+        //die();
         //UPDATE `pointage` SET `sortie2` = '17:00' WHERE `pointage`.`id` = 509;
 
 
@@ -272,9 +274,10 @@ if ($prix != $_SESSION['prix']) {
 
     // On récupère le produit
     $client = $query->fetch();
-    $_SESSION['message'] .= " Prix Modifié & Mail envoyé ";
-    header("Location: invoice/envoimailpj.php?idc=$id&dates=$dates&idclient=$idclient&nomclient=$nomclient&idimprime=$idimprime&imprime=$imprime&quantite=$quantite&prix=$prix&email=$client[email]");
-    die();
+    // $_SESSION['message'] .= " Prix Modifié & Mail envoyé ";
+    $_SESSION['message'] .= " Prix Modifié";
+    header("Location: invoice/envoimailpj.php?idc=$id&dates=$dates&idclient=$idclient&nomclient=$nomclient&idimprime=$idimprime&imprime=$imprime&quantite=$quantite&prix=$prix&email=$client[email]&adresse=$client[adresse]");
+    //die();
 /*print_r($client);
 die();*/
 
