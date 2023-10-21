@@ -1,8 +1,20 @@
 {
-    "require": {
-        "google/apiclient": "^2.15.0",
-        "dompdf/dompdf": "^2.0",
-        "statickidz/php-google-translate-free": "^1.2",
-        "mistic100/randomcolor": "^1.0"
+    "config": {
+        "platform-check": false
+    },
+    "name": "qwe/neio.global2pub.com",
+    "description": "oui",
+    "autoload": {
+        "psr-4": {
+            "Qwe\\NeioGlobal2pubCom\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sid"
+        }
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^6.3"
     }
 }

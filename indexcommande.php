@@ -2,6 +2,7 @@
 // les constantes 
 // require 'vendor/autoload.php';
 require_once "const.php";
+$modesimplifieadmin=1;
 
 function appelimprime(){
     require('./connect.php');
@@ -848,15 +849,22 @@ if (@$resultcommande != []) {
 
 
                             </th>
+                            <?php if ($modesimplifieadmin==0):?>
                             <th>ID Com</th>
+                            <?php endif; ?>
+
 
                             <th class="table-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class='fa fa-calendar' style='font-size:<?= ICONFONT ?>;color:black' aria-hidden='true'></i></th>
-
+                            <?php if ($modesimplifieadmin==0):?>
                             <th class="table-primary">ID Client</th>
+                            <?php endif; ?>
+                            <?php if ($modesimplifieadmin==0):?>
                             <td class="table-primary"><?= "duree" ?></td>
+                            <?php endif; ?>
                             <th class="table-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class='fa fa-user-circle' style='font-size:<?= ICONFONT ?>;color:black' aria-hidden='true'></i></th>
-
+                            <?php if ($modesimplifieadmin==0):?>
                             <th class="table-primary">ID Imp</th>
+                            <?php endif; ?>
 
                             <th class="table-primary">&nbsp; <i class='fa fa-print' style='font-size:<?= ICONFONT ?>;color:black' aria-hidden='true'></i></th>
 
@@ -960,9 +968,9 @@ if (@$resultcommande != []) {
                                                                                             } ?>>
 
                                     </td>
-
+                                    <?php if ($modesimplifieadmin==0):?>
                                     <td class="table-primary"><?= $resultcommande[$i]['id'] ?></td>
-
+                                    <?php endif; ?>
                                     <!-- echo date('D', strtotime("20-02-2009")); -->
                                     <?php
                                     // $jours = Array('Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
@@ -976,12 +984,18 @@ if (@$resultcommande != []) {
                                     ?>
 
                                     <td class="table-success"><?= $jour . ' ' . $datefr ?></td>
+                                    <?php if ($modesimplifieadmin==0):?>
                                     <td class="table-primary"><?= $resultcommande[$i]['idclient'] ?></td>
+                                    <?php endif; ?>
                                     <!-- // duree moyenne commande -->
+                                    <?php if ($modesimplifieadmin==0):?>
                                     <?php $duree=$resultcommande[$i]['total']/10000;?>
                                     <td class="table-primary"><?= $duree?></td>
+                                    <?php endif; ?>
                                     <td class="table-info" style="background-color:blue;color:white"><?= $resultcommande[$i]['nomclient'] ?></td>
+                                    <?php if ($modesimplifieadmin==0):?>
                                     <td class="table-primary"><?= $resultcommande[$i]['idimprime'] ?></td>
+                                    <?php endif; ?>
                                     <td class="table-warning"><?= $resultcommande[$i]['imprime'] ?></td>
 
                                     <td class="table-primary" style="background-color:blue;color:white"><?= $resultcommande[$i]['quantite'] ?></td>

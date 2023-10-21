@@ -286,6 +286,23 @@ $debut = ($page - 1) * $nbr_element_page;
                             <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Chercher.....</button>
                             <a href="./add.php" class="btn btn-primary">+Imprimé</a>
 
+                            <a href="./addproduction.php" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i> Production</a>
+  <!-- <button id="btn-open-modal" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i>Commandes</button> -->
+
+                <a href="./formcommande.php"  class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i> Commande</a>
+                <!-- <button id="btn-open-modal">Ouvrir le modal</button> -->
+                <a href="./addclient.php" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i> Client</a>
+                <a href="./add.php" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i> Imprime</a>
+                <!-- <a href="./proforma.php" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i>Proforma</a> -->
+           
+                  <a href="tel:+213541035548"  class="btn btn-primary">Appeler</a>
+                                <a href="sms:+213541035548"  class="btn btn-primary">Envoyer sms</a>
+
+
+
+
+
+
                             <a href="./calc/calc.php" class="btn btn-primary"><span class="icon">
 					
                     <i class="fa fa-calculator" aria-hidden="true"></i>

@@ -22,11 +22,13 @@ $compteur=0;
 
 //print_r($_POST);
 //die();
-if (empty($sel)) {
-    $_SESSION['erreur'] = "Veuillez selectionner au moins un champ dans la liste des commandes<br>";
-    header('Location: ./indexcommande.php?page=1');
-    die();
-}
+
+// if (empty($sel)) {
+//     $_SESSION['erreur'] = "Veuillez selectionner au moins un champ dans la liste des commandes<br>";
+//     header('Location: ./indexcommande.php?page=1');
+//     die();
+// }
+
 @$valider = $_POST["valider"];
 // print_r($valider);
 // echo "<br>";
@@ -34,7 +36,7 @@ if (empty($sel)) {
 // print_r($_POST);
 // echo "</pre>";
 //die();
-if (isset($valider) && isset($sel) or $supprimer==1) {
+if (isset($valider) && isset($sel)) {
   if (@$_POST["seltous"] == "seltous") $Tous = 1;
   // echo "<p>Vous avez coché les cases suivantes:</p> <br>";
   // echo "<p>".@implode("//",$sel)."</p>";
@@ -143,10 +145,10 @@ $datebl = date('Y-m-d');
   // $nbr_de_pages = ceil($compteur / $nbr_element_page);
   // $debut = ($page - 1) * $nbr_element_page;
   //$debut =0;
-  $listedate1 = $_POST["listedate1"];
-  $listedate2 = $_POST["listedate2"];
-  $recherche = $_POST["recherche"];
-  $niveau = $_POST["niveau"];
+//   $listedate1 = $_POST["listedate1"];
+//   $listedate2 = $_POST["listedate2"];
+//   $recherche = $_POST["recherche"];
+//   $niveau = $_POST["niveau"];
   // echo $listedate1;
   // echo $listedate2;
   // echo $recherche;
@@ -155,12 +157,13 @@ $datebl = date('Y-m-d');
   // die();
 //  }
 } else {
-  $listedate1 = $_POST["listedate1"];
-  $listedate2 = $_POST["listedate2"];
-  $recherche = $_POST["recherche"];
-  $niveau = $_POST["niveau"];
-  $_SESSION['erreur'] = "Veuillez selectionner une commande";
-  header("location:indexcommande.php?recherche=$recherche&dates=$listedate1&dates2=$listedate2&niveau=ins");
+//   $listedate1 = $_POST["listedate1"];
+//   $listedate2 = $_POST["listedate2"];
+//   $recherche = $_POST["recherche"];
+//   $niveau = $_POST["niveau"];
+//   $_SESSION['erreur'] = "Veuillez selectionner une commande";
+  //header("location:indexcommande.php?recherche=$recherche&dates=$listedate1&dates2=$listedate2&niveau=ins");
+  //die();
 }
 
 ?>
