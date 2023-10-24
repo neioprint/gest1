@@ -156,7 +156,7 @@ if ($_POST) {
         require_once('close.php');
 
         // die();
-        header("Location: formclient.php?idclient=$idclient&nomclient=$nomclient&quefaire=$quefaire");
+        header("Location: formclient.php?idclient=$idclient&nomclient=$nomclient&quefaire=$quefaire&imprime=$imprime");
 
         die();
 

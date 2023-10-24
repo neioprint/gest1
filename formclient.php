@@ -3,52 +3,49 @@
 require_once "const.php";
 
 if (!empty($_SESSION['message'])) { ?>
-     
     <!-- //  echo "<div class='alert alert-success alert-dismissible'>
 
     //  <button type='button' class='btn-close' data-dismiss='alert'>&times;</button>
     //          " . $_SESSION['message'] . "
     //      </div>";  -->
-        
-                                <div class="alert alert-success alert-dismissible">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <?=$_SESSION['message']?>
-                            </div>  
-                        <?php
-                                $messageJson=json_encode($_SESSION['message']);
-                        ?>
-                        <script>
-                        let message=JSON.parse('<?php echo $messageJson; ?>');
-                        travail(message)
-                        </script> 
-                        <?php
-                        $_SESSION['message'] = "";
-                        
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <?= $_SESSION['message'] ?>
+    </div>
+    <?php
+    $messageJson = json_encode($_SESSION['message']);
+    ?>
+    <script>
+        let message = JSON.parse('<?php echo $messageJson; ?>');
+        travail(message)
+    </script>
+    <?php
+    $_SESSION['message'] = "";
+
 }
 
 if (!empty($_SESSION['erreur'])) { ?>
-
-                            <!-- // echo '<div class="alert alert-danger .alert-dismissible" role="alert">
+    <!-- // echo '<div class="alert alert-danger .alert-dismissible" role="alert">
                             // <button type="button" class="btn-close" data-dismiss="alert">&times;</button>
                             //         ' . $_SESSION['erreur'] . '
                             //     </div>'; -->
-                            <div class="alert alert-success alert-dismissible">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <?=$_SESSION['erreur']?>
-                            </div>  
-                        <?php  
-                                $messageJson=json_encode($_SESSION['erreur']);?>
-                        <script>
-                            let message=JSON.parse('<?php echo $messageJson; ?>');
-                                    probtravail(message)
-                                    </script>`; 
-                        <?php
-                            $_SESSION['erreur'] = "";
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <?= $_SESSION['erreur'] ?>
+    </div>
+    <?php
+    $messageJson = json_encode($_SESSION['erreur']); ?>
+    <script>
+        let message = JSON.parse('<?php echo $messageJson; ?>');
+        probtravail(message)
+    </script>`;
+    <?php
+    $_SESSION['erreur'] = "";
 
 }
 // if (session_status() != PHP_SESSION_ACTIVE) {
 //     session_start();
-   
+
 // };
 // if (isset($_SESSION['sms'])) unset($_SESSION['sms']);
 
@@ -69,27 +66,29 @@ if (!empty($_SESSION['erreur'])) { ?>
 //setcookie($cookie_name, 0, time() + (86400 * 30), "/"); // 86400 = 1 day
 // explode("/",$clientp)
 $idclientSel = isset($_GET['idclient']) && !empty($_GET['idclient']) ? $_GET['idclient'] : 0;
-$nomclient = isset($_GET['nomclient']) && !empty($_GET['nomclient'])  ? $_GET['nomclient'] : "";
+$nomclient = isset($_GET['nomclient']) && !empty($_GET['nomclient']) ? $_GET['nomclient'] : "";
 $quefaire = isset($_GET['quefaire']) ? $_GET['quefaire'] : "";
-$email=isset($_GET['email']) ? $_GET['email'] : "";
-   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-   require('./connectclient.php');
+$email = isset($_GET['email']) ? $_GET['email'] : "";
+$imprime_nouveau = isset($_GET["imprime"]) ? $_GET["imprime"] : "";
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+require('./connectclient.php');
 
-   //$sql = 'SELECT * FROM `client` order by client asc';
-   $sql = 'SELECT * FROM `client` WHERE `id` = :idclientSel;';
-   // On prépare la requête
-   $query = $db->prepare($sql);
-   $query->bindValue(':idclientSel', $idclientSel, PDO::PARAM_INT);
-   // On exécute la requête
-   $query->execute();
+//$sql = 'SELECT * FROM `client` order by client asc';
+$sql = 'SELECT * FROM `client` WHERE `id` = :idclientSel;';
+// On prépare la requête
+$query = $db->prepare($sql);
+$query->bindValue(':idclientSel', $idclientSel, PDO::PARAM_INT);
+// On exécute la requête
+$query->execute();
 
-   // On stocke le résultat dans un tableau associatif
-   $resultclient = $query->fetch(PDO::FETCH_ASSOC);
+// On stocke le résultat dans un tableau associatif
+$resultclient = $query->fetch(PDO::FETCH_ASSOC);
 
 
-   require_once('./closeclient.php');
-   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-   if ($email=="") $email=@$resultclient['email'];
+require_once('./closeclient.php');
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+if ($email == "")
+    $email = @$resultclient['email'];
 
 // if ($quefaire=="commanderenouv") {
 //                                 header("Location: ./rappelcommande.php?idclient=$idclientSel");
@@ -136,7 +135,7 @@ if ($id != 0) {
 
     // On récupère le produit
     $commande = $query->fetchAll();
-//      echo '<pre>'; 
+    //      echo '<pre>'; 
 // print_r($commande);
 //      echo '</pre>';
 //      die();
@@ -170,8 +169,48 @@ if ($id != 0) {
     // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     $datecom = date('Y-m-d');
     //.' à '. date("H:i");
-    require_once('./base4.php');
+    //require_once('./base4.php');
+    require_once('./connect.php');
 
+    $sql = "SELECT * FROM `imprimes` WHERE idclient=$idclientSel";
+
+    // On prépare la requête
+    $query = $db->prepare($sql);
+
+    // On exécute la requête
+    $query->execute();
+
+    // On stocke le résultat dans un tableau associatif 
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+
+    require_once('./close.php');
+    echo " <pre>";
+    print_r($result);
+    echo " </pre>";
+
+
+
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    // connexion base client
+
+    // On inclut la connexion à la table client client
+    require('./connectclient.php');
+
+    //$sql = 'SELECT * FROM `client` order by client asc';
+    $sql = 'SELECT * FROM `client`';
+    // On prépare la requête
+    $query = $db->prepare($sql);
+
+    // On exécute la requête
+    $query->execute();
+
+    // On stocke le résultat dans un tableau associatif
+    $resultclient = $query->fetchAll(PDO::FETCH_ASSOC);
+
+
+    require_once('./closeclient.php');
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     if (isset($_POST)) {
         // echo '<pre>';
         // print_r($_POST);
@@ -180,10 +219,10 @@ if ($id != 0) {
 
         if (
             isset($_POST["dates"]) && !empty($_POST["dates"])
-            &&  isset($_POST["client"]) && !empty($_POST["client"])
+            && isset($_POST["client"]) && !empty($_POST["client"])
             && isset($_POST["commandes"]) && !empty($_POST["commandes"])
 
-            &&  isset($_POST["quantite"]) && !empty($_POST["quantite"])
+            && isset($_POST["quantite"]) && !empty($_POST["quantite"])
 
             // &&   @$_POST["quefaire"]!=""
             //  isset($_POST["details"]) && !empty($_POST["details"]) &&
@@ -203,8 +242,8 @@ if ($id != 0) {
 
 
             $clientp = strip_tags($_POST["client"]); // nom de variable posté p à la fin
-            $quantitep =strip_tags( $_POST["quantite"]); // nom de variable posté
-            $prixp = strip_tags($_POST["prix"]);// nom de variable posté
+            $quantitep = strip_tags($_POST["quantite"]); // nom de variable posté
+            $prixp = strip_tags($_POST["prix"]); // nom de variable posté
             $detailsp = strip_tags($_POST["details"]); // nom de variable posté p à la fin
             $commandesp = strip_tags($_POST["commandes"]); // nom de variable posté p à la fin
             $datep = strip_tags($_POST["dates"]);
@@ -218,7 +257,7 @@ if ($id != 0) {
             //$dates=date('Y-m-d');
             //.' à '. date("H:i");
             // $idclient=explode("/",$clientp);
-             $idclient = $clientp;
+            $idclient = $clientp;
             //$nomclient=explode("/",$clientp);
             //$nomclient=$_SESSION['nomclient'];
             //echo $nomclient;
@@ -229,18 +268,22 @@ if ($id != 0) {
             //$commandesp;
             $quantite = $quantitep;
             $prix = $prixp;
-            if ($prix=="Le prix sera envoyé par e-mail") $prix=0;
+            if ($prix == "Le prix sera envoyé par e-mail")
+                $prix = 0;
             //$prix = 0;
-            $prepress =0 ;
+            $prepress = 0;
             //$detailsp;
-           
-            $total = $quantitep*$prix+$prepress;
-         
+
+            $total = $quantitep * $prix + $prepress;
+
             $remarque = strip_tags($_POST["remarque"]);
-            $etat="erreur";
-            if ($quefaire =="commandenouv") $etat="0/En Attente +DIRECT+".date('Y-m-d'). " à ".date('H:i');
-            if ($quefaire =="proforma") $etat="6/Proforma +DIRECT+".date('Y-m-d'). " à ".date('H:i');
-            if ($quefaire =="") $etat="8/Erreur +DIRECT+".date('Y-m-d'). " à ".date('H:i');
+            $etat = "erreur";
+            if ($quefaire == "commandenouv")
+                $etat = "0/En Attente +DIRECT+" . date('Y-m-d') . " à " . date('H:i');
+            if ($quefaire == "proforma")
+                $etat = "6/Proforma +DIRECT+" . date('Y-m-d') . " à " . date('H:i');
+            if ($quefaire == "")
+                $etat = "8/Erreur +DIRECT+" . date('Y-m-d') . " à " . date('H:i');
             //strip_tags($_POST["etat"]);
             $etatseq = "";
             $paiement = strip_tags($_POST["paiement"]);
@@ -256,8 +299,6 @@ if ($id != 0) {
             $solde = $total;
             $_SESSION["image"] = "";
             $_SESSION["bondecommande"] = "";
-
-            
             $sql = 'INSERT INTO `commande` 
         (`dates`, `idclient`, `nomclient`, `idimprime`, `imprime`, `quantite`, `prix`,
          `prepress`, `total`, `remarque`, `etat`,etatseq, `paiement`,`images`,`bc`,`tag`,`solde`,`etapesvalidee`) 
@@ -288,49 +329,48 @@ if ($id != 0) {
             // $query->bindValue(':paiement', $images, PDO::PARAM_STR);
             $query->execute();
             //      print_r($query);
-            
-       
+
+
             // "Merci de votre fidelité <br> Bonne journée <br>";
-           //header("refresh:5;url=addnouvelimprime.php?idclient=$idclientSel&nomclient=$nomclient");
-           // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-           // ****************************************************************
-           $headers='Content-Type: text/plain; charset=utf-8' . "\r\n";
-           $headers .= 'FROM:  contact@global2pub.com';
-           if ($quefaire =="commandenouv") {
-           $msg = "$nomclient à emis une nouvelle commande le $dates qte $quantite $imprime[1]";
-        //    $msgc = "$nomclient à emis une nouvelle commande le $dates qte $quantite $imprime[1]";
-        if ($msg!="")
-        {mail("neioprint@gmail.com", "Urgent Prioritaire Nouvelle Commande de $nomclient", $msg, $headers);
-        mail($email, "Urgent Prioritaire votre Nouvelle Commande ", $msg, $headers);
-        }
+            //header("refresh:5;url=addnouvelimprime.php?idclient=$idclientSel&nomclient=$nomclient");
+            // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+            // ****************************************************************
+            $headers = 'Content-Type: text/plain; charset=utf-8' . "\r\n";
+            $headers .= 'FROM:  contact@global2pub.com';
+            if ($quefaire == "commandenouv") {
+                $msg = "$nomclient à emis une nouvelle commande le $dates qte $quantite $imprime[1]";
+                //    $msgc = "$nomclient à emis une nouvelle commande le $dates qte $quantite $imprime[1]";
+                if ($msg != "") {
+                    mail("neioprint@gmail.com", "Urgent Prioritaire Nouvelle Commande de $nomclient", $msg, $headers);
+                    mail($email, "Urgent Prioritaire votre Nouvelle Commande ", $msg, $headers);
+                }
 
-        //    mail("neioprint@gmail.com", "Urgent Prioritaire Nouvelle Commande de $nomclient", $msg, $headers);
+                //    mail("neioprint@gmail.com", "Urgent Prioritaire Nouvelle Commande de $nomclient", $msg, $headers);
 
-           }
-           if ($quefaire =="proforma")   
-           $msg = "$nomclient à emis une demande de proforma le $dates qte $quantite $imprime[1]";
-           $_SESSION['message'] .= 
-           "Votre Demande à été ajoutée avec succée. <br>
-           et est mise en attente.<br>".
-           "Vous recevrez un e-mail répondant à votre demande <br>";
-           if ($msg!="")
-          {mail("neioprint@gmail.com", "Urgent Prioritaire demande Proforma de $nomclient", $msg, $headers);
-          mail($email, "Urgent Prioritaire votre demande Proforma", $msg, $headers);
-          }
+            }
+            if ($quefaire == "proforma")
+                $msg = "$nomclient à emis une demande de proforma le $dates qte $quantite $imprime[1]";
+            $_SESSION['message'] .=
+                "Votre Demande à été ajoutée avec succée. <br>
+           et est mise en attente.<br>" .
+                "Vous recevrez un e-mail répondant à votre demande <br>";
+            if ($msg != "") {
+                mail("neioprint@gmail.com", "Urgent Prioritaire demande Proforma de $nomclient", $msg, $headers);
+                mail($email, "Urgent Prioritaire votre demande Proforma", $msg, $headers);
+            }
 
             // ajout envoi sms
-      
-            require_once('closecommande.php');
-            if ($msg!="" && $idclient!=0 && $nomclient!="") 
-                                                            {
-                                                            header("Location: sms/sms.php?idclient=$idclient&nomclient=$nomclient&message=$msg&direct=oui&tel=213541035548");
-                                                            die();
-                                                            }
-                                                             else $_SESSION['erreur']="Erreur! Message  sms vide ";
-         
-           
 
-            header( "Location:formclient.php?idclient=$idclient&nomclient=$nomclient&quefaire=$quefaire&message=$msg&email=$email");
+            require_once('closecommande.php');
+            if ($msg != "" && $idclient != 0 && $nomclient != "") {
+                header("Location: sms/sms.php?idclient=$idclient&nomclient=$nomclient&message=$msg&direct=oui&tel=213541035548");
+                die();
+            } else
+                $_SESSION['erreur'] = "Erreur! Message  sms vide ";
+
+
+
+            header("Location:formclient.php?idclient=$idclient&nomclient=$nomclient&quefaire=$quefaire&message=$msg&email=$email");
 
             die();
 
@@ -351,7 +391,7 @@ if ($id != 0) {
             // echo "bonjour";
             // }
             // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-           
+
             //header('Location: ./indexcommande.php?page=1&niveau=');
             //die();
             //    header('Location: formcommande.php');
@@ -375,7 +415,8 @@ if ($id != 0) {
             // alert('Erreur veuillez remplir tous les champs');
             // window.location.href='gestion4.php';
             // </script>";
-            if (empty($quefaire) && !isset($quefaire)) $_SESSION['erreur'] .= "Le formulaire est incomplet" . "<br>";
+            if (empty($quefaire) && !isset($quefaire))
+                $_SESSION['erreur'] .= "Le formulaire est incomplet" . "<br>";
         }
     }
 } else {
@@ -384,237 +425,196 @@ if ($id != 0) {
 
     //die();
 }
-
+// echo "<pre>";
+// print_r($result);
+// echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 
+    <head>
+        <title>Gestion Commandes</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="./images/logo.png" type="image" />
+        <!-- <link rel="stylesheet" href="./css/style41.css"> -->
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" type="text/css" href="./css/monstyle.css">
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- jquery script-->
+        <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
+            integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="./css/style41.css">
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    </head>
 
-<head>
-    <title>Gestion Commandes</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" href="./images/logo.png" type="image" />
-
-    <!-- <link rel="stylesheet" href="./css/style41.css"> -->
-    <link rel="stylesheet" href="./css/style.css">
-
-
-    <link rel="stylesheet" type="text/css" href="./css/monstyle.css">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- jquery script-->
-    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <link rel="stylesheet" href="./css/style41.css">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-
-</head>
-
-
-<body>
-    <!-- < ?php require_once('./navbarok.php') ?> -->
-    <!-- <div class="entete">
+    <body>
+        <!-- < ?php require_once('./navbarok.php') ?> -->
+        <!-- <div class="entete">
             <img src="./images/logo.avif" alt="logo global2pub" width="120" height="auto">
 
             <h1 class="entete">Gest' <br> Imprim 1.0 </h1>
-			
+            
     </div> -->
-    <div class="container">
-        <!-- <div class="entete">
+        <div class="container">
+            <!-- <div class="entete">
             <img src="./images/logo.avif" alt="logo global2pub" width="150" height="auto">
 
             <h1 class="entete">Gestion <br> Commande</h1> -->
-      
-        <!-- <div class="avatar">
+            <!-- <div class="avatar">
     <img   src="./images/banquier.png" alt="" width="250" height="auto">
     </div> -->
-   
-        <?php
+            <?php
 
-        // require_once('./menu.php')
-        ?>
-        <div class="center">
-            <h2 class="entete">Bienvenue <?= strtoupper($nomclient) ?>.</h2>
-           
-            <h2 class="entete">Formulaire de pre-commandes rapides </h2>
-         
-            <!-- <h4 class="entete">Pour un seul imprimés à la fois<br></h4> -->
-            <!-- <h4 class="entete">1 commande validée=1 imprimé validé.</h4> -->
-         
-            <!-- <h6 class="entete">Tous les imprimés  déja commandés <br> sont listés si vous êtes déja client.</h6> -->
-
-            <!-- <h2 class="entete center">Ajouter une commande</h2>  -->
-          
-<!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
-                  
-              
-            <form id="formulaire" name="fo" method="post" enctype="multipart/form-data" class="was-validated">
-            <div class="form-group">
-                    <label for="dates">Que voulez vous faire?</label>
-                   <select class="form-control" id="quefaire" name="quefaire"   onchange="quefaire1()" required>
-                   <option value="" <?php if ($quefaire === "")   echo "selected"; ?>>Selectionner une option</option>
-                        
-                        <option value="proforma" <?php if ($quefaire === "proforma")   echo "selected"; ?>>Demander une proforma</option>
-                        <option value="commandenouv" <?php if ($quefaire === "commandenouv")   echo "selected"; ?>>Commander</option>
-                        <!-- <option value="commanderenouv" < ?php if ($quefaire === "commanderenouv")   echo "selected"; ?>>Renouveller commande</option> -->
-
-
-
-
-
-
-           
-
-                       
-                  
-                    </select>
-                 
-
-                   
+            // require_once('./menu.php')
+            ?>
+            <div class="center">
+                <h2 class="entete">Bienvenue
+                    <?= strtoupper($nomclient) ?>.
+                </h2>
+                <h2 class="entete">Formulaire de pre-commandes rapides </h2>
+                <!-- <h4 class="entete">Pour un seul imprimés à la fois<br></h4> -->
+                <!-- <h4 class="entete">1 commande validée=1 imprimé validé.</h4> -->
+                <!-- <h6 class="entete">Tous les imprimés  déja commandés <br> sont listés si vous êtes déja client.</h6> -->
+                <!-- <h2 class="entete center">Ajouter une commande</h2>  -->
+                <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
+                <form id="formulaire" name="fo" method="post" enctype="multipart/form-data" class="was-validated">
+                    <div class="form-group">
+                        <label for="dates">Que voulez vous faire?</label>
+                        <select class="form-control" id="quefaire" name="quefaire" onchange="quefaire1()" required>
+                            <option value="" <?php if ($quefaire === "")
+                                echo "selected"; ?>>Selectionner une option
+                            </option>
+                            <option value="proforma" <?php if ($quefaire === "proforma")
+                                echo "selected"; ?>>Demander une
+                                proforma</option>
+                            <option value="commandenouv" <?php if ($quefaire === "commandenouv")
+                                echo "selected"; ?>>
+                                Commander</option>
+                            <!-- <option value="commanderenouv" < ?php if ($quefaire === "commanderenouv")   echo "selected"; ?>>Renouveller commande</option> -->
+                        </select>
                     </div>
-                <div class="form-group">
-                    <label for="dates">Date</label>
-                    <?php $datevalue = date('Y-m-d') ?>
-                    <!-- <input type="date" id="dates" value=< ?= $datevalue?> name="dates" class="form-control"> -->
-                    <!-- <input type="text" placeholder="ftererere" value=" < ?php echo date('D-Y-m-d')?>"> -->
-
-                    <input type="date" class="form-control"  value=<?= $datevalue ?> id="dates" name="dates" readonly required>
-                </div>
-                <!-- ******************************************  date('d.m.Y H:i:s')-->
-                <div class="form-group">
-
-                    <label for="client">Entreprise ou Société</label>
-                    <br>
-
-                    <select class="form-control" id="client" name="client" required>
-                        <option value="<?php echo ($idclientSel) ?>"><?php echo ($idclientSel . '/' . $nomclient) ?></option>
-
-
-
-
-
-
-
-                    </select>
-
-
-
-                </div>
-                <!-- $$$$$$$$$$$$$$$$$$$$$$$$ Debut affiche l'imprimé selon client $$$$$$$$$$$$$$$$$$$$$$$$$ -->
-
-                <div class="form-group">
-
-                    <label for="commandes">Sélectionner l'imprimé </label>
-                    <br>
-
-                    <select class="form-control" id="commandes" name="commandes" required>
-                        <!-- size="< ?= sizeof($result)>5 ? 3 : sizeof($result)?>"  -->
-
-                        <!-- <option  value="" >Sélectionnez votre imprimé</option>  -->
-                        <?php
-
-                        // On boucle sur la variable result
-                        $nb = 0;
-                        foreach ($result as $imprime) {
-
-                            if ($idclientSel == $imprime['idclient'] && $imprime['idclient'] != 0) {
-                                $nb++;
-                        ?>
-
-                                <option value="<?php echo $imprime['id'] . '/' . $imprime['imprime'] ?>">
-                                    <?php
-                                    //  if ($idclientSel==$imprime['idclient']) 
-                                    echo $imprime['idclient'] . '/' . $imprime['imprime'] . '/' . $imprime['id'] ?>
-                                </option>
-
-                        <?php
-
-                                //header('Location formcommande.php?idclient=<?php echo $_COOKIE["idclient"]'); 
-                            }
-                        }
-                        if ($nb == 0) {
-                            echo "<option value=''>aucun imprimé déja réalisé veuillez ajouter votre imprimé</option>";
-                        }
-                        ?>
-
-                    </select>
-                    <br>
-                    <div class="d-grid">
-                    <a class="btn btn-danger btn-block" href="addnouvelimprime.php?idclient=<?= $idclientSel ?>&nomclient=<?= $nomclient ?>&quefaire=<?=$quefaire?>">Ajouter l'Imprimé s'il n'est pas dans la liste</a>
+                    <div class="form-group">
+                        <label for="dates">Date</label>
+                        <?php $datevalue = date('Y-m-d') ?>
+                        <!-- <input type="date" id="dates" value=< ?= $datevalue?> name="dates" class="form-control"> -->
+                        <!-- <input type="text" placeholder="ftererere" value=" < ?php echo date('D-Y-m-d')?>"> -->
+                        <input type="date" class="form-control" value=<?= $datevalue ?> id="dates" name="dates" readonly
+                            required>
                     </div>
-                    <div>
+                    <!-- ******************************************  date('d.m.Y H:i:s')-->
+                    <div class="form-group">
+                        <label for="client">Entreprise ou Société</label>
                         <br>
-                        <!-- $$$$$$$$$$$$$$$$$$$$$$$$ Fin affiche l'imprimé selon client $$$$$$$$$$$$$$$$$$$$$$$$$ -->
-                        <!-- ******************************************  -->
+                        <select class="form-control" id="client" name="client" required>
+                            <option value="<?php echo ($idclientSel) ?>">
+                                <?php echo ($idclientSel . '/' . $nomclient) ?>
+                            </option>
+                        </select>
+                    </div>
+                    <!-- $$$$$$$$$$$$$$$$$$$$$$$$ Debut affiche l'imprimé selon client $$$$$$$$$$$$$$$$$$$$$$$$$ -->
+                    <div class="form-group">
+                        <label for="commandes">Sélectionner l'imprimé </label>
+                        <br>
+                        <select class="form-control" id="commandes" name="commandes" required>
+                            <!-- size="< ?= sizeof($result)>5 ? 3 : sizeof($result)?>"  -->
+                            <!-- <option  value="" >Sélectionnez votre imprimé</option>  -->
+                            <?php
 
+                            // On boucle sur la variable result
+                            $nb = 0;
 
+                            if ($imprime_nouveau != "") { ?>
+                                <option value="<?= $imprime_nouveau ?>">
+                                    <?= $imprime_nouveau ?>
+                                </option>
+                                <?php
+                            }
+                            foreach ($result as $imprime) {
 
-                        <div class="form-group">
-                            <?php if ($nb != 0) { ?>
-                                <label for="quantite">Quantité, souhaitée</label>
-                                <input type="number" min="1" placeholder="Entrez la Qté" class="form-control" id="quantite" value="<?= @$commande[0]['quantite']; ?>" name="quantite" required>
-                            <?php } ?>
+                                if ($idclientSel == $imprime['idclient'] && $imprime['idclient'] != 0 && $imprime_nouveau != $imprime['imprime']) {
+                                    $nb++;
+                                    ?>
+                                    <option value="<?php echo $imprime['id'] . '/' . $imprime['imprime'] ?>">
+                                        <?php
+                                        //  if ($idclientSel==$imprime['idclient']) 
+                                        echo $imprime['idclient'] . '/' . $imprime['imprime'] . '/' . $imprime['id'] ?>
+                                    </option>
+                                    <?php
+
+                                    //header('Location formcommande.php?idclient=<?php echo $_COOKIE["idclient"]'); 
+                                }
+                            }
+                            if ($nb == 0) {
+                                echo "<option value=''>aucun imprimé déja réalisé veuillez ajouter votre imprimé</option>";
+                            }
+                            ?>
+                        </select>
+                        <br>
+                        <div class="d-grid">
+                            <a class="btn btn-danger btn-block"
+                                href="addnouvelimprime.php?idclient=<?= $idclientSel ?>&nomclient=<?= $nomclient ?>&quefaire=<?= $quefaire ?>">Ajouter
+                                l'Imprimé s'il n'est pas dans la liste</a>
                         </div>
-
-                        <div class="form-group">
-                        <?php if ($nb != 0) { ?>
-                <label for="prix">Prix Unitaire TTC provisoire</label>
-                <input type="text"  class="form-control" id="prix"
-                    name="prix" value="<?php if (@$commande[0]['prix']!=0) echo  @$commande[0]['prix']; else echo "Le prix sera envoyé par e-mail"?>" required readonly>
-                    <?php } ?>
-            </div>
-
-
-
-                        <div class="form-group">
-                            <!-- <label for="details">Coût Pre-press</label> -->
-                            <input type="number" min="0" step="0.01" value="" class="form-control" id="details" name="details" placeholder="Le cout des maquettes films forme decoupe et plaques à la charge du client etc..." hidden>
-                        </div>
-
-
-
-                        <!-- $$$$$$$$$$$$$$$$$$$$$$$$ Debut affiche l'imprimé selon client $$$$$$$$$$$$$$$$$$$$$$$$$ -->
-
-                        <!-- $$$$$$$$$$$$$$$$$$$$$$$$ Fin affiche l'imprimé selon client $$$$$$$$$$$$$$$$$$$$$$$$$ -->
-
-
-                        <div class="form-group">
-
-                            <label for="remarque">Remarques</label> <br>
-                            <input type="text" class="form-control" id="remarque" maxlength="60" name="remarque" placeholder="vos remarques" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="monfichier">Image ou Model (PDF,jpg,png) max 5Mo</label> <br>
-                            <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
-                            <input type="file" name="monfichier" value="monfichier" />
+                        <div>
                             <br>
-                            <label for="monfichier2">Bon de commande Faculatif (PDF,jpg,png) max 5Mo </label> <br>
-                            <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
-                            <input type="file" name="monfichier2" value="monfichier2" />
-                        </div>
-                        <div class="radio form-group">
-
-                            <!-- <fieldset>
+                            <!-- $$$$$$$$$$$$$$$$$$$$$$$$ Fin affiche l'imprimé selon client $$$$$$$$$$$$$$$$$$$$$$$$$ -->
+                            <!-- ******************************************  -->
+                            <div class="form-group">
+                                <?php if ($nb != 0) { ?>
+                                    <label for="quantite">Quantité, souhaitée</label>
+                                    <input type="number" min="1" placeholder="Entrez la Qté" class="form-control"
+                                        id="quantite" value="<?= @$commande[0]['quantite']; ?>" name="quantite" required>
+                                <?php } ?>
+                            </div>
+                            <div class="form-group">
+                                <?php if ($nb != 0) { ?>
+                                    <label for="prix">Prix Unitaire TTC provisoire</label>
+                                    <input type="text" class="form-control" id="prix" name="prix" value="<?php if (@$commande[0]['prix'] != 0)
+                                        echo @$commande[0]['prix'];
+                                    else
+                                        echo "Le prix sera envoyé par e-mail" ?>" required readonly>
+                                <?php } ?>
+                            </div>
+                            <div class="form-group">
+                                <!-- <label for="details">Coût Pre-press</label> -->
+                                <input type="number" min="0" step="0.01" value="" class="form-control" id="details"
+                                    name="details"
+                                    placeholder="Le cout des maquettes films forme decoupe et plaques à la charge du client etc..."
+                                    hidden>
+                            </div>
+                            <!-- $$$$$$$$$$$$$$$$$$$$$$$$ Debut affiche l'imprimé selon client $$$$$$$$$$$$$$$$$$$$$$$$$ -->
+                            <!-- $$$$$$$$$$$$$$$$$$$$$$$$ Fin affiche l'imprimé selon client $$$$$$$$$$$$$$$$$$$$$$$$$ -->
+                            <div class="form-group">
+                                <label for="remarque">Remarques</label> <br>
+                                <input type="text" class="form-control" id="remarque" maxlength="60" name="remarque"
+                                    placeholder="vos remarques" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="monfichier">Image ou Model (PDF,jpg,png) max 5Mo</label> <br>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                                <input type="file" name="monfichier" value="monfichier" />
+                                <br>
+                                <label for="monfichier2">Bon de commande Faculatif (PDF,jpg,png) max 5Mo </label> <br>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                                <input type="file" name="monfichier2" value="monfichier2" />
+                            </div>
+                            <div class="radio form-group">
+                                <!-- <fieldset>
                 <div class="spinner-border text-success">
                 </div>
                 <legend>Etats Commandes:</legend> -->
-
-
-
-                            <!-- <input type="radio" id="etat" name="etat" value="0/En Attente +DIRECT+< ?= date('Y-m-d') . ' à ' . date("H:i"); ?>"  >
+                                <!-- <input type="radio" id="etat" name="etat" value="0/En Attente +DIRECT+< ?= date('Y-m-d') . ' à ' . date("H:i"); ?>"  >
                             <label for="etat">En Attente</label>
 
                             <input type="radio" id="etat" name="etat" value="6/Proforma +DIRECT+< ?= date('Y-m-d') . ' à ' . date("H:i"); ?>"  >
                             <label for="etat">Proforma</label> -->
-
-                            <!-- <input type="radio"   id="etat" name="etat"  value="1/En cours"  disabled>
+                                <!-- <input type="radio"   id="etat" name="etat"  value="1/En cours"  disabled>
                 <label for="etat">En cours</label>
                 <input type="radio"   id="etat" name="etat"  value="2/Terminé"   disabled>
                 <label for="etat">Terminé</label> <br>
@@ -624,20 +624,17 @@ if ($id != 0) {
                 <label for="etat">Annulée</label>
                 <input type="radio"  id="etat" name="etat" value="5/Archivée"  disabled>
                 <label for="etat">Archivée</label> -->
-
-                            <!-- <input type="radio"   id="etat" name="etat"  value="6/Proforma">
+                                <!-- <input type="radio"   id="etat" name="etat"  value="6/Proforma">
                 <label for="etat">Proforma</label> -->
-
-                            <!-- </fieldset>
+                                <!-- </fieldset>
                 </div> -->
-
-                            <div class="radio">
-                                <fieldset>
-                                    <!-- <legend>Mode de paiement</legend> -->
-                                    <input type="radio" id="paiement" name="paiement" value="0/Non payée" checked required hidden>
-                                    <label for="paiement" hidden>Non payée</label>
-
-                                    <!-- <input type="radio"  id="paiement" name="paiement" value="1/Payé"  required>
+                                <div class="radio">
+                                    <fieldset>
+                                        <!-- <legend>Mode de paiement</legend> -->
+                                        <input type="radio" id="paiement" name="paiement" value="0/Non payée" checked
+                                            required hidden>
+                                        <label for="paiement" hidden>Non payée</label>
+                                        <!-- <input type="radio"  id="paiement" name="paiement" value="1/Payé"  required>
                 <label for="paiement">Payée</label>
 
                 <input type="radio"   id="paiement" name="paiement"  value="2/Avance" required>
@@ -645,22 +642,21 @@ if ($id != 0) {
 
                 <input type="radio"   id="paiement" name="paiement"  value="3/A terme" required>
                 <label for="paiement">A terme</label> -->
-                                </fieldset>
-                            </div>
-                            <br><br>
-                            <!-- <input type="button" class="btn btn-success" value="Imprimer" onClick="window.print()">        -->
-                            <button type="submit" class="btn btn-success" name="submit1" id="submit1" value="Envoyer Commande" class="btn btn-success">Valider </button>
-                            <!-- <button  class="btn btn-danger" name="submit" onclick="" value="Envoyer Commande" class="btn btn-success">Quitter</button> -->
-                            <a class="btn btn-primary btn-danger" href="./quitter.php">Quitter</a>
-
-            </form>
-            <!-- <a class="btn btn-primary btn" href="../upload2.php">Envoyer votre fichier d'impression</a>            -->
+                                    </fieldset>
+                                </div>
+                                <br><br>
+                                <!-- <input type="button" class="btn btn-success" value="Imprimer" onClick="window.print()">        -->
+                                <button type="submit" class="btn btn-success" name="submit1" id="submit1"
+                                    value="Envoyer Commande" class="btn btn-success">Valider </button>
+                                <!-- <button  class="btn btn-danger" name="submit" onclick="" value="Envoyer Commande" class="btn btn-success">Quitter</button> -->
+                                <a class="btn btn-primary btn-danger" href="./quitter.php">Quitter</a>
+                </form>
+                <!-- <a class="btn btn-primary btn" href="../upload2.php">Envoyer votre fichier d'impression</a>            -->
+            </div>
         </div>
-    </div>
-
-    </div>
-    </div>
-    <!-- <script>
+        </div>
+        </div>
+        <!-- <script>
         function selection() {
             //Creating a cookie after the document is ready
             $(document).ready(function() {
@@ -696,48 +692,45 @@ if ($id != 0) {
 
         }
     </script> -->
-<script>
-    function quefaire1() {
-            //Creating a cookie after the document is ready
-            $(document).ready(function() {
+        <script>
+            function quefaire1() {
+                //Creating a cookie after the document is ready
+                $(document).ready(function () {
 
-                createCookie("quefaire", document.getElementById("quefaire").value, "1");
-            });
+                    createCookie("quefaire", document.getElementById("quefaire").value, "1");
+                });
 
-            // Function to create the cookie
-            function createCookie(name, value, days) {
-                var expires;
-                // var var1=document.getElementById("client").value;
+                // Function to create the cookie
+                function createCookie(name, value, days) {
+                    var expires;
+                    // var var1=document.getElementById("client").value;
 
-                if (days) {
-                    var date = new Date();
-                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                    expires = "; expires=" + date.toGMTString();
-                } else {
-                    expires = "";
+                    if (days) {
+                        var date = new Date();
+                        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                        expires = "; expires=" + date.toGMTString();
+                    } else {
+                        expires = "";
+                    }
+
+                    document.cookie = escape(name) + "=" +
+                        escape(value) + expires + "; path=/";
                 }
 
-                document.cookie = escape(name) + "=" +
-                    escape(value) + expires + "; path=/";
+                // console.log(var1);
+                window.location.href = "formclient.php?idclient=<?= $idclientSel ?>&nomclient=<?= $nomclient ?>&quefaire=" + document.getElementById('quefaire').value;
+                //$_COOKIE["idclient"];
+
             }
 
-            // console.log(var1);
-            window.location.href = "formclient.php?idclient=<?=$idclientSel?>&nomclient=<?=$nomclient?>&quefaire="+document.getElementById('quefaire').value;
-            //$_COOKIE["idclient"];
-
-        }
-
-    </script>
-</script>
-<br><br>
-<footer>
-
-<div class="footer">
-    
-        &copy; 2021-<?=date("Y")?> <a style="color:blue" href="https://global2pub.com"> global2pub.com </a>
-      
-</div>
-</footer>
-</body>
+        </script>
+        </script>
+        <br><br>
+        <footer>
+            <div class="footer"> &copy; 2021-
+                <?= date("Y") ?> <a style="color:blue" href="https://global2pub.com"> global2pub.com </a>
+            </div>
+        </footer>
+    </body>
 
 </html>

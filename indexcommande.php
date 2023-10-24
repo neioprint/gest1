@@ -18,12 +18,12 @@ function appelimprime(){
 
     // On stocke le résultat dans un tableau associatif 
     $result = $query->fetch(PDO::FETCH_ASSOC);
-    echo "<br>";
-    echo "<br>";
-     echo "<pre>";
-    print_r($result);
-    echo "</pre>";
-    echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+    //  echo "<pre>";
+    // print_r($result);
+    // echo "</pre>";
+    // echo "<br>";
     require_once('./close.php');
     $typ = @$result['typ'];
     $chaine = @$result['etapes'];
@@ -34,20 +34,20 @@ function appelimprime(){
     @$formatfinie = $result['formatfinie'];//
 
 
-    echo "</pre>";
-    echo "<br>";
-    echo "<pre>";
-    print_r($typdecoupe);
-    echo "<br>";
-    print_r($chainedecoupe);
-    echo "<br>";
-    print_r($formatfinie);
-    echo "<br>";
-    print_r($compt);
-    echo "<br>";
-    print_r($compt0);
+    // echo "</pre>";
+    // echo "<br>";
+    // echo "<pre>";
+    // print_r($typdecoupe);
+    // echo "<br>";
+    // print_r($chainedecoupe);
+    // echo "<br>";
+    // print_r($formatfinie);
+    // echo "<br>";
+    // print_r($compt);
+    // echo "<br>";
+    // print_r($compt0);
 
-    echo "</pre>";
+//    echo "</pre>";
     $carnet=$typdecoupe[0];
     @$exemplaire=explode(' ', $typdecoupe[1]);
     $exemplaire=$exemplaire[0];
@@ -59,8 +59,8 @@ function appelimprime(){
     @$exemplaire = explode(' ', $typdecoupe[2]);//
     $exemplaire = $exemplaire[0];
 
-    echo "<br>";
-    print_r($exemplaire);
+    // echo "<br>";
+    // print_r($exemplaire);
 
 
 
@@ -696,6 +696,7 @@ if (@$resultcommande != []) {
 
                         <!-- // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
                         <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."> -->
+                        <span style="color:red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <input id="recherche" type="text" name="recherche"  placeholder="rechercher...." value="<?php echo $recherche; ?>" autofocus/>
                         <!-- < ?php } ?> -->
                         <!-- < ?php if ($niveau == "d") { ?> -->
@@ -837,9 +838,9 @@ if (@$resultcommande != []) {
                 <input type="text" id="niveau" name="niveau" value="<?php echo $niveau ?>" placeholder="<?php echo $niveau ?>" hidden>
 
 
-                <div class="table-responsive">
+                <div class="table-responsive-sm">
 
-                    <table class="mx-auto table tab table-striped table-responsive">
+                    <table class="mx-auto table tab table-striped table-r esponsive">
                       
                         <thead class="table">
                             <th>
