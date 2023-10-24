@@ -543,7 +543,9 @@ if ($id != 0) {
                                     <option value="<?php echo $imprime['id'] . '/' . $imprime['imprime'] ?>">
                                         <?php
                                         //  if ($idclientSel==$imprime['idclient']) 
-                                        echo $imprime['idclient'] . '/' . $imprime['imprime'] . '/' . $imprime['id'] ?>
+                                        // echo $imprime['idclient'] . '/' . $imprime['imprime'] . '/' . $imprime['id'] 
+                                        echo $imprime['imprime'];
+                                        ?>
                                     </option>
                                     <?php
 
