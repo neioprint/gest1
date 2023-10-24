@@ -146,15 +146,17 @@ function addSociete( $nom, $adresse )
 	$y1 = 8;
 	//Positionnement en bas
 	$this->SetXY( $x1, $y1 );
-	$this->SetFont('Arial','B',12);
+	$this->SetFont('Arial','B',16);
+	$this->SetTextcolor(255,0,0);
 	$length = $this->GetStringWidth( $nom );
 	$this->Cell( $length, 2, $nom);
 	$this->SetXY( $x1, $y1 + 4 );
-	$this->SetFont('Arial','',10);
+	$this->SetFont('Arial','',12);
+	$this->SetTextcolor(0,0,0);
 	$length = $this->GetStringWidth( $adresse );
 	//Coordonn�es de la soci�t�
 	$lignes = $this->sizeOfText( $adresse, $length) ;
-	$this->MultiCell($length, 4, $adresse);
+	$this->MultiCell($length, 5, $adresse);
 }
 
 // Affiche en haut, a droite le libelle
