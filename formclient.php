@@ -38,7 +38,7 @@ if (!empty($_SESSION['erreur'])) { ?>
     <script>
         let message = JSON.parse('<?php echo $messageJson; ?>');
         probtravail(message)
-    </script>`;
+    </script>
     <?php
     $_SESSION['erreur'] = "";
 
@@ -70,6 +70,9 @@ $nomclient = isset($_GET['nomclient']) && !empty($_GET['nomclient']) ? $_GET['no
 $quefaire = isset($_GET['quefaire']) ? $_GET['quefaire'] : "";
 $email = isset($_GET['email']) ? $_GET['email'] : "";
 $imprime_nouveau = isset($_GET["imprime"]) ? $_GET["imprime"] : "";
+//print_r($_GET);
+if ($_GET == null)
+    die("fin");
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 require('./connectclient.php');
 
@@ -185,9 +188,9 @@ if ($id != 0) {
 
 
     require_once('./close.php');
-    echo " <pre>";
-    print_r($result);
-    echo " </pre>";
+    // echo " <pre>";
+    // print_r($result);
+    // echo " </pre>";
 
 
 
@@ -370,7 +373,7 @@ if ($id != 0) {
 
 
 
-            header("Location:formclient.php?idclient=$idclient&nomclient=$nomclient&quefaire=$quefaire&message=$msg&email=$email");
+            header("Location:formclient.php?idclient=$idclient&nomclient=$nomclient&quefaire=$quefaire&message=$msg&email=$email&imprime=$imprime_nouveau");
 
             die();
 
@@ -560,7 +563,7 @@ if ($id != 0) {
                         <br>
                         <div class="d-grid">
                             <a class="btn btn-danger btn-block"
-                                href="addnouvelimprime.php?idclient=<?= $idclientSel ?>&nomclient=<?= $nomclient ?>&quefaire=<?= $quefaire ?>">Ajouter
+                                href="addnouvelimprime.php?idclient=<?= $idclientSel ?>&nomclient=<?= $nomclient ?>&quefaire=<?= $quefaire ?>&imprime=<?= $imprime_nouveau ?>">Ajouter
                                 l'Imprimé s'il n'est pas dans la liste</a>
                         </div>
                         <div>

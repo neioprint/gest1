@@ -51,7 +51,8 @@ $sql = "select * from commande where id='$idcommande'";
 if ($sql != "") {
     $query = $db->prepare($sql);
     // On exécute la requête
-    $query->execute() or die(print_r($bdd->errorInfo()));;
+    $query->execute() or die(print_r($bdd->errorInfo()));
+    ;
 
     // On stocke le résultat dans un tableau associatif
     $resultcommande = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -226,36 +227,31 @@ if (isset($_POST["submit"])) {
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-<!-- le 1 juillet 2022 à tlemcen 
+    <!-- le 1 juillet 2022 à tlemcen 
  dans cette version index4.js et gestion4.php et base4.php correction bug affichage des commandes par dates
  qui ne stocke pas dans le localstorage du fait d'un bug probazblement sur la festion dates anterieures
  actuctuelle et future de l'enregistrement des commandes -->
 
-<head>
-    <title>Gestion Commandes ver gtv26.0</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <title>Gestion Commandes ver gtv26.0</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="./images/logo.avif" type="image" />
+        <link rel="stylesheet" href="./css/style41.css">
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" type="text/css" href="./css/monstyle.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- jquery script-->
+        <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
+            integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    </head>
 
-    <link rel="icon" href="./images/logo.avif" type="image" />
-
-    <link rel="stylesheet" href="./css/style41.css">
-    <link rel="stylesheet" href="./css/style.css">
-
-   
-    <link rel="stylesheet" type="text/css" href="./css/monstyle.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- jquery script-->
-    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
-</head>
-
-
-<body>
-
-
-    <?php require_once('./navbarok.php') ?>
-    <!-- <div class="container">
+    <body>
+        <?php require_once('./navbarok.php') ?>
+        <!-- <div class="container">
         <div class="entete">
             <img src="./images/logo2.png" alt="logo global2pub" width="150" height="auto">
 
@@ -285,18 +281,12 @@ if (isset($_POST["submit"])) {
             </div> -->
                 <!-- ******************************************  -->
                 <div class="form-group">
-
                     <label for="client">Client</label>
                     <br>
-
                     <select class="form-control" id="client" name="client" required>
-                        <option value="<?= $idclient . '-' . $nomclient ?>"><?= $idclient . '-' . $nomclient ?></option>
-
-
-
-
-
-
+                        <option value="<?= $idclient . '-' . $nomclient ?>">
+                            <?= $idclient . '-' . $nomclient ?>
+                        </option>
                         <!-- < ?php
          
                
@@ -322,67 +312,44 @@ if (isset($_POST["submit"])) {
          
                 ? > -->
                     </select>
-
                     <!-- < ?php if ($client['id']==64) echo 'selected'?>     -->
-
                 </div>
                 <!-- $$$$$$$$$$$$$$$$$$$$$$$$ Debut affiche l'imprimé selon client $$$$$$$$$$$$$$$$$$$$$$$$$ -->
-
                 <div class="form-group">
-
                     <label for="commandes">Commande <br></label>
                     <br>
-
                     <select class="form-control" id="commandes" name="commandes" required>
                         <!-- size="< ?= sizeof($result)>5 ? 3 : sizeof($result)?>"  -->
-
-                        <option value="<?= $idclient . '-' . $imprime ?>"><?= $idclient . '-' . $imprime ?></option>
-
-
-
+                        <option value="<?= $idclient . '-' . $imprime ?>">
+                            <?= $idclient . '-' . $imprime ?>
+                        </option>
                         <!-- if ($nb==0) {
                            echo "<option value='' >pas de commandes veuillez SELECTIONNER UN AUTRE client</option>";
                            
                            } -->
-
-
                     </select>
                     <div>
-
                         <!-- $$$$$$$$$$$$$$$$$$$$$$$$ Fin affiche l'imprimé selon client $$$$$$$$$$$$$$$$$$$$$$$$$ -->
                         <!-- ******************************************  -->
-
-
-
                         <!-- <div class="form-group">
                 <label for="quantite">Quantité</label>
                 <input type="number" min="0" placeholder="Entrez la Qté" class="form-control" id="quantite"
                     name="quantite" required>
 
             </div> -->
-
                         <!-- <div class="form-group">
                 <label for="prix">Prix Unitaire</label>
                 <input type="number" min="0" step="0.01" placeholder="Prix en DZ" class="form-control" id="prix"
                     name="prix" placeholder="exemple Prix 1.20" required>
 
             </div> -->
-
-
-
                         <!-- <div class="form-group">
                 <label for="details">Coût Pre-press</label>
                 <input type="number" min="0" step="0.01" class="form-control" id="details" name="details"
                     placeholder="Le cout des maquettes films forme decoupe et plaques à la charge du client etc..." required>
             </div> -->
-
-
-
                         <!-- $$$$$$$$$$$$$$$$$$$$$$$$ Debut affiche l'imprimé selon client $$$$$$$$$$$$$$$$$$$$$$$$$ -->
-
                         <!-- $$$$$$$$$$$$$$$$$$$$$$$$ Fin affiche l'imprimé selon client $$$$$$$$$$$$$$$$$$$$$$$$$ -->
-
-
                         <!-- <div class="form-group">
 
                 <label for="remarque">Remarques</label> <br>
@@ -390,29 +357,26 @@ if (isset($_POST["submit"])) {
                 </div> -->
                         <br>
                         <div class="form-group">
-                            <label for="monfichier">Fichier d'impression (PDF,jpg,png,cdr) </label> <br>
-                            <input type="hidden" name="MAX_FILE_SIZE" value="8000000" />
-                            <input type="file" name="monfichier" value="monfichier" />
-                            <!-- <button  class="btn btn-success"  value="Envoyer Commande" class="btn btn-success">EFFACER Fichier</button> -->
-                            <!-- <a class="btn btn-danger" href="">Effacer fichier image</a> -->
-                            <br>
-                            <label for="monfichier2">Fichier Bon de commande(PDF,jpg,png) </label> <br>
-                            <input type="hidden" name="MAX_FILE_SIZE" value="8000000" />
-                            <input type="file" name="monfichier2" value="monfichier2" />
-                            <!-- <a class="btn btn-danger" href="">Effacer fichier bon de commande</a> -->
+                            <label for="monfichier">Fichier d'impression (PDF,jpg,png,cdr) <br>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="8000000" />
+                                <i class="fa-solid fa-download fa-bounce"></i>
+                                <input type="file" name="monfichier" value="monfichier" />
+                                <!-- <button  class="btn btn-success"  value="Envoyer Commande" class="btn btn-success">EFFACER Fichier</button> -->
+                                <!-- <a class="btn btn-danger" href="">Effacer fichier image</a> -->
+                                <br>
+                                <label for="monfichier2">Fichier Bon de commande(PDF,jpg,png) </label> <br>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="8000000" /><i
+                                    class="fa-solid fa-download fa-bounce"></i>
+                                <input type="file" name="monfichier2" value="monfichier2" />
+                                <!-- <a class="btn btn-danger" href="">Effacer fichier bon de commande</a> -->
                         </div>
                         <div class="radio form-group">
-
                             <!-- <fieldset> -->
                             <!-- <div class="spinner-border text-success">
                 </div> -->
                             <!-- <legend>Etats Commandes:</legend> -->
-
-
-
                             <!-- <input type="radio"  id="etat" name="etat" value="0/En attente"  required checked>
                 <label for="etat">En Attente</label> -->
-
                             <!-- <input type="radio"   id="etat" name="etat"  value="1/En cours"  disabled>
                 <label for="etat">En cours</label>
                 <input type="radio"   id="etat" name="etat"  value="2/Terminé"   disabled>
@@ -423,10 +387,8 @@ if (isset($_POST["submit"])) {
                 <label for="etat">Annulée</label>
                 <input type="radio"  id="etat" name="etat" value="5/Archivée"  disabled>
                 <label for="etat">Archivée</label> -->
-
                             <!-- <input type="radio"   id="etat" name="etat"  value="6/Proforma">
                 <label for="etat">Proforma</label> -->
-
                             <!-- </fieldset>
                 </div>
 
@@ -447,16 +409,14 @@ if (isset($_POST["submit"])) {
                 </fieldset>
                 </div>  -->
                             <!-- <input type="button" class="btn btn-success" value="Imprimer" onClick="window.print()">        -->
-                            <button type="submit" class="btn btn-success" name="submit" id="submit" value="Envoyer Commande" class="btn btn-success">Ajouter Fichier Commande</button>
+                            <button type="submit" class="btn btn-success" name="submit" id="submit"
+                                value="Envoyer Commande" class="btn btn-success">Ajouter Fichier Commande</button>
             </form>
-          
             <!-- <div id="msg" style="display:none">ceci est un message</div> -->
             <!-- <a class="btn btn-primary btn" href="../upload2.php">Envoyer votre fichier d'impression</a>            -->
         </div>
-    </div>
-
-    </div>
-   
-</body>
+        </div>
+        </div>
+    </body>
 
 </html>

@@ -1,7 +1,8 @@
 <?php
 if (session_status() != PHP_SESSION_ACTIVE) {
   session_start();
-};
+}
+;
 if (!isset($_SESSION['user'])) {
   header('Location:login.php');
   exit();
@@ -106,13 +107,16 @@ if ($pointages != "") {
   $msg = "de " . $salarie . " le " . $dates . " à " . $heurepointage;
 
 
-  $headers = 'FROM:  contact@global2-pub.com';
+  $headers = 'FROM:  contact@global2pub.com';
 
-  mail("pointageneio@gmail.com", "Pointage ", $msg, $headers);
+  // mail("pointageneio@gmail.com", "Pointage ", $msg, $headers);
+  mail("neioprint@gmail.com", "Pointage de ", $msg, $headers);
   if ($pointage == false) {
     // echo "vide";
-    if ($pointages == 1) $entree1 = $heurepointage;
-    if ($pointages == 3) $entree2 = $heurepointage;
+    if ($pointages == 1)
+      $entree1 = $heurepointage;
+    if ($pointages == 3)
+      $entree2 = $heurepointage;
     $sql = 'INSERT INTO `pointage` 
         (`dates`, `salarie`, `pauses`, `entree1`,`imageentree1`, `sortie1`, `entree2`, `sortie2`) 
         VALUES (:dates,:salarie,:pauses,:entree1,:imageentree1,:sortie1,:entree2,
@@ -139,7 +143,8 @@ if ($pointages != "") {
   } else {
     $id = $pointage['id'];
     // $sql = 'UPDATE `commande` SET `dates`=:dates WHERE  `id`=:id;';
-    if ($pointage['entree1'] != "" && $pointage['sortie2'] != "") $pointages = 0;
+    if ($pointage['entree1'] != "" && $pointage['sortie2'] != "")
+      $pointages = 0;
     if ($pointages == 2 && $pointage['sortie1'] == "") {
       $sortie1 = $heurepointage;
       $sql = "UPDATE `pointage` SET `imageentree1`='$imageentree1',`sortie1`='$sortie1',`pauses`='$pointage[pauses]//$pauses' WHERE  `id`='$id';";
@@ -168,7 +173,8 @@ if ($pointages != "") {
   if ($_SESSION['user']['role'] == 'ADMIN') {
 
     header('Location: ./indexcommande.php?');
-  } else header('Location: ./indexcommandesimplifie.php?niveau=ins');
+  } else
+    header('Location: ./indexcommandesimplifie.php?niveau=ins');
 } else {
   $_SESSION['erreur'] .= "Erreur Pointage impossible " . "<br>";
   header('Location: ./pointagecamera.php?niveau=ins');
@@ -179,32 +185,28 @@ if ($pointages != "") {
 <!DOCTYPE html>
 <html lang="fr">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="./images/logo.avif" type="image" />
-  <link rel="stylesheet" href="./css/style41.css">
-  <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="./css/monstyle.css">
-
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/logo.avif" type="image" />
+    <link rel="stylesheet" href="./css/style41.css">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/monstyle.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
      <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Pointage journalier</title>
+  </head>
 
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <title>Pointage journalier</title>
-</head>
-
-<body>
-  <?php include('./navbarok.php') ?>
-  <h2 class="entete center">Pointage Journalier</h2>
-
-  <br><br><br>
-
-  <button class="btn btn-primary btn-lg btn-info" onclick="history.back()">Retour</button>
-</body>
+  <body>
+    <?php include('./navbarok.php') ?>
+    <h2 class="entete center">Pointage Journalier</h2>
+    <br><br><br>
+    <button class="btn btn-primary btn-lg btn-info" onclick="history.back()">Retour</button>
+  </body>
 
 </html>
