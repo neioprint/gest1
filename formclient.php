@@ -1,7 +1,9 @@
 <?php
 // require_once "constclient.php";
 require_once "const.php";
-
+if ($_SESSION['sms'] == 1)
+    $_SESSION['sms'] = 0;
+//$_SESSION['sms'] = 0;
 if (!empty($_SESSION['message'])) { ?>
     <!-- //  echo "<div class='alert alert-success alert-dismissible'>
 
@@ -236,190 +238,192 @@ if ($id != 0) {
             //   isset($_POST["prepress"]) 
 
         ) {
+            if ($_SESSION['sms'] == $_SESSION['sms']) {
 
-            require('./functions/chargerfichier.php');
-            // chargerfichier("formulaire");
-            //$idclient[0].$nomclient[1].$idimprime[0].$imprime[1].date('d-m-Y H').".".$extension[1];
-            //if (isset($_POST["monfichier"]) && !empty($_POST["monfichier"]))
-            //chargerfichier("formulaire",$idclient[0],$idimprime[0],$imprime[1]);
+                require('./functions/chargerfichier.php');
+                // chargerfichier("formulaire");
+                //$idclient[0].$nomclient[1].$idimprime[0].$imprime[1].date('d-m-Y H').".".$extension[1];
+                //if (isset($_POST["monfichier"]) && !empty($_POST["monfichier"]))
+                //chargerfichier("formulaire",$idclient[0],$idimprime[0],$imprime[1]);
 
 
-            $clientp = strip_tags($_POST["client"]); // nom de variable posté p à la fin
-            $quantitep = strip_tags($_POST["quantite"]); // nom de variable posté
-            $prixp = strip_tags($_POST["prix"]); // nom de variable posté
-            $detailsp = strip_tags($_POST["details"]); // nom de variable posté p à la fin
-            $commandesp = strip_tags($_POST["commandes"]); // nom de variable posté p à la fin
-            $datep = strip_tags($_POST["dates"]);
-            $tag = 0;
-            // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-            // On inclut la connexion à la base commandes clients
-            require_once('connectcommande.php');
+                $clientp = strip_tags($_POST["client"]); // nom de variable posté p à la fin
+                $quantitep = strip_tags($_POST["quantite"]); // nom de variable posté
+                $prixp = strip_tags($_POST["prix"]); // nom de variable posté
+                $detailsp = strip_tags($_POST["details"]); // nom de variable posté p à la fin
+                $commandesp = strip_tags($_POST["commandes"]); // nom de variable posté p à la fin
+                $datep = strip_tags($_POST["dates"]);
+                $tag = 0;
+                // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+                // On inclut la connexion à la base commandes clients
+                require_once('connectcommande.php');
 
-            // On nettoie les données envoyées
-            $dates = $datep;
-            //$dates=date('Y-m-d');
-            //.' à '. date("H:i");
-            // $idclient=explode("/",$clientp);
-            $idclient = $clientp;
-            //$nomclient=explode("/",$clientp);
-            //$nomclient=$_SESSION['nomclient'];
-            //echo $nomclient;
-            // die();
+                // On nettoie les données envoyées
+                $dates = $datep;
+                //$dates=date('Y-m-d');
+                //.' à '. date("H:i");
+                // $idclient=explode("/",$clientp);
+                $idclient = $clientp;
+                //$nomclient=explode("/",$clientp);
+                //$nomclient=$_SESSION['nomclient'];
+                //echo $nomclient;
+                // die();
 
-            $idimprime = explode("/", $commandesp);
-            $imprime = explode("/", $commandesp);
-            //$commandesp;
-            $quantite = $quantitep;
-            $prix = $prixp;
-            if ($prix == "Le prix sera envoyé par e-mail")
-                $prix = 0;
-            //$prix = 0;
-            $prepress = 0;
-            //$detailsp;
+                $idimprime = explode("/", $commandesp);
+                $imprime = explode("/", $commandesp);
+                //$commandesp;
+                $quantite = $quantitep;
+                $prix = $prixp;
+                if ($prix == "Le prix sera envoyé par e-mail")
+                    $prix = 0;
+                //$prix = 0;
+                $prepress = 0;
+                //$detailsp;
 
-            $total = $quantitep * $prix + $prepress;
+                $total = $quantitep * $prix + $prepress;
 
-            $remarque = strip_tags($_POST["remarque"]);
-            $etat = "erreur";
-            if ($quefaire == "commandenouv")
-                $etat = "0/En Attente +DIRECT+" . date('Y-m-d') . " à " . date('H:i');
-            if ($quefaire == "proforma")
-                $etat = "6/Proforma +DIRECT+" . date('Y-m-d') . " à " . date('H:i');
-            if ($quefaire == "")
-                $etat = "8/Erreur +DIRECT+" . date('Y-m-d') . " à " . date('H:i');
-            //strip_tags($_POST["etat"]);
-            $etatseq = "";
-            $paiement = strip_tags($_POST["paiement"]);
-            $etapesvalidee = "";
-            // $images="jkjkjjkjkj.jpg";
-            //chargerfichier("image",$idclient,$idimprime[0],$imprime[1]);
-            chargerfichier("image", $idclientSel, $idimprime[0], $imprime[1]);
-            $images = isset($_SESSION["image"]) ? $_SESSION["image"] : "";
-            //chargerfichier("bondecommande",$idclient,$idimprime[0],$imprime[1]);
-            chargerfichier("bondecommande", $idclientSel, $idimprime[0], $imprime[1]);
-            $bondecommande = isset($_SESSION["bondecommande"]) ? $_SESSION["bondecommande"] : "";
-            // die();
-            $solde = $total;
-            $_SESSION["image"] = "";
-            $_SESSION["bondecommande"] = "";
-            $sql = 'INSERT INTO `commande` 
+                $remarque = strip_tags($_POST["remarque"]);
+                $etat = "erreur";
+                if ($quefaire == "commandenouv")
+                    $etat = "0/En Attente +DIRECT+" . date('Y-m-d') . " à " . date('H:i');
+                if ($quefaire == "proforma")
+                    $etat = "6/Proforma +DIRECT+" . date('Y-m-d') . " à " . date('H:i');
+                if ($quefaire == "")
+                    $etat = "8/Erreur +DIRECT+" . date('Y-m-d') . " à " . date('H:i');
+                //strip_tags($_POST["etat"]);
+                $etatseq = "";
+                $paiement = strip_tags($_POST["paiement"]);
+                $etapesvalidee = "";
+                // $images="jkjkjjkjkj.jpg";
+                //chargerfichier("image",$idclient,$idimprime[0],$imprime[1]);
+                chargerfichier("image", $idclientSel, $idimprime[0], $imprime[1]);
+                $images = isset($_SESSION["image"]) ? $_SESSION["image"] : "";
+                //chargerfichier("bondecommande",$idclient,$idimprime[0],$imprime[1]);
+                chargerfichier("bondecommande", $idclientSel, $idimprime[0], $imprime[1]);
+                $bondecommande = isset($_SESSION["bondecommande"]) ? $_SESSION["bondecommande"] : "";
+                // die();
+                $solde = $total;
+                $_SESSION["image"] = "";
+                $_SESSION["bondecommande"] = "";
+                $sql = 'INSERT INTO `commande` 
         (`dates`, `idclient`, `nomclient`, `idimprime`, `imprime`, `quantite`, `prix`,
          `prepress`, `total`, `remarque`, `etat`,etatseq, `paiement`,`images`,`bc`,`tag`,`solde`,`etapesvalidee`) 
         VALUES (:dates,:idclient,:nomclient,:idimprime,:imprime,:quantite,
         :prix,:prepress,:total,:remarque,:etat,:etatseq,:paiement,:images,:bc,:tag,:solde,:etapesvalidee);';
-            $query = $db->prepare($sql);
+                $query = $db->prepare($sql);
 
-            $query->bindValue(':dates', $dates, PDO::PARAM_STR);
-            $query->bindValue(':idclient', $idclient, PDO::PARAM_INT);
-            $query->bindValue(':nomclient', $nomclient, PDO::PARAM_STR);
+                $query->bindValue(':dates', $dates, PDO::PARAM_STR);
+                $query->bindValue(':idclient', $idclient, PDO::PARAM_INT);
+                $query->bindValue(':nomclient', $nomclient, PDO::PARAM_STR);
 
-            $query->bindValue(':idimprime', $idimprime[0], PDO::PARAM_INT);
-            $query->bindValue(':imprime', $imprime[1], PDO::PARAM_STR);
-            $query->bindValue(':quantite', $quantite, PDO::PARAM_INT);
-            $query->bindValue(':prix', $prix, PDO::PARAM_INT);
-            $query->bindValue(':prepress', $prepress, PDO::PARAM_INT);
-            $query->bindValue(':total', $total, PDO::PARAM_INT);
-            $query->bindValue(':remarque', $remarque, PDO::PARAM_STR);
-            $query->bindValue(':etat', $etat, PDO::PARAM_STR);
-            $query->bindValue(':etatseq', $etatseq, PDO::PARAM_STR);
+                $query->bindValue(':idimprime', $idimprime[0], PDO::PARAM_INT);
+                $query->bindValue(':imprime', $imprime[1], PDO::PARAM_STR);
+                $query->bindValue(':quantite', $quantite, PDO::PARAM_INT);
+                $query->bindValue(':prix', $prix, PDO::PARAM_INT);
+                $query->bindValue(':prepress', $prepress, PDO::PARAM_INT);
+                $query->bindValue(':total', $total, PDO::PARAM_INT);
+                $query->bindValue(':remarque', $remarque, PDO::PARAM_STR);
+                $query->bindValue(':etat', $etat, PDO::PARAM_STR);
+                $query->bindValue(':etatseq', $etatseq, PDO::PARAM_STR);
 
-            $query->bindValue(':paiement', $paiement, PDO::PARAM_STR);
-            $query->bindValue(':images', $images, PDO::PARAM_STR);
-            $query->bindValue(':bc', $bondecommande, PDO::PARAM_STR);
-            $query->bindValue(':tag', $tag, PDO::PARAM_INT);
-            $query->bindValue(':solde', $solde, PDO::PARAM_STR);
-            $query->bindValue(':etapesvalidee', $etapesvalidee, PDO::PARAM_STR);
-            // $query->bindValue(':paiement', $images, PDO::PARAM_STR);
-            $query->execute();
-            //      print_r($query);
+                $query->bindValue(':paiement', $paiement, PDO::PARAM_STR);
+                $query->bindValue(':images', $images, PDO::PARAM_STR);
+                $query->bindValue(':bc', $bondecommande, PDO::PARAM_STR);
+                $query->bindValue(':tag', $tag, PDO::PARAM_INT);
+                $query->bindValue(':solde', $solde, PDO::PARAM_STR);
+                $query->bindValue(':etapesvalidee', $etapesvalidee, PDO::PARAM_STR);
+                // $query->bindValue(':paiement', $images, PDO::PARAM_STR);
+                $query->execute();
+                //      print_r($query);
 
 
-            // "Merci de votre fidelité <br> Bonne journée <br>";
-            //header("refresh:5;url=addnouvelimprime.php?idclient=$idclientSel&nomclient=$nomclient");
-            // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-            // ****************************************************************
-            $headers = 'Content-Type: text/plain; charset=utf-8' . "\r\n";
-            $headers .= 'FROM:  contact@global2pub.com';
-            if ($quefaire == "commandenouv") {
-                $msg = "$nomclient à emis une nouvelle commande le $dates qte $quantite $imprime[1]";
-                //    $msgc = "$nomclient à emis une nouvelle commande le $dates qte $quantite $imprime[1]";
+                // "Merci de votre fidelité <br> Bonne journée <br>";
+                //header("refresh:5;url=addnouvelimprime.php?idclient=$idclientSel&nomclient=$nomclient");
+                // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+                // ****************************************************************
+                $headers = 'Content-Type: text/plain; charset=utf-8' . "\r\n";
+                $headers .= 'FROM:  contact@global2pub.com';
+                if ($quefaire == "commandenouv") {
+                    $msg = "$nomclient à emis une nouvelle commande le $dates qte $quantite $imprime[1]";
+                    //    $msgc = "$nomclient à emis une nouvelle commande le $dates qte $quantite $imprime[1]";
+                    if ($msg != "") {
+                        mail("neioprint@gmail.com", "Urgent Prioritaire Nouvelle Commande de $nomclient", $msg, $headers);
+                        mail($email, "Urgent Prioritaire votre Nouvelle Commande ", $msg, $headers);
+                    }
+
+                    //    mail("neioprint@gmail.com", "Urgent Prioritaire Nouvelle Commande de $nomclient", $msg, $headers);
+
+                }
+                if ($quefaire == "proforma")
+                    $msg = "$nomclient à emis une demande de proforma le $dates qte $quantite $imprime[1]";
+                $_SESSION['message'] .=
+                    "Votre Demande à été ajoutée avec succée. <br>
+           et est mise en attente.<br>" .
+                    "Vous recevrez un e-mail répondant à votre demande <br>";
                 if ($msg != "") {
-                    mail("neioprint@gmail.com", "Urgent Prioritaire Nouvelle Commande de $nomclient", $msg, $headers);
-                    mail($email, "Urgent Prioritaire votre Nouvelle Commande ", $msg, $headers);
+                    mail("neioprint@gmail.com", "Urgent Prioritaire demande Proforma de $nomclient", $msg, $headers);
+                    mail($email, "Urgent Prioritaire votre demande Proforma", $msg, $headers);
                 }
 
-                //    mail("neioprint@gmail.com", "Urgent Prioritaire Nouvelle Commande de $nomclient", $msg, $headers);
+                // ajout envoi sms
 
-            }
-            if ($quefaire == "proforma")
-                $msg = "$nomclient à emis une demande de proforma le $dates qte $quantite $imprime[1]";
-            $_SESSION['message'] .=
-                "Votre Demande à été ajoutée avec succée. <br>
-           et est mise en attente.<br>" .
-                "Vous recevrez un e-mail répondant à votre demande <br>";
-            if ($msg != "") {
-                mail("neioprint@gmail.com", "Urgent Prioritaire demande Proforma de $nomclient", $msg, $headers);
-                mail($email, "Urgent Prioritaire votre demande Proforma", $msg, $headers);
-            }
+                require_once('closecommande.php');
+                if ($msg != "" && $idclient != 0 && $nomclient != "") {
+                    header("Location: sms/sms.php?idclient=$idclient&nomclient=$nomclient&message=$msg&direct=oui&tel=213541035548");
+                    die();
+                } else
+                    $_SESSION['erreur'] = "Erreur! Message  sms vide ";
 
-            // ajout envoi sms
 
-            require_once('closecommande.php');
-            if ($msg != "" && $idclient != 0 && $nomclient != "") {
-                header("Location: sms/sms.php?idclient=$idclient&nomclient=$nomclient&message=$msg&direct=oui&tel=213541035548");
+
+                header("Location:formclient.php?idclient=$idclient&nomclient=$nomclient&quefaire=$quefaire&message=$msg&email=$email&imprime=$imprime_nouveau");
+
                 die();
-            } else
-                $_SESSION['erreur'] = "Erreur! Message  sms vide ";
 
 
+                // unset($_POST["dates"],$_POST["idcllient"],$_POST["nomclient"],
+                // $_POST["idimprime"],$_POST["imprime"],$_POST["quantite"],$_POST["prix"]
 
-            header("Location:formclient.php?idclient=$idclient&nomclient=$nomclient&quefaire=$quefaire&message=$msg&email=$email&imprime=$imprime_nouveau");
+                //  );
 
-            die();
+                // $$$$$$$$$$$$$$$$$$$$$ appel de fct charger fichier$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+                // $$$$$$$$$$$$$$$$$$$$$ appel de fct charger fichier$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+                // if (isset($_POST["monfichier"]))  {
+                //  echo '<pre>';
+                // print_r($_FILES["monfichier"]);
+                // echo '</pre>'; 
+                // die();
 
+                // echo "bonjour";
+                // }
+                // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-            // unset($_POST["dates"],$_POST["idcllient"],$_POST["nomclient"],
-            // $_POST["idimprime"],$_POST["imprime"],$_POST["quantite"],$_POST["prix"]
-
-            //  );
-
-            // $$$$$$$$$$$$$$$$$$$$$ appel de fct charger fichier$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-            // $$$$$$$$$$$$$$$$$$$$$ appel de fct charger fichier$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-            // if (isset($_POST["monfichier"]))  {
-            //  echo '<pre>';
-            // print_r($_FILES["monfichier"]);
-            // echo '</pre>'; 
-            // die();
-
-            // echo "bonjour";
-            // }
-            // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
-            //header('Location: ./indexcommande.php?page=1&niveau=');
-            //die();
-            //    header('Location: formcommande.php');
-            // if ($query) {
-            //     echo "<script>
-            //     alert('Commande Enregistrée avec succée');
-            //     window.location.href='gestion4.php';
-            //     </script>";
-            // } else {
-            //     echo "<script>
-            //     alert('Erreur commande non enregistrée');
-            //     window.location.href='gestion4.php';
-            //     </script>";
-            // }
-            // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-            // echo '<pre>';
-            // print_r($_POST);
-            // echo '</pre>';
-        } else {
-            // echo "<script>
-            // alert('Erreur veuillez remplir tous les champs');
-            // window.location.href='gestion4.php';
-            // </script>";
-            if (empty($quefaire) && !isset($quefaire))
-                $_SESSION['erreur'] .= "Le formulaire est incomplet" . "<br>";
+                //header('Location: ./indexcommande.php?page=1&niveau=');
+                //die();
+                //    header('Location: formcommande.php');
+                // if ($query) {
+                //     echo "<script>
+                //     alert('Commande Enregistrée avec succée');
+                //     window.location.href='gestion4.php';
+                //     </script>";
+                // } else {
+                //     echo "<script>
+                //     alert('Erreur commande non enregistrée');
+                //     window.location.href='gestion4.php';
+                //     </script>";
+                // }
+                // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+                // echo '<pre>';
+                // print_r($_POST);
+                // echo '</pre>';
+            } else {
+                // echo "<script>
+                // alert('Erreur veuillez remplir tous les champs');
+                // window.location.href='gestion4.php';
+                // </script>";
+                if (empty($quefaire) && !isset($quefaire))
+                    $_SESSION['erreur'] .= "Le formulaire est incomplet" . "<br>";
+            }
         }
     }
 } else {
@@ -428,6 +432,9 @@ if ($id != 0) {
 
     //die();
 }
+
+
+
 // echo "<pre>";
 // print_r($result);
 // echo "</pre>";
@@ -564,7 +571,7 @@ if ($id != 0) {
                         <div class="d-grid">
                             <a class="btn btn-danger btn-block"
                                 href="addnouvelimprime.php?idclient=<?= $idclientSel ?>&nomclient=<?= $nomclient ?>&quefaire=<?= $quefaire ?>&imprime=<?= $imprime_nouveau ?>">Ajouter
-                                l'Imprimé s'il n'est pas dans la liste</a>
+                                votre Imprimé s'il n'est pas dans la liste des imprimés</a>
                         </div>
                         <div>
                             <br>

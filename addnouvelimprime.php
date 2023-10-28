@@ -67,7 +67,7 @@ $nomclient = isset($_GET['nomclient']) ? $_GET['nomclient'] : "";
 $quefaire = isset($_GET['quefaire']) ? $_GET['quefaire'] : "";
 $imprime_nouveau = isset($_GET["imprime"]) ? $_GET["imprime"] : "";
 if ($_POST) {
-    //    print_r($_POST);
+    print_r($_POST);
     $typ = $_POST['typ'];
 
     //echo $typ;
@@ -90,7 +90,8 @@ if ($_POST) {
         $dates = strip_tags($_POST['dates']); // nom de l'imprime posté
         // // On nettoie les données envoyées supprimer balise html et php htmlspecialchars est mieu adapté
         $imprime = strip_tags($_POST['impclient']);
-
+        // print_r($imprime);
+        // die();
         $idclient = $idclientt;
         //strip_tags($_POST['idclient']);
 
@@ -157,7 +158,7 @@ if ($_POST) {
         require_once('close.php');
 
         // die();
-        header("Location: formclient.php?idclient=$idclient&nomclient=$nomclient&quefaire=$quefaire&imprime=");
+        header("Location: formclient.php?idclient=$idclient&nomclient=$nomclient&quefaire=$quefaire&imprime=$imprime");
 
         die();
 
@@ -411,7 +412,7 @@ if ($_POST) {
                             </div>
                             <div class="form-group">
                                 <label name="formatfinie">Format en Cm</label>
-                                <select class="form-control" id="formatfinie" name="formatfinie" required>
+                                <!-- <select class="form-control" id="formatfinie" name="formatfinie" required>
                                     <option value="">Selectionner une option</option>
                                     <option value="choix"> Choisissez pour moi suivant imprimé</option>
                                     <option value="A4">A4 soit 21x29.7cm</option>
@@ -421,8 +422,9 @@ if ($_POST) {
                                     <option value="13.5X21">13.5x21cm</option>
                                     <option value="21x27">21x27cm</option>
                                     <option value="autre">Autre</option>
-                                </select>
-                                <!-- <input id="formatfinie" placeholder="exemple 13.5x21 en cm" name="formatfinie" class="form-control" required> -->
+                                </select> -->
+                                <input id="formatfinie" placeholder="Largeur X Longueur" name="formatfinie"
+                                    class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label name="etapes">Details </label>
