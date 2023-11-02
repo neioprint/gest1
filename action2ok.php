@@ -15,7 +15,7 @@ $valeur = 0;
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 //if ($tabsuivi2 != null) {
-  
+
 //}
 function calculduree($etat, $tabsuivi1, $tabsuivi2)
 {
@@ -104,7 +104,8 @@ function calculduree($etat, $tabsuivi1, $tabsuivi2)
     }
 
     return @$diff2;
-  } else return 0;
+  } else
+    return 0;
 }
 
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -115,13 +116,11 @@ function calculduree($etat, $tabsuivi1, $tabsuivi2)
 
 
 if (!empty($_SESSION['message'])) { ?>
-
   <!-- //  echo "<div class='alert alert-success alert-dismissible'>
 
     //  <button type='button' class='btn-close' data-dismiss='alert'>&times;</button>
     //          " . $_SESSION['message'] . "
     //      </div>";  -->
-
   <div class="alert alert-success alert-dismissible">
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     <?= $_SESSION['message'] ?>
@@ -134,12 +133,11 @@ if (!empty($_SESSION['message'])) { ?>
     let message = JSON.parse('<?php echo $messageJson; ?>');
     travail(message)
   </script>
-<?php
+  <?php
   $_SESSION['message'] = "";
 }
 
 if (!empty($_SESSION['erreur'])) { ?>
-
   <!-- // echo '<div class="alert alert-danger .alert-dismissible" role="alert">
     // <button type="button" class="btn-close" data-dismiss="alert">&times;</button>
     //         ' . $_SESSION['erreur'] . '
@@ -153,12 +151,11 @@ if (!empty($_SESSION['erreur'])) { ?>
   //  echo $messageJson;
 
   ?>
-
   <script>
     let message1 = JSON.parse('<?php echo $messageJson; ?>');
     probtravail(message1)
   </script>`;
-<?php
+  <?php
   $_SESSION['erreur'] = "";
 }
 $resultcommande = $_GET["id"];
@@ -273,8 +270,7 @@ require_once('./close.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-
-<!-- <head>
+  <!-- <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -286,540 +282,501 @@ require_once('./close.php');
     <title>Action</title>
 </head> -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width initial-scale=1.0 user-scalable=0">
-  <title>Action</title>
-  <link rel="stylesheet" href="css/normalize.css">
-
-
-  <!-- <script src="https://kit.fontawesome.com/6554078cc6.js" crossorigin="anonymous"></script> -->
-  <!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.css"> -->
-
-
-
-  <script src="./js/jquery-3.6.1.min.js"></script>
-  <link rel="icon" href="./images/logo2.png" type="image" />
-
-  <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0 user-scalable=0">
+    <title>Action</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <!-- <script src="https://kit.fontawesome.com/6554078cc6.js" crossorigin="anonymous"></script> -->
+    <!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.css"> -->
+    <script src="./js/jquery-3.6.1.min.js"></script>
+    <link rel="icon" href="./images/logo2.png" type="image" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  <!-- <link rel="stylesheet" href="./css/styleloader.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="./css/styleloader.css"> -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="./css/style41.css">
+  </head>
 
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <body>
+    <!-- < ?php require_once "loadersvg.php"; ?> -->
+    <!-- <a href="javascript:if(confirm('&Ecirc;tes-vous sûr de vouloir supprimer ?')) '">Continuer</a> -->
+    <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
+    <div class="container">
+      <?php include('./navbarok.php') ?>
+      <!-- </div> -->
+      <h2 class="entete">Suivi commandes et imprimés</h2>
+      <h3 class="entete">
+        <?= 'Le ' . $commande['dates'] . ' ' . $commande['nomclient'] . ' commande<br>' . $commande['quantite'] . ' ' . $commande['imprime'] ?>
+      </h3>
+      <!-- <p id="#variable"></p> -->
+      <div class="container mt-3">
+        <div class="d-grid gap-3">
+          <div class="btn-group">
+            <!-- <button class="btn btn-primary btn-lg btn-info" onclick="history.back()">Retour</button> -->
+            <?php
+            //print_r($_SESSION['user']['role']);
+            if ($_SESSION['user']['role'] != 'ADMIN') { ?>
+              <a class="btn btn-primary btn-lg btn-success" href="indexcommandesimplifie.php?niveau=ins">
+                <i class='fa fa-undo' style='font-size:27px;color:black' aria-hidden='true'></i>
+              </a>
+            <?php } ?>
+            <?php
 
-  <link rel="stylesheet" href="./css/style41.css">
+            if ($_SESSION['user']['role'] == 'ADMIN') {
+              // print_r($_SESSION['user']['role']);
+              ?>
+              <a class="btn btn-primary btn-lg btn-success" href="indexcommande.php?niveau=<?= @$_SESSION['niveau'] ?>">
+                <i class='fa fa-undo' style='font-size:27px;color:black' aria-hidden='true'></i>
+              </a>
+              <a class="btn btn-primary btn-lg btn-success"
+                href="./detailscommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
+                <i class='fa fa-desktop' style='font-size:27px;color:black' aria-hidden='true'></i></a>
+              <a class="btn btn-primary btn-lg" href="./editcommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
+                <i class='fa fa-pencil-square-o' style='font-size:27px;color:black' aria-hidden='true'></i>
+              </a>
+              <a class="btn btn-primary btn-lg btn-warning"
+                href="./deletecommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
+                <i class='fa fa-trash' style='font-size:27px;color:black' aria-hidden='true'></i>
+              </a>
+              <a class="btn btn-primary btn-lg btn-info"
+                href="./etatcommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
+                <i class='fa fa-desktop' style='font-size:27px;color:black' aria-hidden='true'></i>
+                <i class='fa fa-address-card' style='font-size:27px;color:black' aria-hidden='true'></i></a>
+              <a class="btn btn-primary btn-lg btn-info"
+                href="./editetatcommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
+                <i class='fa fa-pencil-square-o' style='font-size:27px;color:black' aria-hidden='true'></i>
+                <i class='fa fa-address-card' style='font-size:27px;color:black' aria-hidden='true'></i>
+              </a>
+              <a class="btn btn-primary btn-lg btn-danger"
+                href="./tagger.php?id=<?= $resultcommande ?>&suite=9&page=<?= $page ?>">
+                <i class='fa fa-tag' style='font-size:27px;color:black' aria-hidden='true'></i>
+              </a>
+            <?php } ?>
+          </div>
+          <?php $etatsuivi = $etat;
 
-
-</head>
-
-<body>
-
-  <!-- < ?php require_once "loadersvg.php"; ?> -->
-
-  <!-- <a href="javascript:if(confirm('&Ecirc;tes-vous sûr de vouloir supprimer ?')) '">Continuer</a> -->
-
-
-  <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
-
-  <div class="container">
-    <?php include('./navbarok.php') ?>
-    <!-- </div> -->
-    <h2 class="entete">Suivi commandes et imprimés</h2>
-    <h3 class="entete"><?= 'Le ' . $commande['dates'] . ' ' . $commande['nomclient'] . ' commande<br>' . $commande['quantite'] . ' ' . $commande['imprime'] ?></h3>
-    <!-- <p id="#variable"></p> -->
-
-    <div class="container mt-3">
-      <div class="d-grid gap-3">
-        <div class="btn-group">
-          <!-- <button class="btn btn-primary btn-lg btn-info" onclick="history.back()">Retour</button> -->
-
-
-
-
-
-          <?php
-          //print_r($_SESSION['user']['role']);
-          if ($_SESSION['user']['role'] != 'ADMIN') { ?>
-            <a class="btn btn-primary btn-lg btn-success" href="indexcommandesimplifie.php?niveau=ins">
-              <i class='fa fa-undo' style='font-size:27px;color:black' aria-hidden='true'></i>
-            </a>
-          <?php } ?>
-          <?php
-
-          if ($_SESSION['user']['role'] == 'ADMIN') {
-            // print_r($_SESSION['user']['role']);
+          $etatsuivi = explode("/", $etatsuivi);
+          $etatsuivi = $etatsuivi[0];
           ?>
-            <a class="btn btn-primary btn-lg btn-success" href="indexcommande.php?niveau=<?= @$_SESSION['niveau'] ?>">
-              <i class='fa fa-undo' style='font-size:27px;color:black' aria-hidden='true'></i>
-            </a>
-            <a class="btn btn-primary btn-lg btn-success" href="./detailscommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
-              <i class='fa fa-desktop' style='font-size:27px;color:black' aria-hidden='true'></i></a>
-
-
-            <a class="btn btn-primary btn-lg" href="./editcommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
-              <i class='fa fa-pencil-square-o' style='font-size:27px;color:black' aria-hidden='true'></i>
-            </a>
-
-            <a class="btn btn-primary btn-lg btn-warning" href="./deletecommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
-              <i class='fa fa-trash' style='font-size:27px;color:black' aria-hidden='true'></i>
-            </a>
-
-            <a class="btn btn-primary btn-lg btn-info" href="./etatcommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
-              <i class='fa fa-desktop' style='font-size:27px;color:black' aria-hidden='true'></i>
-              <i class='fa fa-address-card' style='font-size:27px;color:black' aria-hidden='true'></i></a>
-
-
-            <a class="btn btn-primary btn-lg btn-info" href="./editetatcommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
-
-              <i class='fa fa-pencil-square-o' style='font-size:27px;color:black' aria-hidden='true'></i>
-              <i class='fa fa-address-card' style='font-size:27px;color:black' aria-hidden='true'></i>
-            </a>
-
-            <a class="btn btn-primary btn-lg btn-danger" href="./tagger.php?id=<?= $resultcommande ?>&suite=9&page=<?= $page ?>">
-              <i class='fa fa-tag' style='font-size:27px;color:black' aria-hidden='true'></i>
-            </a>
-
-          <?php } ?>
-
-        </div>
-
-        <?php $etatsuivi = $etat;
-
-        $etatsuivi = explode("/", $etatsuivi);
-        $etatsuivi = $etatsuivi[0];
-        ?>
-        <!-- //     print_r($etatsuivi);
+          <!-- //     print_r($etatsuivi);
             //    die(); -->
-
-        <!-- <a class="btn btn-primary btn-lg btn-success" > Etape Suivante </a> -->
-        <!-- <button class="button1">Etape Suivante</button> -->
-        <!-- <i class="fa fa-arrow-right" style='font-size:27px;color:red' aria-hidden="true"></i>    -->
-
-        <!-- <a class="btn btn-primary btn-lg btn-success" href="indexcommande.php?niveau=< ?=@$_SESSION['niveau']?>">
+          <!-- <a class="btn btn-primary btn-lg btn-success" > Etape Suivante </a> -->
+          <!-- <button class="button1">Etape Suivante</button> -->
+          <!-- <i class="fa fa-arrow-right" style='font-size:27px;color:red' aria-hidden="true"></i>    -->
+          <!-- <a class="btn btn-primary btn-lg btn-success" href="indexcommande.php?niveau=< ?=@$_SESSION['niveau']?>">
             <i class='fa fa-undo' style='font-size:27px;color:black'  aria-hidden='true'></i>
             </a> -->
-        <?php
+          <?php
 
-        if ($etatsuivi == 0) { ?>
-          <!-- <a class="btn btn-primary btn-lg btn-success" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Debuter commande</a> -->
-          <!-- <a class="button1 btn btn-primary btn-lg btn-success" href="./terminercommande.php?id=< ?= $resultcommande ?>&suite=9&page=< ?= $page ?>">Debuter commande</a> -->
-          <a class="button 1 btn btn-primary btn-lg btn-success" onclick="confirmer(0)">Debuter commande</a>
+          if ($etatsuivi == 0) { ?>
+            <!-- <a class="btn btn-primary btn-lg btn-success" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Debuter commande</a> -->
+            <!-- <a class="button1 btn btn-primary btn-lg btn-success" href="./terminercommande.php?id=< ?= $resultcommande ?>&suite=9&page=< ?= $page ?>">Debuter commande</a> -->
+            <a class="button 1 btn btn-primary btn-lg btn-success" onclick="confirmer(0)">Debuter commande</a>
+          <?php } ?>
+          <?php if ($etatsuivi == 1) {
 
-        <?php } ?>
-
-        <?php if ($etatsuivi == 1) {
-
-        ?>
-          <a class="button 1 btn btn-primary btn-lg btn-danger" onclick="confirmer(1)">Terminer</a>
-          <a class="button 1 btn btn-primary btn-lg btn-info" onclick="confirmer(11)">Terminer Partiellement</a>
-        <?php } ?>
-        <!-- < ?php if ($etatsuivi == 10) { 
+            ?>
+            <a class="button 1 btn btn-primary btn-lg btn-danger" onclick="confirmer(1)">Terminer</a>
+            <a class="button 1 btn btn-primary btn-lg btn-info" onclick="confirmer(11)">Terminer Partiellement</a>
+          <?php } ?>
+          <!-- < ?php if ($etatsuivi == 10) { 
        
                 ?>
                 <a class="button1 btn btn-primary btn-lg btn-danger btn-block" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Terminer coupe</a>
 
             < ?php } ?> -->
-
-        <!-- < ?php if ($etatsuivi == 11) { 
+          <!-- < ?php if ($etatsuivi == 11) { 
        
                 ?>
                 <a class="button1 btn btn-primary btn-lg btn-danger btn-block" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Terminer impression</a>
                 
             < ?php } ?> -->
-        <!-- < ?php if ($etatsuivi == 12) { 
+          <!-- < ?php if ($etatsuivi == 12) { 
        
        ?>
        <a class="button1 btn btn-primary btn-lg btn-danger btn-block" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Terminer commande</a>
        
    < ?php } ?> -->
-        <?php if ($etatsuivi == 2) { ?>
-          <!-- <a class="btn btn-primary btn-lg btn-danger" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Livrer commande</a> -->
-          <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(2)">Livrer commande</a>
-
-        <?php } ?>
-        <?php if ($etatsuivi == 11) { ?>
-          <!-- <a class="btn btn-primary btn-lg btn-danger" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Livrer commande</a> -->
-          <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(12)">Livrer commande Partielle</a>
-          <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(17)">Reprise</a>
-        <?php } ?>
-        <?php if ($etatsuivi == 12) { ?>
-          <!-- <a class="btn btn-primary btn-lg btn-danger" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Livrer commande</a> -->
-          <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(17)">Reprise</a>
-
-        <?php } ?>
-        <?php if ($etatsuivi == 3) { ?>
-          <!-- <a class="btn btn-primary btn-lg btn-danger" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Archiver commande</a> -->
-          <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(3)">Archiver commande</a>
-
-        <?php } ?>
-        <?php if ($etatsuivi == 6) { ?>
-          <!-- <a class="btn btn-primary btn-lg btn-danger" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Mise En attente</a> -->
-          <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(6)">Mise En attente</a>
-
-        <?php } ?>
-
-
-
+          <?php if ($etatsuivi == 2) { ?>
+            <!-- <a class="btn btn-primary btn-lg btn-danger" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Livrer commande</a> -->
+            <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(2)">Livrer commande</a>
+          <?php } ?>
+          <?php if ($etatsuivi == 11) { ?>
+            <!-- <a class="btn btn-primary btn-lg btn-danger" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Livrer commande</a> -->
+            <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(12)">Livrer commande
+              Partielle</a>
+            <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(17)">Reprise</a>
+          <?php } ?>
+          <?php if ($etatsuivi == 12) { ?>
+            <!-- <a class="btn btn-primary btn-lg btn-danger" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Livrer commande</a> -->
+            <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(17)">Reprise</a>
+          <?php } ?>
+          <?php if ($etatsuivi == 3) { ?>
+            <!-- <a class="btn btn-primary btn-lg btn-danger" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Archiver commande</a> -->
+            <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(3)">Archiver commande</a>
+          <?php } ?>
+          <?php if ($etatsuivi == 6) { ?>
+            <!-- <a class="btn btn-primary btn-lg btn-danger" href="./terminercommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>&etat=< ?= $etatsuivi?>">Mise En attente</a> -->
+            <a class="button 1 btn btn-primary btn-lg btn-danger btn-block" onclick="confirmer(6)">Mise En attente</a>
+          <?php } ?>
+        </div>
       </div>
-    </div>
+      <br>
+      <!-- debut $$$$$$ partie traitement des etapes depuis la base -->
+      <?php
 
 
+      $typ = @$result['typ'];
+      $chaine = @$result['etapes'];
+      $chainedecoupe = explode(",", $chaine);
+      $typdecoupe = explode(",", $typ);
+      $compt = count($chainedecoupe);
+      $compt0 = count($typdecoupe);
+      //print_r($commande['etapesvalidee']);
+      // $tabsuivi=[];
+      //$tabsuivi=
+      //array(0,0,0,0,0);
+      
+      if ($commande['etapesvalidee'] != null)
+        $tabsuivi = unserialize($commande['etapesvalidee']);
+      print_r(count(@$tabsuivi));
+      echo "<pre>";
+      print_r($tabsuivi);
+      //dump($someObject)->someMethod();
+      echo "</pre>";
 
+      //echo $_SERVER['HTTP_REFERER'];
+      
 
+      // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+      //echo count($tabsuivi);
+      $dim = count($tabsuivi) - 1;
+      //if ($etatsuivi==12) $dim=1;
+      $totaldureejour = 0;
+      $totaldureeminute = 0;
+      $totaldureeheure = 0;
 
-
-
-
-
-    <br>
-    <!-- debut $$$$$$ partie traitement des etapes depuis la base -->
-    <?php
-
-
-    $typ = @$result['typ'];
-    $chaine = @$result['etapes'];
-    $chainedecoupe = explode(",", $chaine);
-    $typdecoupe = explode(",", $typ);
-    $compt = count($chainedecoupe);
-    $compt0 = count($typdecoupe);
-    //print_r($commande['etapesvalidee']);
-    // $tabsuivi=[];
-    //$tabsuivi=
-    //array(0,0,0,0,0);
-
-    if ($commande['etapesvalidee'] != null) $tabsuivi = unserialize($commande['etapesvalidee']);
-    print_r(count(@$tabsuivi));
-    echo "<pre>";
-    print_r($tabsuivi);
-    //dump($someObject)->someMethod();
-    echo "</pre>";
-
-    //echo $_SERVER['HTTP_REFERER'];
-
-
-    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    //echo count($tabsuivi);
-    $dim=count($tabsuivi)-1;
-    //if ($etatsuivi==12) $dim=1;
-    $totaldureejour = 0;
-    $totaldureeminute = 0;
-    $totaldureeheure = 0;
-
-//echo $etatsuivi;
-    //$totalvaleur=0;
-    for ($i = 0; $i < $compt; $i++) {
-
-
-      if (@$tabsuivi[$dim][$i][0] == 2) {
-        $inter = @calculduree(@$tabsuivi[$dim][$i][0], @$tabsuivi[$dim][$i][1], @$tabsuivi[$dim][$i][2]);
-        //echo "$chainedecoupe[$i] à durée $valeur jours ".date("H:i",$duree)."Mn<br>";
-        //echo @$chainedecoupe[$i]." Duree jour ".@$inter->d." heure ".@$inter->h. " min ".@$inter->i;
-
-        //$totalduree+=$duree;
-        //@$totalvaleur+=@$valeur;
-        // $jours=0;
-        // $minutes=0;
-        // $heures=0;
-        if (@$inter->d > 0) $jours = $inter->d;
-        if (@$inter->h > 0) $heures = $inter->h;
-        if (@$inter->i > 0) $minutes = $inter->i;
-
-
-        @$totaldureejour += $jours;
-        @$totaldureeheure += $heures;
-        @$totaldureeminute += $minutes;
-      } else if (@$tabsuivi[$dim][$i][0] == 2 && @$tabsuivi[$dim][$i][2] == "") {
-        echo "erreur <br>";
-        $_SESSION['erreur'] .= "Erreur calcul duree commande";
-      }
-    }
-    //  print_r($totaldureejour);echo "<br>";
-    //  print_r($totaldureeheure);echo "<br>";
-    //  print_r($totaldureeminute);echo "<br>";
-
-
-    // date("H:i", @$diff);
-    // echo "<br>";
-    // echo $diff2->format("%R%a Jours");
-    // //die()
-
-    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
-
-
-    // echo "<br>";echo "<br>";
-    echo "<br>";
-    // if ($totalvaleur!=0 or  $totalduree!=0) { ? >
-    if (0 == 0) { ?>
-      <!-- echo @$totalvaleur." jours et ".date("H:i",@$totalduree)."<br>"; ? > -->
-      <div class="d-grid gap-3 container">
-        <a class="btn btn-lg btn-info btn-block">
-
-          <?php
-          $chaineaff = "";
-          if ($totaldureejour > 0) $chaineaff .= $totaldureejour . " jours ";
-          if ($totaldureeheure > 0) $chaineaff .= $totaldureeheure . " heures ";
-          if ($totaldureeminute > 0) $chaineaff .= $totaldureeminute . " minutes ";
-          @$affichage = " Duree totale=" . $chaineaff;
-
-          echo $affichage;
-
-          ?>
-        </a>
-      </div>
-      <?php }
-    //  echo $totalvaleur;
-    // $tabsuivi=array(0,0,0,0,0,0,0,0);
-    // $tabsuivi=serialize($tabsuivi);
-    // print_r($tabsuivi);
-    //echo "<br>";
-    //print_r($tabsuivi);
-    //$chainedecoupe;
-    // for ($i=0; $i <$compt ; $i++) { 
-    //     $tabsuivi[$i]=0;
-    // }
-    //print_r($tabsuivi);
-    // echo "<br>";
-
-    // echo $compt;
-    // echo "<br>";
-    // // echo $compt0;
-    // // echo "<br>";
-
-    // print_r($chaine);
-    // echo "<br>";
-    //print_r($chainedecoupe);
-    // echo "<br>";
-
-
-    // print_r($typ);
-    // echo "<br>";
-
-    // print_r($typdecoupe);
-    // echo "<br>";
-
-    //die();
-
-    // if ($etatsuivi == 1 or $etatsuivi == 3) {
-    if ($etatsuivi != 0 && $etatsuivi != 6) {
-      //$messageJson=[];
+      //echo $etatsuivi;
+      //$totalvaleur=0;
       for ($i = 0; $i < $compt; $i++) {
 
 
-        //echo $messageJson;
-      ?>
-        <div class="container mt-3">
-          <div class="d-grid gap-3">
+        if (@$tabsuivi[$dim][$i][0] == 2) {
+          $inter = @calculduree(@$tabsuivi[$dim][$i][0], @$tabsuivi[$dim][$i][1], @$tabsuivi[$dim][$i][2]);
+          //echo "$chainedecoupe[$i] à durée $valeur jours ".date("H:i",$duree)."Mn<br>";
+          //echo @$chainedecoupe[$i]." Duree jour ".@$inter->d." heure ".@$inter->h. " min ".@$inter->i;
+      
+          //$totalduree+=$duree;
+          //@$totalvaleur+=@$valeur;
+          // $jours=0;
+          // $minutes=0;
+          // $heures=0;
+          if (@$inter->d > 0)
+            $jours = $inter->d;
+          if (@$inter->h > 0)
+            $heures = $inter->h;
+          if (@$inter->i > 0)
+            $minutes = $inter->i;
+
+
+          @$totaldureejour += $jours;
+          @$totaldureeheure += $heures;
+          @$totaldureeminute += $minutes;
+        } else if (@$tabsuivi[$dim][$i][0] == 2 && @$tabsuivi[$dim][$i][2] == "") {
+          echo "erreur <br>";
+          $_SESSION['erreur'] .= "Erreur calcul duree commande";
+        }
+      }
+      //  print_r($totaldureejour);echo "<br>";
+      //  print_r($totaldureeheure);echo "<br>";
+      //  print_r($totaldureeminute);echo "<br>";
+      
+
+      // date("H:i", @$diff);
+      // echo "<br>";
+      // echo $diff2->format("%R%a Jours");
+      // //die()
+      
+      // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+      
+
+
+      // echo "<br>";echo "<br>";
+      echo "<br>";
+      // if ($totalvaleur!=0 or  $totalduree!=0) { ? >
+      if (0 == 0) { ?>
+        <!-- echo @$totalvaleur." jours et ".date("H:i",@$totalduree)."<br>"; ? > -->
+        <div class="d-grid gap-3 container">
+          <a class="btn btn-lg btn-info btn-block">
             <?php
-            // if (!$tabsuivi) {
-            //   $tabsuivi = [[]];
-            //   //$chainedecoupe;
-            //   for ($i = 0; $i < $compt; $i++) {
-            //     $tabsuivi[$i][0] = 0;
-            //     $tabsuivi[$i][1] = "";
-            //     $tabsuivi[$i][2] = "";
-            //   }
+            $chaineaff = "";
+            if ($totaldureejour > 0)
+              $chaineaff .= $totaldureejour . " jours ";
+            if ($totaldureeheure > 0)
+              $chaineaff .= $totaldureeheure . " heures ";
+            if ($totaldureeminute > 0)
+              $chaineaff .= $totaldureeminute . " minutes ";
+            @$affichage = " Duree totale=" . $chaineaff;
 
+            echo $affichage;
 
-              
-            // }
-            
-            //array(0,0,0,0,0,0,0,0);
-            if (@$tabsuivi[$dim][$i][0] == 0) $bouton = 'btn-danger';
-            else if (@$tabsuivi[$dim][$i][0] == 1) $bouton = 'btn-warning';
-            else $bouton = 'btn-success';
             ?>
-            <!-- <a  class="btn btn-lg btn-primary btn-block">< ?="Debut ".@$tabsuivi[$i][1]." Fin ".@$tabsuivi[$i][2]?>
-                        </a> -->
-                        <a id="etat<?= $i ?>" class="btn btn-lg <?= $bouton ?> btn-block" onclick="togglestate(<?= $i ?>,'<?= $chainedecoupe[$i] ?>',<?= $tabsuivi[$dim][$i][0] ?>,<?= $resultcommande ?>)">
-                        
-              <?php
-              if (@$tabsuivi[$dim][$i][0] == 2) {
-                @$inter = @calculduree(@$tabsuivi[$dim][$i][0], @$tabsuivi[$dim][$i][1], @$tabsuivi[$dim][$i][2]);
-                $chaineaff = "";
-                
-                if (@$inter->d > 0) $chaineaff .= $inter->d . " jours ";
-                if (@$inter->h > 0) $chaineaff .= $inter->h . " heures ";
-                if (@$inter->i > 0) $chaineaff .= $inter->i . " minutes ";
-                if (@$inter->d==0 && @$inter->h==0 && @$inter->i==0)  {
-                                              
-                                                                      $affichage="";  
-                                                                      echo @$chainedecoupe[$i];
-                                                                      }
-                                                                       else {
-                  $affichage = "Du ".@$chainedecoupe[$i]." Duree=" . $chaineaff;
-                  echo $affichage;
-                }
-                //.@$inter->d."jour ".@$inter->h." heure ".@$inter->h.  @$inter->i." min";
-              
-              } else {
-                $inter = "";
-                echo @$chainedecoupe[$i];
-              }
-              //  if (date('H:i',$inter)!="00:00")
-
-              //  echo @$chainedecoupe[$i]." Duree ".@date('H:i',$inter)." mn";
-              // else   echo @$chainedecoupe[$i];
-
-              ?>
-            </a>
-
-            <!-- date("H:i",$duree) -->
-
-          </div>
+          </a>
         </div>
+      <?php }
+      //  echo $totalvaleur;
+      // $tabsuivi=array(0,0,0,0,0,0,0,0);
+      // $tabsuivi=serialize($tabsuivi);
+      // print_r($tabsuivi);
+      //echo "<br>";
+      //print_r($tabsuivi);
+      //$chainedecoupe;
+      // for ($i=0; $i <$compt ; $i++) { 
+      //     $tabsuivi[$i]=0;
+      // }
+      //print_r($tabsuivi);
+      // echo "<br>";
+      
+      // echo $compt;
+      // echo "<br>";
+      // // echo $compt0;
+      // // echo "<br>";
+      
+      // print_r($chaine);
+      // echo "<br>";
+      //print_r($chainedecoupe);
+      // echo "<br>";
+      
+
+      // print_r($typ);
+      // echo "<br>";
+      
+      // print_r($typdecoupe);
+      // echo "<br>";
+      
+      //die();
+      
+      // if ($etatsuivi == 1 or $etatsuivi == 3) {
+      if ($etatsuivi != 0 && $etatsuivi != 6) {
+        //$messageJson=[];
+        for ($i = 0; $i < $compt; $i++) {
 
 
+          //echo $messageJson;
+          ?>
+          <div class="container mt-3">
+            <div class="d-grid gap-3">
+              <?php
+              // if (!$tabsuivi) {
+              //   $tabsuivi = [[]];
+              //   //$chainedecoupe;
+              //   for ($i = 0; $i < $compt; $i++) {
+              //     $tabsuivi[$i][0] = 0;
+              //     $tabsuivi[$i][1] = "";
+              //     $tabsuivi[$i][2] = "";
+              //   }
+          
 
-      <?php } ?>
 
-      <br><br>
+              // }
+          
+              //array(0,0,0,0,0,0,0,0);
+              if (@$tabsuivi[$dim][$i][0] == 0)
+                $bouton = 'btn-danger';
+              else if (@$tabsuivi[$dim][$i][0] == 1)
+                $bouton = 'btn-warning';
+              else
+                $bouton = 'btn-success';
+              ?>
+              <!-- <a  class="btn btn-lg btn-primary btn-block">< ?="Debut ".@$tabsuivi[$i][1]." Fin ".@$tabsuivi[$i][2]?>
+                        </a> -->
+              <a id="etat<?= $i ?>" class="btn btn-lg <?= $bouton ?> btn-block"
+                onclick="togglestate(<?= $i ?>,'<?= $chainedecoupe[$i] ?>',<?= $tabsuivi[$dim][$i][0] ?>,<?= $resultcommande ?>)">
+                <?php
+                if (@$tabsuivi[$dim][$i][0] == 2) {
+                  @$inter = @calculduree(@$tabsuivi[$dim][$i][0], @$tabsuivi[$dim][$i][1], @$tabsuivi[$dim][$i][2]);
+                  $chaineaff = "";
 
+                  if (@$inter->d > 0)
+                    $chaineaff .= $inter->d . " jours ";
+                  if (@$inter->h > 0)
+                    $chaineaff .= $inter->h . " heures ";
+                  if (@$inter->i > 0)
+                    $chaineaff .= $inter->i . " minutes ";
+                  if (@$inter->d == 0 && @$inter->h == 0 && @$inter->i == 0) {
 
-
-    <?php }
-
-    ?>
-    <div class="container mt-3">
-      <div class="d-grid gap-3">
-        <a class="btn  btn-primary btn-lg btn-danger"> <?= $typdecoupe[0] ?> </a>
-        <!-- <i class="fa fa-arrow-right" style='font-size:30px;color:red' aria-hidden="true"></i> -->
-        <?php for ($i = 1; $i < $compt0; $i++) { ?>
-          <a class="btn btn-primary btn-lg btn-prymary"> <?= $typdecoupe[$i] ?> </a>
+                    $affichage = "";
+                    echo @$chainedecoupe[$i];
+                  } else {
+                    $affichage = "Du " . @$chainedecoupe[$i] . " Duree=" . $chaineaff;
+                    echo $affichage;
+                  }
+                  //.@$inter->d."jour ".@$inter->h." heure ".@$inter->h.  @$inter->i." min";
+            
+                } else {
+                  $inter = "";
+                  echo @$chainedecoupe[$i];
+                }
+                //  if (date('H:i',$inter)!="00:00")
+            
+                //  echo @$chainedecoupe[$i]." Duree ".@date('H:i',$inter)." mn";
+                // else   echo @$chainedecoupe[$i];
+            
+                ?>
+              </a>
+              <!-- date("H:i",$duree) -->
+            </div>
+          </div>
         <?php } ?>
+        <br><br>
+      <?php }
+
+      ?>
+      <div class="container mt-3">
+        <div class="d-grid gap-3">
+          <a class="btn  btn-primary btn-lg btn-danger">
+            <?= $typdecoupe[0] ?>
+          </a>
+          <!-- <i class="fa fa-arrow-right" style='font-size:30px;color:red' aria-hidden="true"></i> -->
+          <?php for ($i = 1; $i < $compt0; $i++) { ?>
+            <a class="btn btn-primary btn-lg btn-prymary">
+              <?= $typdecoupe[$i] ?>
+            </a>
+          <?php } ?>
+        </div>
       </div>
     </div>
+    <script>
+      function togglestate(variable, message, tableau, id) {
+        //console.log('varaible'+variable);
+        //document.cookie = "variable="+variable;
+        //console.log(tableau);
+        //console.log(id);
+        let state0 = document.getElementById("etat" + variable);
+        // let classe0=document.getElementsByClassName("btn-danger");
+        let element0 = state0.classList;
 
-  </div>
-  <script>
-    function togglestate(variable, message, tableau, id) {
-      //console.log('varaible'+variable);
-      //document.cookie = "variable="+variable;
-      //console.log(tableau);
-      //console.log(id);
-      let state0 = document.getElementById("etat" + variable);
-      // let classe0=document.getElementsByClassName("btn-danger");
-      let element0 = state0.classList;
+        //console.log(message);
+        // if (tableau==1) {
 
-      //console.log(message);
-      // if (tableau==1) {
+        //                 element0.remove("btn-danger");
+        //                 element0.add("btn-warning");
 
-      //                 element0.remove("btn-danger");
-      //                 element0.add("btn-warning");
+        //                 state0.innerHTML=message+" en cours";
+        //                         }
 
-      //                 state0.innerHTML=message+" en cours";
-      //                         }
+        // confirmation de l'operation
 
-      // confirmation de l'operation
+        if (tableau < 2) {
+          Swal.fire({
+            title: `Confirmation?`,
+            text: "Etes vous sûr?",
 
-      if (tableau < 2) {
-        Swal.fire({
-          title: `Confirmation?`,
-          text: "Etes vous sûr?",
-
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Continuer!',
-          cancelButtonText: 'Annuler!',
-          width: '24em'
-        }).then((result) => {
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Continuer!',
+            cancelButtonText: 'Annuler!',
+            width: '24em'
+          }).then((result) => {
 
 
-          if (result.isConfirmed) {
-            if (tableau < 2) {
-              if (element0.contains("btn-warning")) {
-                element0.remove("btn-warning");
-                element0.add("btn-success");
-                state0.innerHTML = message + " terminé";
-                if (tableau < 2) {
-                  tableau += 1;
-                  // jQuery(document).ready(function() 
-                  //         {
-                  $.post('acce_table_jquery.php', {
+            if (result.isConfirmed) {
+              if (tableau < 2) {
+                if (element0.contains("btn-warning")) {
+                  element0.remove("btn-warning");
+                  element0.add("btn-success");
+                  state0.innerHTML = message + " terminé";
+                  if (tableau < 2) {
+                    tableau += 1;
+                    // jQuery(document).ready(function() 
+                    //         {
+                    $.post('acce_table_jquery.php', {
                       variable: variable,
                       tableau: tableau,
                       id: id
                     }
 
 
-                    ,
-                    // Ci-dessous c'est le traitement de la réponse
-                    function(reponse) {
+                      ,
+                      // Ci-dessous c'est le traitement de la réponse
+                      function (reponse) {
 
-                      // Analyse et récupération du tableau de données transmis par le serveur
-                      var data = JSON.parse(reponse);
-                      console.log(data);
-                      tableau = data.tableau;
-                      variable = data.variable;
-                      id = data.id;
-                      //if (tableau=2) togglestate(variable,message,tableau,id)
-                      // On place les données dans le tableau HTML
-                      //$('#annee').text(data.annee);        
-                      //console.log(data);
-                      //$('#variable').text(data.variable);
+                        // Analyse et récupération du tableau de données transmis par le serveur
+                        var data = JSON.parse(reponse);
+                        console.log(data);
+                        tableau = data.tableau;
+                        variable = data.variable;
+                        id = data.id;
+                        //if (tableau=2) togglestate(variable,message,tableau,id)
+                        // On place les données dans le tableau HTML
+                        //$('#annee').text(data.annee);        
+                        //console.log(data);
+                        //$('#variable').text(data.variable);
 
 
 
-                    });
-                }; //fin du tes if
+                      });
+                  }; //fin du tes if
                   // < ?php header("location:./"); ?>// vers la page courante
-                //window.location.href="action2ok.php?variable="+variable+"&id="+< ?= $resultcommande ?>+"&page="+< ?=$page?>+"&etat="+< ?=$etat?>+"&idclient="+< ?=$trieclientid?>;
-                // a:4:{i:0;a:3:{i:0;i:2;i:1;s:27:"2023-09-16 à 09:48 par sid";i:2;s:27:"2023-09-15 à 22:53 par sid";}i:1;a:3:{i:0;i:2;i:1;s:27:"2023-09-16 à 09:48 par sid";i:2;s:27:"2023-09-15 à 22:59 par sid";}i:2;a:3:{i:0;i:2;i:1;s:27:"2023-09-16 à 09:59 par sid";i:2;s:27:"2023-09-16 à 09:59 par sid";}i:3;a:3:{i:0;i:2;i:1;s:27:"2023-09-16 à 10:01 par sid";i:2;s:0:"";}}                                        
+                  //window.location.href="action2ok.php?variable="+variable+"&id="+< ?= $resultcommande ?>+"&page="+< ?=$page?>+"&etat="+< ?=$etat?>+"&idclient="+< ?=$trieclientid?>;
+                  // a:4:{i:0;a:3:{i:0;i:2;i:1;s:27:"2023-09-16 à 09:48 par sid";i:2;s:27:"2023-09-15 à 22:53 par sid";}i:1;a:3:{i:0;i:2;i:1;s:27:"2023-09-16 à 09:48 par sid";i:2;s:27:"2023-09-15 à 22:59 par sid";}i:2;a:3:{i:0;i:2;i:1;s:27:"2023-09-16 à 09:59 par sid";i:2;s:27:"2023-09-16 à 09:59 par sid";}i:3;a:3:{i:0;i:2;i:1;s:27:"2023-09-16 à 10:01 par sid";i:2;s:0:"";}}                                        
 
 
-              }
+                }
 
-              if (element0.contains("btn-danger")) {
-                element0.remove("btn-danger");
-                element0.add("btn-warning");
+                if (element0.contains("btn-danger")) {
+                  element0.remove("btn-danger");
+                  element0.add("btn-warning");
 
-                state0.innerHTML = message + " en cours";
+                  state0.innerHTML = message + " en cours";
 
-                if (tableau < 2) {
-                  tableau += 1;
-                  // jQuery(document).ready(function() 
-                  //         {
-                  $.post('acce_table_jquery.php', {
+                  if (tableau < 2) {
+                    tableau += 1;
+                    // jQuery(document).ready(function() 
+                    //         {
+                    $.post('acce_table_jquery.php', {
                       variable: variable,
                       tableau: tableau,
                       id: id
                     }
 
 
-                    ,
-                    // Ci-dessous c'est le traitement de la réponse
-                    function(reponse) {
+                      ,
+                      // Ci-dessous c'est le traitement de la réponse
+                      function (reponse) {
 
-                      // Analyse et récupération du tableau de données transmis par le serveur
-                      var data = JSON.parse(reponse);
-                      console.log(data);
-                      tableau = data.tableau;
-                      variable = data.variable;
-                      id = data.id;
-                      //if (tableau=2) togglestate(variable,message,tableau,id)
-                      // On place les données dans le tableau HTML
-                      //$('#annee').text(data.annee);        
+                        // Analyse et récupération du tableau de données transmis par le serveur
+                        var data = JSON.parse(reponse);
+                        console.log(data);
+                        tableau = data.tableau;
+                        variable = data.variable;
+                        id = data.id;
+                        //if (tableau=2) togglestate(variable,message,tableau,id)
+                        // On place les données dans le tableau HTML
+                        //$('#annee').text(data.annee);        
 
-                      //$('#variable').text(data.variable);
-
-
-
-                    });
-                }; //fin du tes if
-              }
-              // < ?php header("location:./"); ?>// vers la page courante
-              //window.location.href="action2ok.php?variable="+variable+"&id="+< ?= $resultcommande ?>+"&page="+< ?=$page?>+"&etat="+< ?=$etat?>+"&idclient="+< ?=$trieclientid?>;
-
-              //die();
-            } //test tableau
-            // });
+                        //$('#variable').text(data.variable);
 
 
+
+                      });
+                  }; //fin du tes if
+                }
+                // < ?php header("location:./"); ?>// vers la page courante
+                //window.location.href="action2ok.php?variable="+variable+"&id="+< ?= $resultcommande ?>+"&page="+< ?=$page?>+"&etat="+< ?=$etat?>+"&idclient="+< ?=$trieclientid?>;
+
+                //die();
+              } //test tableau
+              // });
 
 
 
@@ -827,113 +784,104 @@ require_once('./close.php');
 
 
 
-          } // fin is confirmedresult
 
 
-        }) // fin is result
+            } // fin is confirmedresult
 
 
-      } else {
-
-        //   Swal.fire({
-        //   icon: 'error',
-        //   title: 'Etape Terminée'
-        //window.location.href="action2ok.php?variable="+variable+"&id="+< ?= $resultcommande ?>+< ?=$etat?>+"&idclient="+< ?=$trieclientid?>;
+          }) // fin is result
 
 
-        // })
+        } else {
 
-      }
-    } //console.log(tableau);
-  </script>
+          //   Swal.fire({
+          //   icon: 'error',
+          //   title: 'Etape Terminée'
+          //window.location.href="action2ok.php?variable="+variable+"&id="+< ?= $resultcommande ?>+< ?=$etat?>+"&idclient="+< ?=$trieclientid?>;
 
-  <!-- fin $$$$$$ partie traitement des etapes depuis la base -->
 
-  <script>
-    function confirmer(etat) {
-      //console.log(etat);
-      // mavar=document.getElementById(j).innerHTML;
+          // })
 
-      // j=0;
-      // nom="sido";
-      // versement="5000" ;      
-      Swal.fire({
-        title: `<strong>Confirmer</strong>`,
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        },
-        //   text: "Versement",
-        icon: 'success',
-        html: `
+        }
+      } //console.log(tableau);
+    </script>
+    <!-- fin $$$$$$ partie traitement des etapes depuis la base -->
+    <script>
+      function confirmer(etat) {
+        //console.log(etat);
+        // mavar=document.getElementById(j).innerHTML;
+
+        // j=0;
+        // nom="sido";
+        // versement="5000" ;      
+        Swal.fire({
+          title: `<strong>Confirmer</strong>`,
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          },
+          //   text: "Versement",
+          icon: 'success',
+          html: `
    
    <h4>Action </h4>
   `,
-        footer: "Operation  irréversible",
-        backdrop: true,
-        heightAuto: false,
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ok',
-        cancelButtonText: 'Annuler',
-        width: '42em',
+          footer: "Operation  irréversible",
+          backdrop: true,
+          heightAuto: false,
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ok',
+          cancelButtonText: 'Annuler',
+          width: '42em',
 
-        //  height: '42em',
-        showCloseButton: true
-      }).then((result) => {
-
-
-
-        if (result.isConfirmed) {
-
-          //     Swal.fire(
-          //       'Supprimé',
-          //       'Votre fiche à eté supprimé.',
-          //       'success'
-          //     ).then((result) => {
-          document.location.href = './terminercommande.php?id=' + '<?= $resultcommande ?>' + '&suite=' + etat + '&page=' + <?= $page ?>;
-
-
-          //     })
-
-
-        }
-      })
-    }
-  </script>
+          //  height: '42em',
+          showCloseButton: true
+        }).then((result) => {
 
 
 
+          if (result.isConfirmed) {
 
-  <br><br>
+            //     Swal.fire(
+            //       'Supprimé',
+            //       'Votre fiche à eté supprimé.',
+            //       'success'
+            //     ).then((result) => {
+            document.location.href = './terminercommande.php?id=' + '<?= $resultcommande ?>' + '&suite=' + etat + '&page=' + <?= $page ?>;
 
-  <!-- <div class="card">
+
+            //     })
+
+
+          }
+        })
+      }
+    </script>
+    <br><br>
+    <!-- <div class="card">
   <div class="card-body">Basic card</div> -->
-  <?php
-  //echo $commande['images'];
-  if ($commande['images'] != "") {
-    $extension = substr($commande['images'], strrpos($commande['images'], "."));
-    if ($extension != ".pdf") {
-      echo '<div class="container">';
+    <?php
+    //echo $commande['images'];
+    if ($commande['images'] != "") {
+      $extension = substr($commande['images'], strrpos($commande['images'], "."));
+      if ($extension != ".pdf") {
+        echo '<div class="container">';
 
-      echo '<img src="' . 'uploads/' . $commande['images'] . '"  width="350px" height="auto" class="circle mx-auto d-block">';
+        echo '<img src="' . 'uploads/' . $commande['images'] . '"  width="350px" height="auto" class="circle mx-auto d-block">';
 
-      echo '</div>';
+        echo '</div>';
+      }
     }
-  }
 
-  ?>
-  </div>
-
-
-
-
-  </div>
-  </div>
-  <!-- <script src="./js/script.js"></script> -->
-</body>
+    ?>
+    </div>
+    </div>
+    </div>
+    <!-- <script src="./js/script.js"></script> -->
+  </body>
 
 </html>

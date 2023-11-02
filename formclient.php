@@ -238,7 +238,7 @@ if ($id != 0) {
             //   isset($_POST["prepress"]) 
 
         ) {
-            if ($_SESSION['sms'] == $_SESSION['sms']) {
+            if ($_SESSION['sms'] == 1) {
 
                 require('./functions/chargerfichier.php');
                 // chargerfichier("formulaire");

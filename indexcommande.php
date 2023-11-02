@@ -96,46 +96,46 @@ function appelimprime()
 // }
 if (!empty($_SESSION['message'])) { ?>
      
-            <!-- //  echo "<div class='alert alert-success alert-dismissible'>
+                                                <!-- //  echo "<div class='alert alert-success alert-dismissible'>
 
     //  <button type='button' class='btn-close' data-dismiss='alert'>&times;</button>
     //          " . $_SESSION['message'] . "
     //      </div>";  -->
         
-                  <!-- <div class="alert alert-success alert-dismissible">
+                                                      <!-- <div class="alert alert-success alert-dismissible">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         < ?=$_SESSION['message']?>
       </div>   -->
-        <?php
-        $messageJson = json_encode($_SESSION['message']);
-        ?>
-         <script>
-         let message=JSON.parse('<?php echo $messageJson; ?>');
-         travail(message)
-         </script> 
-        <?php
-        $_SESSION['message'] = "";
+                                            <?php
+                                            $messageJson = json_encode($_SESSION['message']);
+                                            ?>
+                                             <script>
+                                             let message=JSON.parse('<?php echo $messageJson; ?>');
+                                             travail(message)
+                                             </script> 
+                                            <?php
+                                            $_SESSION['message'] = "";
 
 }
 
 if (!empty($_SESSION['erreur'])) { ?>
 
-            <!-- // echo '<div class="alert alert-danger .alert-dismissible" role="alert">
+                                                <!-- // echo '<div class="alert alert-danger .alert-dismissible" role="alert">
     // <button type="button" class="btn-close" data-dismiss="alert">&times;</button>
     //         ' . $_SESSION['erreur'] . '
     //     </div>'; -->
-             <!-- <div class="alert alert-success alert-dismissible">
+                                                 <!-- <div class="alert alert-success alert-dismissible">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         < ?=$_SESSION['erreur']?>
       </div>   -->
-        <?php
-        $messageJson = json_encode($_SESSION['erreur']); ?>
-        <script>
-            let message=JSON.parse('<?php echo $messageJson; ?>');
-                    probtravail(message)
-                    </script>`; 
-        <?php
-        $_SESSION['erreur'] = "";
+                                            <?php
+                                            $messageJson = json_encode($_SESSION['erreur']); ?>
+                                            <script>
+                                                let message=JSON.parse('<?php echo $messageJson; ?>');
+                                                        probtravail(message)
+                                                        </script>`; 
+                                            <?php
+                                            $_SESSION['erreur'] = "";
 
 }
 //print_r($_SESSION["erreur"]);
@@ -570,17 +570,34 @@ if ($niveau == "souf") {
 
 if ($niveau == "ins") {
     if ($recherche == "")
-        $sql = "select * from commande where  not(tag like '%11%') and
-   ((etat like '%0/%' or etat like '%1/%' or etat like '%2/%'or etat like '%3/%') or (etat like '%6/%'  and dates>='$dat'))    order by dates";
+        $sql = "select * from commande where  not(tag like '%11111110%') and
+   ((etat like '%0/%' or etat like '%1/%' or etat like '%2/%'or etat like '%3/%') or (etat like '%6/%'  and dates>='$dat'))    order by tag";
 
 
 
 
     if ($recherche != "")
-        $sql = "select * from commande where not(tag like '%11%')  
+        $sql = "select * from commande where not(tag like '%11111110%')  
      and ((etat like '%0/%' or etat like '%1/%' or etat like '%2/%') or (etat like '%6/%'  and dates>='$dat'))  
-        and (nomclient like  '%$recherche%')  order by dates";
+        and (nomclient like  '%$recherche%')  order by tag";
 }
+
+
+// if ($niveau == "ins") {
+//     if ($recherche == "")
+//         $sql = "select * from commande where  not(tag like '%11%') and
+//    ((etat like '%0/%' or etat like '%1/%' or etat like '%2/%'or etat like '%3/%') or (etat like '%6/%'  and dates>='$dat'))    order by dates";
+
+
+
+
+//     if ($recherche != "")
+//         $sql = "select * from commande where not(tag like '%11%')  
+//      and ((etat like '%0/%' or etat like '%1/%' or etat like '%2/%') or (etat like '%6/%'  and dates>='$dat'))  
+//         and (nomclient like  '%$recherche%')  order by dates";
+// }
+
+
 // On prépare la requête
 if ($sql != "") {
     $query = $db->prepare($sql);
@@ -714,7 +731,7 @@ if (@$resultcommande != []) {
                         <label for="date2"></label>
                         <?php if (@$date2 != @$datexx)
                             $date2 = $datexx ?>
-                                <input type="date" id="dates2" name="dates2" value="<?php echo @$dat2 ?>" onchange="this.form.submit()" />
+                                                                    <input type="date" id="dates2" name="dates2" value="<?php echo @$dat2 ?>" onchange="this.form.submit()" />
 
 
                         <br>
@@ -802,52 +819,52 @@ if (@$resultcommande != []) {
         <form name="fo1" id="fo1" method="post" action="actionselectiontest.php">
             <?php
             if ($_SESSION['user']['role'] == 'ADMIN') { ?>
-                        <p class="entete" style="color:yellow"><?= $_SESSION['login'] . " connecté(e)" ?></p>
+                                                            <p class="entete" style="color:yellow"><?= $_SESSION['login'] . " connecté(e)" ?></p>
 
-                        <a href="./addproduction.php" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i> Production</a>
-          <!-- <button id="btn-open-modal" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i>Commandes</button> -->
+                                                            <a href="./addproduction.php" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i> Production</a>
+                                              <!-- <button id="btn-open-modal" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i>Commandes</button> -->
 
-                        <a href="./formcommande.php"  class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i> Commande</a>
-                        <!-- <button id="btn-open-modal">Ouvrir le modal</button> -->
-                        <a href="./addclient.php" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i> Client</a>
-                        <a href="./add.php" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i> Imprime</a>
-                        <!-- <a href="./proforma.php" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i>Proforma</a> -->
+                                                            <a href="./formcommande.php"  class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i> Commande</a>
+                                                            <!-- <button id="btn-open-modal">Ouvrir le modal</button> -->
+                                                            <a href="./addclient.php" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i> Client</a>
+                                                            <a href="./add.php" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i> Imprime</a>
+                                                            <!-- <a href="./proforma.php" class="btn btn-primary"><i class="fa fa-plus-square" aria-hidden="true"></i>Proforma</a> -->
            
-                          <a href="tel:+213541035548"  class="btn btn-primary">Appeler</a>
-                                        <a href="sms:+213541035548"  class="btn btn-primary">Envoyer sms</a>
+                                                              <a href="tel:+213541035548"  class="btn btn-primary">Appeler</a>
+                                                                            <a href="sms:+213541035548"  class="btn btn-primary">Envoyer sms</a>
 
 
-                        <a href="./calculator/calculator.php" class="btn btn-primary"><span class="icon">
+                                                            <a href="./calculator/calculator.php" class="btn btn-primary"><span class="icon">
 
-                                <i class="fa fa-calculator" aria-hidden="true"></i>
+                                                                    <i class="fa fa-calculator" aria-hidden="true"></i>
 
-                            </span>
-                            <!-- <span class="title">Calculatrice </span> -->
+                                                                </span>
+                                                                <!-- <span class="title">Calculatrice </span> -->
 
-                        </a>
+                                                            </a>
 
 
-                        <!-- <a href="tel:+213541035548"  class="btn btn-primary"> Appeler</a>
+                                                            <!-- <a href="tel:+213541035548"  class="btn btn-primary"> Appeler</a>
                                 <a href="sms:+213541035548"  class="btn btn-primary">Envoyer sms</a> -->
-                        <br><br>
-                        <button type="submit" class="btn btn-success" name="valider" value="envoyer">
-                            <span class="fa fa-sign-in"></span>Valider Selection Commandes</button>
-                        <br><br>
+                                                            <br><br>
+                                                            <button type="submit" class="btn btn-success" name="valider" value="envoyer">
+                                                                <span class="fa fa-sign-in"></span>Valider Selection Commandes</button>
+                                                            <br><br>
 
             <?php } ?>
             <?php
             if ($_SESSION['user']['role'] == 'ADMIN2') { ?>
 
-                        <!-- <a href="./addproduction.php"  class="btn btn-primary">+ Production</a> -->
-                        <a href="./formcommande.php" class="btn btn-primary">+Commande</a>
-                        <a href="./addclient.php" class="btn btn-primary">+Client</a>
-                        <a href="./add.php" class="btn btn-primary">+Imprime</a>
-                        <!-- <a href="tel:+213541035548"  class="btn btn-primary">Appeler</a>
+                                                            <!-- <a href="./addproduction.php"  class="btn btn-primary">+ Production</a> -->
+                                                            <a href="./formcommande.php" class="btn btn-primary">+Commande</a>
+                                                            <a href="./addclient.php" class="btn btn-primary">+Client</a>
+                                                            <a href="./add.php" class="btn btn-primary">+Imprime</a>
+                                                            <!-- <a href="tel:+213541035548"  class="btn btn-primary">Appeler</a>
                                 <a href="sms:+213541035548"  class="btn btn-primary">Envoyer sms</a> -->
-                        <br><br>
-                        <button type="submit" class="btn btn-success" name="valider" value="envoyer">
-                            <span class="fa fa-sign-in"></span> Valider Selection Commandes</button>
-                        <br><br>
+                                                            <br><br>
+                                                            <button type="submit" class="btn btn-success" name="valider" value="envoyer">
+                                                                <span class="fa fa-sign-in"></span> Valider Selection Commandes</button>
+                                                            <br><br>
 
             <?php } ?>
             <div class="panel panel-primary">
@@ -873,20 +890,20 @@ if (@$resultcommande != []) {
 
                             </th>
                             <?php if ($modesimplifieadmin == 0): ?>
-                                    <th>ID Com</th>
+                                                                        <th>ID Com</th>
                             <?php endif; ?>
 
 
                             <th class="table-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class='fa fa-calendar' style='font-size:<?= ICONFONT ?>;color:black' aria-hidden='true'></i></th>
                             <?php if ($modesimplifieadmin == 0): ?>
-                                    <th class="table-primary">ID Client</th>
+                                                                        <th class="table-primary">ID Client</th>
                             <?php endif; ?>
                             <?php if ($modesimplifieadmin == 0): ?>
-                                    <td class="table-primary"><?= "duree" ?></td>
+                                                                        <td class="table-primary"><?= "duree" ?></td>
                             <?php endif; ?>
                             <th class="table-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class='fa fa-user-circle' style='font-size:<?= ICONFONT ?>;color:black' aria-hidden='true'></i></th>
                             <?php if ($modesimplifieadmin == 0): ?>
-                                    <th class="table-primary">ID Imp</th>
+                                                                        <th class="table-primary">ID Imp</th>
                             <?php endif; ?>
 
                             <th class="table-primary">&nbsp; <i class='fa fa-print' style='font-size:<?= ICONFONT ?>;color:black' aria-hidden='true'></i></th>
@@ -895,11 +912,11 @@ if (@$resultcommande != []) {
                             <?php
                             if ($_SESSION['user']['role'] == 'ADMIN') {
                                 ?>
-                                        <th class="table-primary">&nbsp;&nbsp; <i class='fa fa-usd' style='font-size:<?= ICONFONT ?>;color:black' aria-hidden='true'></i></th>
+                                                                            <th class="table-primary">&nbsp;&nbsp; <i class='fa fa-usd' style='font-size:<?= ICONFONT ?>;color:black' aria-hidden='true'></i></th>
 
-                                        <!-- <th class="table-primary">prpress</th> -->
-                                        <th class="table-primary">&nbsp;&nbsp; <i class='fa fa-money' style='font-size:<?= ICONFONT ?>;color:black' aria-hidden='true'></i></th>
-                                    <?php
+                                                                            <!-- <th class="table-primary">prpress</th> -->
+                                                                            <th class="table-primary">&nbsp;&nbsp; <i class='fa fa-money' style='font-size:<?= ICONFONT ?>;color:black' aria-hidden='true'></i></th>
+                                                                        <?php
                             } ?>
                             <!-- <th class="table-primary">remarque</th> -->
 
@@ -907,7 +924,7 @@ if (@$resultcommande != []) {
                             <?php
                             if ($_SESSION['user']['role'] == 'ADMIN') {
                                 ?>
-                                        <!-- <th class="table-primary">Paiem</th> -->
+                                                                            <!-- <th class="table-primary">Paiem</th> -->
                             <?php } ?>
 
                             <th class="table-primary" style="color:green;font-weight:bold">
@@ -931,12 +948,14 @@ if (@$resultcommande != []) {
 
                             <?php if ($_SESSION['user']['role'] == 'ADMIN') {
                                 ?>
-                                        <!-- <th class="table-primary">Solde</th> -->
+                                                                            <!-- <th class="table-primary">Solde</th> -->
                             <?php } else { ?>
-                                        <th class="table-primary"></th>
+                                                                            <th class="table-primary"></th>
                             <?php } ?>
 
-                            <th class="table-primary"><i class="fa fa-tag" style='font-size:<?= ICONFONT ?>;color:blue' aria-hidden="true"></i></th>
+                            <th class="table-primary">
+                                <i class="fa fa-tag" style='font-size:<?= ICONFONT ?>;color:blue' aria-hidden="true"></i>
+                            </th>
                             <!-- <th class="table-primary">Qr code</th> -->
                             <!-- Cellule actions -->
                             <th class="table-primary">
@@ -979,371 +998,386 @@ if (@$resultcommande != []) {
                                     ?>
 
 
-                                                <!-- for ($i = @$debut; $i <= @$nbr_element_page - 1 + @$debut; $i++) {
+                                                                                                                        <!-- for ($i = @$debut; $i <= @$nbr_element_page - 1 + @$debut; $i++) {
                             if (@$resultcommande[$i] == null) break; ?> -->
-                                                <tr>
+                                                                                                                        <tr>
 
-                                                    <td class="table-primary">
+                                                                                                                            <td class="table-primary">
 
-                                                        <input id="sel" name='sel[]' type="checkbox" value=<?php echo $resultcommande[$i]['id'];
-                                                        if (isset($sel)) {
-                                                            if (@in_array($resultcommande[$i]['id'], @$sel))
-                                                                echo "checked";
-                                                        } ?>>
+                                                                                                                                <input id="sel" name='sel[]' type="checkbox" value=<?php echo $resultcommande[$i]['id'];
+                                                                                                                                if (isset($sel)) {
+                                                                                                                                    if (@in_array($resultcommande[$i]['id'], @$sel))
+                                                                                                                                        echo "checked";
+                                                                                                                                } ?>>
 
-                                                    </td>
-                                                    <?php if ($modesimplifieadmin == 0): ?>
-                                                            <td class="table-primary"><?= $resultcommande[$i]['id'] ?></td>
-                                                    <?php endif; ?>
-                                                    <!-- echo date('D', strtotime("20-02-2009")); -->
-                                                    <?php
-                                                    // $jours = Array('Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
-                                            
-                                                    $time = $resultcommande[$i]['dates'];
+                                                                                                                            </td>
+                                                                                                                            <?php if ($modesimplifieadmin == 0): ?>
+                                                                                                                                                                        <td class="table-primary"><?= $resultcommande[$i]['id'] ?></td>
+                                                                                                                            <?php endif; ?>
+                                                                                                                            <!-- echo date('D', strtotime("20-02-2009")); -->
+                                                                                                                            <?php
+                                                                                                                            // $jours = Array('Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
+                                                                                                                    
+                                                                                                                            $time = $resultcommande[$i]['dates'];
 
-                                                    $numJour = date('w', strtotime($time));
-                                                    $jour = $jours[$numJour];
-                                                    $datefr = date('d m Y', strtotime($time));
-                                                    //echo"$jour";
-                                                    ?>
+                                                                                                                            $numJour = date('w', strtotime($time));
+                                                                                                                            $jour = $jours[$numJour];
+                                                                                                                            $datefr = date('d m Y', strtotime($time));
+                                                                                                                            //echo"$jour";
+                                                                                                                            ?>
 
-                                                    <td class="table-success"><?= $jour . ' ' . $datefr ?></td>
-                                                    <?php if ($modesimplifieadmin == 0): ?>
-                                                            <td class="table-primary"><?= $resultcommande[$i]['idclient'] ?></td>
-                                                    <?php endif; ?>
-                                                    <!-- // duree moyenne commande -->
-                                                    <?php if ($modesimplifieadmin == 0): ?>
-                                                            <?php $duree = $resultcommande[$i]['total'] / 10000; ?>
-                                                            <td class="table-primary"><?= $duree ?></td>
-                                                    <?php endif; ?>
-                                                    <td class="table-info" style="background-color:blue;color:white"><?= $resultcommande[$i]['nomclient'] ?></td>
-                                                    <?php if ($modesimplifieadmin == 0): ?>
-                                                            <td class="table-primary"><?= $resultcommande[$i]['idimprime'] ?></td>
-                                                    <?php endif; ?>
-                                                    <td class="table-warning"><?= $resultcommande[$i]['imprime'] ?></td>
+                                                                                                                            <td class="table-success"><?= $jour . ' ' . $datefr ?></td>
+                                                                                                                            <?php if ($modesimplifieadmin == 0): ?>
+                                                                                                                                                                        <td class="table-primary"><?= $resultcommande[$i]['idclient'] ?></td>
+                                                                                                                            <?php endif; ?>
+                                                                                                                            <!-- // duree moyenne commande -->
+                                                                                                                            <?php if ($modesimplifieadmin == 0): ?>
+                                                                                                                                                                        <?php $duree = $resultcommande[$i]['total'] / 10000; ?>
+                                                                                                                                                                        <td class="table-primary"><?= $duree ?></td>
+                                                                                                                            <?php endif; ?>
+                                                                                                                            <td class="table-info" style="background-color:blue;color:white"><?= $resultcommande[$i]['nomclient'] ?></td>
+                                                                                                                            <?php if ($modesimplifieadmin == 0): ?>
+                                                                                                                                                                        <td class="table-primary"><?= $resultcommande[$i]['idimprime'] ?></td>
+                                                                                                                            <?php endif; ?>
+                                                                                                                            <td class="table-warning"><?= $resultcommande[$i]['imprime'] ?></td>
 
-                                                    <td class="table-primary" style="background-color:blue;color:white"><?= $resultcommande[$i]['quantite'] ?></td>
-                                                    <?php
-                                                    if ($_SESSION['user']['role'] == 'ADMIN') {
-                                                        ?>
-                                                                <td class="table-primary"><?= number_format($resultcommande[$i]['prix'], 2, ".", ".") ?></td>
-                                                                <!-- <td class="table-primary">< ?= $resultcommande[$i]['prepress'] ?></td> -->
-                                                                <td class="table-danger" style="background-color:blue;color:white"><?= number_format($resultcommande[$i]['total'], 2, ".", ".") ?></td>
-                                                    <?php } ?>
-                                                    <!-- <td class="table-primary">< ?= $resultcommande[$i]['remarque'] ?></td> -->
-                                                    <td class="table-primary">
-                                                        <?php
+                                                                                                                            <td class="table-primary" style="background-color:blue;color:white"><?= $resultcommande[$i]['quantite'] ?></td>
+                                                                                                                            <?php
+                                                                                                                            if ($_SESSION['user']['role'] == 'ADMIN') {
+                                                                                                                                ?>
+                                                                                                                                                                            <td class="table-primary"><?= number_format($resultcommande[$i]['prix'], 2, ".", ".") ?></td>
+                                                                                                                                                                            <!-- <td class="table-primary">< ?= $resultcommande[$i]['prepress'] ?></td> -->
+                                                                                                                                                                            <td class="table-danger" style="background-color:blue;color:white"><?= number_format($resultcommande[$i]['total'], 2, ".", ".") ?></td>
+                                                                                                                            <?php } ?>
+                                                                                                                            <!-- <td class="table-primary">< ?= $resultcommande[$i]['remarque'] ?></td> -->
+                                                                                                                            <td class="table-primary">
+                                                                                                                                <?php
 
-                                                        //print_r($etatcolor[0][0]);
-                                                        // die();
-                                                        //$resultcommande[$i]['etat'] .
-                                                        if ($etatcolor[0][0] == 0) { ?>
-                                                                <!-- <span class="fa-stack fa-lg"> -->
-                                                                <!-- <i class="fa fa-camera fa-stack-1x"></i>
+                                                                                                                                //print_r($etatcolor[0][0]);
+                                                                                                                                // die();
+                                                                                                                                //$resultcommande[$i]['etat'] .
+                                                                                                                                if ($etatcolor[0][0] == 0) { ?>
+                                                                                                                                                                            <!-- <span class="fa-stack fa-lg"> -->
+                                                                                                                                                                            <!-- <i class="fa fa-camera fa-stack-1x"></i>
                                         <i class="fa fa-ban fa-stack-2x text-danger"></i>
                                         </span> -->
-                                                                    <div class="limite">
-                                                                    <i  class='fa-solid attente fa-fw fa-3x' style='color:red' aria-hidden='true'></i>
-                                                                    <span style='background-color:blue;color:red;font-weight:bold'></span>
-                                                                    <!-- <i class='fa fa-undo' style='font-size:30px;color:blue'  aria-hidden='true'></i> -->
-                                                                    <!-- fa-hourglass-start -->
-                                                                    </div>
-                                                        <?php } ?>
+                                                                                                                                                                                <div class="limite">
+                                                                                                                                                                                <i  class='fa-solid attente fa-fw fa-3x' style='color:red' aria-hidden='true'></i>
+                                                                                                                                                                                <span style='background-color:blue;color:red;font-weight:bold'></span>
+                                                                                                                                                                                <!-- <i class='fa fa-undo' style='font-size:30px;color:blue'  aria-hidden='true'></i> -->
+                                                                                                                                                                                <!-- fa-hourglass-start -->
+                                                                                                                                                                                </div>
+                                                                                                                                <?php } ?>
                                        
-                                                        <?php if ($etatcolor[0][0] == 1) { ?>
-                                                                    <!-- <i  class='fa  fa-spin fa-3x fa-fw' style='color:blue' aria-hidden='true'> -->
-                                                                    <i class="fa-solid fa-gear fa-spin fa-3x" style="color: #042662;"></i>
-                                                                    <!-- <i class="fa-solid fa-gear fa-spin" style="color: #042662;"></i> -->
-                                                                    <!-- <i class="fa-solid fa-gear fa-spin fa-spin fa-3x" style='color:blue'></i> -->
-                                                                    <!-- <i  class='fa fa-cogs fa-spin' style='font-size:30px;color:blue' aria-hidden='true'> -->
-                                                                    <!-- <i class="fa fa-shield fa-rotate-90"></i>
+                                                                                                                                <?php if ($etatcolor[0][0] == 1) { ?>
+                                                                                                                                                                                <!-- <i  class='fa  fa-spin fa-3x fa-fw' style='color:blue' aria-hidden='true'> -->
+                                                                                                                                                                                <i class="fa-solid fa-gear fa-spin fa-3x" style="color: #042662;"></i>
+                                                                                                                                                                                <!-- <i class="fa-solid fa-gear fa-spin" style="color: #042662;"></i> -->
+                                                                                                                                                                                <!-- <i class="fa-solid fa-gear fa-spin fa-spin fa-3x" style='color:blue'></i> -->
+                                                                                                                                                                                <!-- <i  class='fa fa-cogs fa-spin' style='font-size:30px;color:blue' aria-hidden='true'> -->
+                                                                                                                                                                                <!-- <i class="fa fa-shield fa-rotate-90"></i>
                                             <i class="fa fa-shield fa-rotate-180"></i>
                                             <i class="fa fa-shield fa-rotate-270"></i>
                                             <i class="fa fa-shield fa-flip-horizontal"></i>
                                             <i class="fa fa-shield fa-flip-vertical"></i> -->
-                                                                    </i>
-                                                                    <!-- <i  class='fa fa-cog fa-spin' style='font-size:30px;color:blue' aria-hidden='true'></i> -->
-                                                                    <!-- <span style='background-color:blue;color:white;font-weight:bold'></span> -->
-                                                        <?php }
-                                                        if ($etatcolor[0][0] == 2 or $etatcolor[0][0] == 11) { ?>
+                                                                                                                                                                                </i>
+                                                                                                                                                                                <!-- <i  class='fa fa-cog fa-spin' style='font-size:30px;color:blue' aria-hidden='true'></i> -->
+                                                                                                                                                                                <!-- <span style='background-color:blue;color:white;font-weight:bold'></span> -->
+                                                                                                                                <?php }
+                                                                                                                                if ($etatcolor[0][0] == 2 or $etatcolor[0][0] == 11) { ?>
 
-                                                                    <i class='fa fa-check-square fa-fw fa-3x' style='color:blue'  aria-hidden='true'></i><span style='background-color:green;color:black;font-weight:bold'></span>
-                                                        <?php }
-                                                        // if ($_SESSION['user']['role'] == 'ADMIN') {
-                                                
-                                                        if ($etatcolor[0][0] == 3) { ?>
-                                                                    <i class="fa-solid fa-truck-front fa-beat fa-fw fa-3x" style='color:Navy'></i>
-                                                                    <!-- <i class='fa fa-truck fa-fw' style='font-size:<?= FONTSIZE ?>;color:Navy' aria-hidden='true'></i> -->
-                                                                    <span style='color:black;font-weight:bold'>
-
-
-                                                            <?php } ?>
+                                                                                                                                                                                <i class='fa fa-check-square fa-fw fa-3x' style='color:blue'  aria-hidden='true'></i><span style='background-color:green;color:black;font-weight:bold'></span>
+                                                                                                                                <?php }
+                                                                                                                                // if ($_SESSION['user']['role'] == 'ADMIN') {
+                                                                                                                        
+                                                                                                                                if ($etatcolor[0][0] == 3) { ?>
+                                                                                                                                                                                <i class="fa-solid fa-truck-front fa-beat fa-fw fa-3x" style='color:Navy'></i>
+                                                                                                                                                                                <!-- <i class='fa fa-truck fa-fw' style='font-size:<?= FONTSIZE ?>;color:Navy' aria-hidden='true'></i> -->
+                                                                                                                                                                                <span style='color:black;font-weight:bold'>
 
 
-                                                            <?php
-                                                            if ($etatcolor[0][0] == 4) { ?>
-                                                                        <!-- // echo "<i class='fa fa-ban' style='font-size:30px;color: DarkRed'  aria-hidden='true'></i> <span style='background-color:red;color:black;font-weight:bold'>"  . "</span>"; -->
-                                                                        <i class='fa fa-ban fa-fw fa-3x' style='color: DarkRed'  aria-hidden='true'></i> 
-                                                                        <!-- <span style='background-color:red;color:black;font-weight:bold'></span> -->
-                                                            <?php }
-                                                            if ($etatcolor[0][0] == 5) { ?>
-
-                                                                        <i class='fa fa-archive fa-fw fa-3x' style='color:DarkGreen' aria-hidden='true'></i>
-
-                                                                        <!-- // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
+                                                                                                                                    <?php } ?>
 
 
+                                                                                                                                    <?php
+                                                                                                                                    if ($etatcolor[0][0] == 4) { ?>
+                                                                                                                                                                                    <!-- // echo "<i class='fa fa-ban' style='font-size:30px;color: DarkRed'  aria-hidden='true'></i> <span style='background-color:red;color:black;font-weight:bold'>"  . "</span>"; -->
+                                                                                                                                                                                    <i class='fa fa-ban fa-fw fa-3x' style='color: DarkRed'  aria-hidden='true'></i> 
+                                                                                                                                                                                    <!-- <span style='background-color:red;color:black;font-weight:bold'></span> -->
+                                                                                                                                    <?php }
+                                                                                                                                    if ($etatcolor[0][0] == 5) { ?>
+
+                                                                                                                                                                                    <i class='fa fa-archive fa-fw fa-3x' style='color:DarkGreen' aria-hidden='true'></i>
+
+                                                                                                                                                                                    <!-- // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
 
 
 
-                                                            <?php } ?>
 
-                                                            <?php
-                                                            if ($etatcolor[0][0] == 6) { ?>
-                                                                        <i class='fa-solid fa-newspaper fa-fw fa-3x'   aria-hidden='true'></i><span style='color:blue;font-weight:bold'></span>
 
-                                                             <?php }
-                                                            if ($etatcolor[0][0] == 12 or $etatcolor[0][0] == 11) { ?>
-                                                                        <i class='fa-solid fa-clock fa-shake fa-fw fa-3x'   aria-hidden='true'></i><span style='color:blue;font-weight:bold'></span>
+                                                                                                                                    <?php } ?>
 
-                                                             <?php }
-                                                            ?>
-                                                            <!-- <span style="background-color:yellow;color:black;font-weight:bold" > -->
-                                                            <!-- < ?= $resultcommande[$i]['etat'] ?> -->
-                                                            <?php $etatclientdirect = explode("+", $resultcommande[$i]['etat']);
-                                                            $etatclientseq = explode("+", $resultcommande[$i]['etatseq']);
-                                                            if (array_key_exists(1, $etatclientseq))
-                                                                echo '<span><i class="fa fa-user-circle" style="font-size:30px;color:blue" aria-hidden="true"></i></span>';
-                                                            else
-                                                                if (array_key_exists(1, $etatclientdirect))
-                                                                    echo '<span><i class="fa fa-user-circle" style="font-size:30px;color:blue" aria-hidden="true"></i></span>';
-                                                            //$etatclientdirect[1]
-                                                            ?>
-                                                    </td>
-                                                    <?php
-                                                    if ($_SESSION['user']['role'] == 'ADMIN') {
-                                                        // if ($etatcolor[0][0] != 6) {
-                                                        // 
-                                                        ?>
-                                                                <!-- <td class="table-primary"><span style="background-color:red;color:black;font-weight:bold">< ?= $resultcommande[$i]['paiement'] ?></td> -->
-                                                                <!-- < ?php } else ?>  -->
-                                                    <?php } ?>
-                                                    <!-- <td class="table-success"> 
+                                                                                                                                    <?php
+                                                                                                                                    if ($etatcolor[0][0] == 6) { ?>
+                                                                                                                                                                                    <i class='fa-solid fa-newspaper fa-fw fa-3x'   aria-hidden='true'></i><span style='color:blue;font-weight:bold'></span>
+
+                                                                                                                                     <?php }
+                                                                                                                                    if ($etatcolor[0][0] == 12 or $etatcolor[0][0] == 11) { ?>
+                                                                                                                                                                                    <i class='fa-solid fa-clock fa-shake fa-fw fa-3x'   aria-hidden='true'></i><span style='color:blue;font-weight:bold'></span>
+
+                                                                                                                                     <?php }
+                                                                                                                                    ?>
+                                                                                                                                    <!-- <span style="background-color:yellow;color:black;font-weight:bold" > -->
+                                                                                                                                    <!-- < ?= $resultcommande[$i]['etat'] ?> -->
+                                                                                                                                    <?php $etatclientdirect = explode("+", $resultcommande[$i]['etat']);
+                                                                                                                                    $etatclientseq = explode("+", $resultcommande[$i]['etatseq']);
+                                                                                                                                    if (array_key_exists(1, $etatclientseq))
+                                                                                                                                        echo '<span><i class="fa fa-user-circle" style="font-size:30px;color:blue" aria-hidden="true"></i></span>';
+                                                                                                                                    else
+                                                                                                                                        if (array_key_exists(1, $etatclientdirect))
+                                                                                                                                            echo '<span><i class="fa fa-user-circle" style="font-size:30px;color:blue" aria-hidden="true"></i></span>';
+                                                                                                                                    //$etatclientdirect[1]
+                                                                                                                                    ?>
+                                                                                                                            </td>
+                                                                                                                            <?php
+                                                                                                                            if ($_SESSION['user']['role'] == 'ADMIN') {
+                                                                                                                                // if ($etatcolor[0][0] != 6) {
+                                                                                                                                // 
+                                                                                                                                ?>
+                                                                                                                                                                            <!-- <td class="table-primary"><span style="background-color:red;color:black;font-weight:bold">< ?= $resultcommande[$i]['paiement'] ?></td> -->
+                                                                                                                                                                            <!-- < ?php } else ?>  -->
+                                                                                                                            <?php } ?>
+                                                                                                                            <!-- <td class="table-success"> 
                                                     <img  src="./uploads/66-30--15-08-2022 17.png" alt="logo global2pub" width="90" height="auto">
                                                     </td> -->
 
 
-                                                    <td>
+                                                                                                                            <td>
 
 
 
 
 
-                                                        <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
-                                                        <!-- $$$$$$$$$$$Partie qrcode fin $$$$$$$$$$$$ -->
-                                                        <!-- <img src="./qrcodecommande1.png" width="50" height="auto" alt=""> -->
-                                                        <!-- </td> -->
-                                                        <!-- <img src="uploads/< ?=$resultcommande[$i]['images']?>" width="50" height="auto" alt=""> -->
-                                                        <?php
+                                                                                                                                <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
+                                                                                                                                <!-- $$$$$$$$$$$Partie qrcode fin $$$$$$$$$$$$ -->
+                                                                                                                                <!-- <img src="./qrcodecommande1.png" width="50" height="auto" alt=""> -->
+                                                                                                                                <!-- </td> -->
+                                                                                                                                <!-- <img src="uploads/< ?=$resultcommande[$i]['images']?>" width="50" height="auto" alt=""> -->
+                                                                                                                                <?php
 
-                                                        if ($resultcommande[$i]['images'] != "") {
-                                                            // $size = getimagesize('uploads/'.$resultcommande[$i]['images']); 
-                                                            // $lar=$size[0];
-                                                            // $hau=$size[1];
-                                                            //print_r($size);
-                                                            //echo($lar.' '.$hau);
-                                                            //$larimage='100';
-                                                            ?>
-                                                                    <!-- echo '<img src="'.'uploads/'.$resultcommande[$i]['images'].'"  width="25" height="auto">' ? > -->
+                                                                                                                                if ($resultcommande[$i]['images'] != "") {
+                                                                                                                                    // $size = getimagesize('uploads/'.$resultcommande[$i]['images']); 
+                                                                                                                                    // $lar=$size[0];
+                                                                                                                                    // $hau=$size[1];
+                                                                                                                                    //print_r($size);
+                                                                                                                                    //echo($lar.' '.$hau);
+                                                                                                                                    //$larimage='100';
+                                                                                                                                    ?>
+                                                                                                                                                                                <!-- echo '<img src="'.'uploads/'.$resultcommande[$i]['images'].'"  width="25" height="auto">' ? > -->
 
-                                                                    <!-- < ?php echo "./uploads/".$resultcommande[$i]['images']?> -->
+                                                                                                                                                                                <!-- < ?php echo "./uploads/".$resultcommande[$i]['images']?> -->
 
-                                                                    <!-- <input   id="nomimage" value="< ?php echo $i ; ?>"/> -->
-                                                                    <!-- <a id="nomimage" href='./uploads/< ?=$resultcommande[$i]['images'] ?>'  >  -->
-                                                                    <?php
-                                                                    $extension = substr($resultcommande[$i]['images'], strrpos($resultcommande[$i]['images'], "."));
-                                                                    // echo $extension;
-                                                                    // die();
-                                                                    if ($extension != ".pdf") { ?>
-                                                                                <a id="nomimage" href='afficherimage.php?image=<?= $resultcommande[$i]['images'] ?>'>
-                                                                                    <!-- < ?php echo '<img src="'.'uploads/'.$resultcommande[$i]['images'].'"  width="100" height="auto">' ?> -->
-                                                                                    <i class="fa fa-picture-o" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
-                                                                                </a>
-                                                                    <?php } else { ?>
-                                                                                <a id="nomimage" href="afficherbc.php?bc=<?= $resultcommande[$i]['images'] ?>">
-                                                                                    <i class='fa-solid fa-file-pdf' style='font-size:<?= FONTSIZE ?>;color:red'></i>
-                                                                                    <!-- <i class="fa fa-file-image-o" aria-hidden="true"></i> -->
-                                                                                    <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
-                                                                    <?php }
-                                                        } ?>
-
-
-
-                                                    </td>
-                                                    <td>
-                                                        <?php if ($resultcommande[$i]['bc'] != "") {
-                                                            // $size = getimagesize('uploads/'.$resultcommande[$i]['images']); 
-                                                            // $lar=$size[0];
-                                                            // $hau=$size[1];
-                                                            //print_r($size);
-                                                            //echo($lar.' '.$hau);
-                                                            //$larimage='100';
-                                                            ?>
-                                                                    <!-- echo '<img src="'.'uploads/'.$resultcommande[$i]['images'].'"  width="25" height="auto">' ? > -->
-
-                                                                    <!-- < ?php echo "./uploads/".$resultcommande[$i]['images']?> -->
-
-                                                                    <!-- <input   id="nomimage" value="< ?php echo $i ; ?>"/> -->
-                                                                    <!-- <a id="nomimage" href='./uploads/< ?=$resultcommande[$i]['images'] ?>'  >  -->
-                                                                    <?php
-                                                                    $extension = substr($resultcommande[$i]['bc'], strrpos($resultcommande[$i]['bc'], "."));
-                                                                    // echo $extension;
-                                                                    // die();
-                                                                    if ($extension != ".pdf") { ?>
-                                                                                <a id="nomimage" href='afficherimage.php?image=<?= $resultcommande[$i]['bc'] ?>'>
-                                                                                    <!-- < ?php echo '<img src="'.'uploads/'.$resultcommande[$i]['bc'].'"  width="100" height="auto">' ?> -->
-                                                                                    <i class="fa-solid fa-picture-o" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
-                                                                                </a>
-                                                                    <?php } else { ?>
-                                                                                <a id="nomimage" href="afficherbc.php?bc=<?= $resultcommande[$i]['bc'] ?>">
-                                                                                    <i class='fa-solid fa-file-pdf' style='font-size:<?= FONTSIZE ?>;color:red'></i>
-                                                                    <?php }
-                                                        } ?>
+                                                                                                                                                                                <!-- <input   id="nomimage" value="< ?php echo $i ; ?>"/> -->
+                                                                                                                                                                                <!-- <a id="nomimage" href='./uploads/< ?=$resultcommande[$i]['images'] ?>'  >  -->
+                                                                                                                                                                                <?php
+                                                                                                                                                                                $extension = substr($resultcommande[$i]['images'], strrpos($resultcommande[$i]['images'], "."));
+                                                                                                                                                                                // echo $extension;
+                                                                                                                                                                                // die();
+                                                                                                                                                                                if ($extension != ".pdf") { ?>
+                                                                                                                                                                                                                                <a id="nomimage" href='afficherimage.php?image=<?= $resultcommande[$i]['images'] ?>'>
+                                                                                                                                                                                                                                    <!-- < ?php echo '<img src="'.'uploads/'.$resultcommande[$i]['images'].'"  width="100" height="auto">' ?> -->
+                                                                                                                                                                                                                                    <i class="fa fa-picture-o" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
+                                                                                                                                                                                                                                </a>
+                                                                                                                                                                                <?php } else { ?>
+                                                                                                                                                                                                                                <a id="nomimage" href="afficherbc.php?bc=<?= $resultcommande[$i]['images'] ?>">
+                                                                                                                                                                                                                                    <i class='fa-solid fa-file-pdf' style='font-size:<?= FONTSIZE ?>;color:red'></i>
+                                                                                                                                                                                                                                    <!-- <i class="fa fa-file-image-o" aria-hidden="true"></i> -->
+                                                                                                                                                                                                                                    <!-- <i class="fa fa-picture-o" aria-hidden="true"></i> -->
+                                                                                                                                                                                <?php }
+                                                                                                                                } ?>
 
 
-                                                    </td>
-                                                    <!-- // tag -->
-                                                    <?php if ($_SESSION['user']['role'] == 'ADMIN') { ?>
-                                                                <!-- <th class="table-primary">< ?= $resultcommande[$i]['solde'] ?></th>  -->
 
-                                                    <?php } else { ?> 
-                                                                        <th class="table-primary"></th> 
-                                                                    <?php
-                                                    } ?>
-                                                    <th class="table-primary">
-                                                        <?php if ($resultcommande[$i]['tag'] != 0) {
-                                                            if ($resultcommande[$i]['tag'] == 1)
-                                                                echo "<i class='fa fa-tag' style='font-size:30px;color:red'></i>";
-                                                            if ($resultcommande[$i]['tag'] == 11)
-                                                                echo "<i class='fa fa-tag' style='font-size:30px;color:blue'></i>";
-                                                            if ($resultcommande[$i]['tag'] == 10)
-                                                                echo "<i class='fa fa-tag' style='font-size:30px;color:black'></i>";
-                                                        }
-                                                        ?>
+                                                                                                                            </td>
+                                                                                                                            <td>
+                                                                                                                                <?php if ($resultcommande[$i]['bc'] != "") {
+                                                                                                                                    // $size = getimagesize('uploads/'.$resultcommande[$i]['images']); 
+                                                                                                                                    // $lar=$size[0];
+                                                                                                                                    // $hau=$size[1];
+                                                                                                                                    //print_r($size);
+                                                                                                                                    //echo($lar.' '.$hau);
+                                                                                                                                    //$larimage='100';
+                                                                                                                                    ?>
+                                                                                                                                                                                <!-- echo '<img src="'.'uploads/'.$resultcommande[$i]['images'].'"  width="25" height="auto">' ? > -->
+
+                                                                                                                                                                                <!-- < ?php echo "./uploads/".$resultcommande[$i]['images']?> -->
+
+                                                                                                                                                                                <!-- <input   id="nomimage" value="< ?php echo $i ; ?>"/> -->
+                                                                                                                                                                                <!-- <a id="nomimage" href='./uploads/< ?=$resultcommande[$i]['images'] ?>'  >  -->
+                                                                                                                                                                                <?php
+                                                                                                                                                                                $extension = substr($resultcommande[$i]['bc'], strrpos($resultcommande[$i]['bc'], "."));
+                                                                                                                                                                                // echo $extension;
+                                                                                                                                                                                // die();
+                                                                                                                                                                                if ($extension != ".pdf") { ?>
+                                                                                                                                                                                                                                <a id="nomimage" href='afficherimage.php?image=<?= $resultcommande[$i]['bc'] ?>'>
+                                                                                                                                                                                                                                    <!-- < ?php echo '<img src="'.'uploads/'.$resultcommande[$i]['bc'].'"  width="100" height="auto">' ?> -->
+                                                                                                                                                                                                                                    <i class="fa-solid fa-picture-o" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
+                                                                                                                                                                                                                                </a>
+                                                                                                                                                                                <?php } else { ?>
+                                                                                                                                                                                                                                <a id="nomimage" href="afficherbc.php?bc=<?= $resultcommande[$i]['bc'] ?>">
+                                                                                                                                                                                                                                    <i class='fa-solid fa-file-pdf' style='font-size:<?= FONTSIZE ?>;color:red'></i>
+                                                                                                                                                                                <?php }
+                                                                                                                                } ?>
 
 
-                                                    </th>
-                                                    <td>
+                                                                                                                            </td>
+                                                                                                                            <!-- // tag -->
+                                                                                                                            <?php if ($_SESSION['user']['role'] == 'ADMIN') { ?>
+                                                                                                                                                                            <!-- <th class="table-primary">< ?= $resultcommande[$i]['solde'] ?></th>  -->
 
-                                                        <!-- <a class="btn btn-primary btn-sm btn-primary" 
+                                                                                                                            <?php } else { ?> 
+                                                                                                                                                                                    <th class="table-primary"></th> 
+                                                                                                                                                                                <?php
+                                                                                                                            } ?>
+                                                                                                                            <th class="table-primary">
+                                                                                                                                <?php
+                                                                                                                                echo $resultcommande[$i]['tag'];
+                                                                                                                                if ($resultcommande[$i]['tag'] != 0) {
+                                                                                                                                    if ($resultcommande[$i]['tag'] < 11111110)
+                                                                                                                                        echo "<i class='fa fa-tag' style='font-size:30px;color:red'></i>";
+
+
+                                                                                                                                    if ($resultcommande[$i]['tag'] == 11111111)
+                                                                                                                                        echo "<i class='fa fa-tag' style='font-size:30px;color:blue'></i>";
+                                                                                                                                    if ($resultcommande[$i]['tag'] == 11111110)
+                                                                                                                                        echo "<i class='fa fa-tag' style='font-size:30px;color:black'></i>";
+                                                                                                                                }
+
+
+
+                                                                                                                                // <?php if ($resultcommande[$i]['tag'] != 0) {
+                                                                                                                                //     if ($resultcommande[$i]['tag'] == 1)
+                                                                                                                                //         echo "<i class='fa fa-tag' style='font-size:30px;color:red'></i>";
+                                                                                                                                //     if ($resultcommande[$i]['tag'] == 11)
+                                                                                                                                //         echo "<i class='fa fa-tag' style='font-size:30px;color:blue'></i>";
+                                                                                                                                //     if ($resultcommande[$i]['tag'] == 10)
+                                                                                                                                //         echo "<i class='fa fa-tag' style='font-size:30px;color:black'></i>";
+                                                                                                                                // }
+                                                                                                                                ?>
+
+
+                                                                                                                            </th>
+                                                                                                                            <td>
+
+                                                                                                                                <!-- <a class="btn btn-primary btn-sm btn-primary" 
                                     href="action2ok.php?id=< ?= $resultcommande[$i]['id'] ?>&page=< ?= $page ?>&etat=< ?=
                                     $resultcommande[$i]['etat'] ?>&idclient=< ?= $resultcommande[$i]['idclient'] ?>">Action</a> -->
-                                                        <?php
-                                                        // etat commande
-                                                        $etatsuivi = explode("/", $resultcommande[$i]['etat']);
-                                                        $etatsuivi = $etatsuivi[0];
-                                                        // $etatclientdirect=explode("+", $resultcommande[$i]['etat']);
-                                                        //if (array_key_exists(1, $etatclientdirect)) $etatclientdirect=$etatclientdirect[1];
-                                                        ?>
-                                                        <!-- lien vers operations sur les documents emis -->
+                                                                                                                                <?php
+                                                                                                                                // etat commande
+                                                                                                                                $etatsuivi = explode("/", $resultcommande[$i]['etat']);
+                                                                                                                                $etatsuivi = $etatsuivi[0];
+                                                                                                                                // $etatclientdirect=explode("+", $resultcommande[$i]['etat']);
+                                                                                                                                //if (array_key_exists(1, $etatclientdirect)) $etatclientdirect=$etatclientdirect[1];
+                                                                                                                                ?>
+                                                                                                                                <!-- lien vers operations sur les documents emis -->
 
-                                                        <!-- lien vers  les documents emis -->
-                                                        <!-- <a class="btn btn-primary btn-sm btn-warning" href="">
+                                                                                                                                <!-- lien vers  les documents emis -->
+                                                                                                                                <!-- <a class="btn btn-primary btn-sm btn-warning" href="">
                                         <span class="icon"><i class="fa fa-file-text-o" style='font-size:30px;color:blue' aria-hidden="true"></i></span>
                                        
                                         </a> -->
-                                                        <a class="btn btn-primary btn-sm btn-warning"
-                                                        href="./action2ok.php?id=<?= $resultcommande[$i]['id'] ?>&idclient=<?= $resultcommande[$i]['idclient'] ?>&etat=<?= $etatsuivi ?>&page=<?= $page ?>"><i class="fa fa-wrench" style='font-size:30px;color:blue' aria-hidden="true"></i>
-                                                        <?php if (array_key_exists(1, $etatclientdirect))
-                                                            echo $etatclientdirect[1];
-                                                        if (array_key_exists(1, $etatclientseq))
-                                                            echo $etatclientseq[1];
-                                                        //  print_r( $etatclientseq) 
-                                                        ?>
-                                                            </a>
+                                                                                                                                <a class="btn btn-primary btn-sm btn-warning"
+                                                                                                                                href="./action2ok.php?id=<?= $resultcommande[$i]['id'] ?>&idclient=<?= $resultcommande[$i]['idclient'] ?>&etat=<?= $etatsuivi ?>&page=<?= $page ?>"><i class="fa fa-wrench" style='font-size:30px;color:blue' aria-hidden="true"></i>
+                                                                                                                                <?php if (array_key_exists(1, $etatclientdirect))
+                                                                                                                                    echo $etatclientdirect[1];
+                                                                                                                                if (array_key_exists(1, $etatclientseq))
+                                                                                                                                    echo $etatclientseq[1];
+                                                                                                                                //  print_r( $etatclientseq) 
+                                                                                                                                ?>
+                                                                                                                                    </a>
 
 
-                                                        <!-- <a class="btn btn-primary btn-sm btn-success" 
+                                                                                                                                <!-- <a class="btn btn-primary btn-sm btn-success" 
                                     href="addproduction.php?id=< ?= $resultcommande[$i]['id'] ?>&page=< ?= $page ?>&etat=< ?=
                                     $resultcommande[$i]['etat'] ? >&idclient=< ?= $resultcommande[$i]['idclient'] ?>">+Prod</a> -->
 
-                                                        <!-- <a class="btn btn-primary btn-sm btn-success" 
+                                                                                                                                <!-- <a class="btn btn-primary btn-sm btn-success" 
                                     href="production.php?id=< ?= $resultcommande[$i]['id'] ?>&page=< ?= $page ?>&etat=< ?=
                                     $resultcommande[$i]['etat'] ?>&idclient=< ?= $resultcommande[$i]['idclient'] ?>&niveau1=t">Prod</a>
                                        </a> -->
 
-                                                        <!-- debut lien etat productio -->
-                                                        <!-- s'affiche uniquement sir la fiche production existe poiur cette commande -->
-                                                        <?php
-                                                        $idcommande = $resultcommande[$i]['id'];
-                                                        //$_GET['idcommande'];
-                                                        require('connectproduction.php');
-                                                        $sql = 'SELECT * FROM `production` WHERE `idcommande` = :idcommande;';
-                                                        $query = $db->prepare($sql);
-                                                        $query->bindValue(':idcommande', $idcommande, PDO::PARAM_INT);
-                                                        // // On exécute la requête
-                                                        $query->execute() or die(print_r($db->errorInfo()));
+                                                                                                                                <!-- debut lien etat productio -->
+                                                                                                                                <!-- s'affiche uniquement sir la fiche production existe poiur cette commande -->
+                                                                                                                                <?php
+                                                                                                                                $idcommande = $resultcommande[$i]['id'];
+                                                                                                                                //$_GET['idcommande'];
+                                                                                                                                require('connectproduction.php');
+                                                                                                                                $sql = 'SELECT * FROM `production` WHERE `idcommande` = :idcommande;';
+                                                                                                                                $query = $db->prepare($sql);
+                                                                                                                                $query->bindValue(':idcommande', $idcommande, PDO::PARAM_INT);
+                                                                                                                                // // On exécute la requête
+                                                                                                                                $query->execute() or die(print_r($db->errorInfo()));
 
-                                                        //On stocke le résultat dans un tableau associatif
-                                                        $prod = $query->fetch(PDO::FETCH_ASSOC);
-                                                        require('closeproduction.php');
+                                                                                                                                //On stocke le résultat dans un tableau associatif
+                                                                                                                                $prod = $query->fetch(PDO::FETCH_ASSOC);
+                                                                                                                                require('closeproduction.php');
 
 
-                                                        if ($prod != "") { ?>
-                                                                    <a class="btn btn-primary btn-sm btn-primary" href="etatproduction.php?recherche=&niveau=ins&idcommande=<?= $resultcommande[$i]['id'] ?>"><i class="fa fa-industry" style='font-size:30px;color:blue' aria-hidden="true"></i></a>
-                                                        <?php } else { ?>
-                                                                    <a class="btn btn-primary btn-sm btn-primary" data-toggle="tooltip" data-placement="right" title="Pas de fiche production">
-                                                                        <!-- <i class="fa fa-industry" style='font-size:30px;color:blue' aria-hidden="true"></i> -->
-                                                                        <i class="fa fa-bug" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
-                                                                        <!-- <i class="fa fa-industry" style='font-size:30px;color:blue' aria-hidden="true"></i> -->
+                                                                                                                                if ($prod != "") { ?>
+                                                                                                                                                                                <a class="btn btn-primary btn-sm btn-primary" href="etatproduction.php?recherche=&niveau=ins&idcommande=<?= $resultcommande[$i]['id'] ?>"><i class="fa fa-industry" style='font-size:30px;color:blue' aria-hidden="true"></i></a>
+                                                                                                                                <?php } else { ?>
+                                                                                                                                                                                <a class="btn btn-primary btn-sm btn-primary" data-toggle="tooltip" data-placement="right" title="Pas de fiche production">
+                                                                                                                                                                                    <!-- <i class="fa fa-industry" style='font-size:30px;color:blue' aria-hidden="true"></i> -->
+                                                                                                                                                                                    <i class="fa fa-bug" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
+                                                                                                                                                                                    <!-- <i class="fa fa-industry" style='font-size:30px;color:blue' aria-hidden="true"></i> -->
 
-                                                                    </a>
-                                                        <?php } ?>
-                                                        <!-- fin lien etat productio -->
+                                                                                                                                                                                </a>
+                                                                                                                                <?php } ?>
+                                                                                                                                <!-- fin lien etat productio -->
 
-                                                        <a class="btn btn-primary btn-sm btn-success" href="telechargerimage.php?idcommande=<?= $resultcommande[$i]['id'] ?>&idclient=<?= $resultcommande[$i]['idclient'] ?>&nomclient=<?= $resultcommande[$i]['nomclient'] ?>&imprime=<?= $resultcommande[$i]['imprime'] ?>&idimprime=<?= $resultcommande[$i]['idimprime'] ?>">
-                                                            <i class="fa fa-download" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
-                                                            <i class="fa fa-picture-o" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
-                                                        </a>
-                                                        <?php if ($resultcommande[$i]['images'] != "" or $resultcommande[$i]['bc'] != "") { ?>
-                                                                    <a class="btn btn-primary btn-sm btn-danger" href="effacerfichier.php?idcommande=<?= $resultcommande[$i]['id'] ?>&idclient=<?= $resultcommande[$i]['idclient'] ?>&nomclient=<?= $resultcommande[$i]['nomclient'] ?>&imprime=<?= $resultcommande[$i]['imprime'] ?>&idimprime=<?= $resultcommande[$i]['idimprime'] ?>">
-                                                                        <i class="fa fa-trash" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
-                                                                        <i class="fa fa-picture-o" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
-                                                                    </a>
-                                                        <?php } ?>
+                                                                                                                                <a class="btn btn-primary btn-sm btn-success" href="telechargerimage.php?idcommande=<?= $resultcommande[$i]['id'] ?>&idclient=<?= $resultcommande[$i]['idclient'] ?>&nomclient=<?= $resultcommande[$i]['nomclient'] ?>&imprime=<?= $resultcommande[$i]['imprime'] ?>&idimprime=<?= $resultcommande[$i]['idimprime'] ?>">
+                                                                                                                                    <i class="fa fa-download" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
+                                                                                                                                    <i class="fa fa-picture-o" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
+                                                                                                                                </a>
+                                                                                                                                <?php if ($resultcommande[$i]['images'] != "" or $resultcommande[$i]['bc'] != "") { ?>
+                                                                                                                                                                                <a class="btn btn-primary btn-sm btn-danger" href="effacerfichier.php?idcommande=<?= $resultcommande[$i]['id'] ?>&idclient=<?= $resultcommande[$i]['idclient'] ?>&nomclient=<?= $resultcommande[$i]['nomclient'] ?>&imprime=<?= $resultcommande[$i]['imprime'] ?>&idimprime=<?= $resultcommande[$i]['idimprime'] ?>">
+                                                                                                                                                                                    <i class="fa fa-trash" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
+                                                                                                                                                                                    <i class="fa fa-picture-o" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
+                                                                                                                                                                                </a>
+                                                                                                                                <?php } ?>
 
-                                                        <?php if ($etatcolor[0][0] == 1 or $etatcolor[0][0] == 2 or $etatcolor[0][0] == 3 or $etatcolor[0][0] == 5) { ?>
-                                                                <!-- lien vers  les documents emis -->
-                                                                <a class="btn btn-primary btn-sm btn-warning" href="documentemis.php?idcommande=<?= $resultcommande[$i]['id'] ?>">
-                                                                    <span class="icon"><i class="fa fa-file-text-o" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i></span>
-                                                                    <!-- <span class="title">Documents</span> -->
-                                                                </a>
-                                                        <?php } else { ?>
-                                                                      <a class="btn btn-primary btn-sm btn-primary"  >
+                                                                                                                                <?php if ($etatcolor[0][0] == 1 or $etatcolor[0][0] == 2 or $etatcolor[0][0] == 3 or $etatcolor[0][0] == 5) { ?>
+                                                                                                                                                                            <!-- lien vers  les documents emis -->
+                                                                                                                                                                            <a class="btn btn-primary btn-sm btn-warning" href="documentemis.php?idcommande=<?= $resultcommande[$i]['id'] ?>">
+                                                                                                                                                                                <span class="icon"><i class="fa fa-file-text-o" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i></span>
+                                                                                                                                                                                <!-- <span class="title">Documents</span> -->
+                                                                                                                                                                            </a>
+                                                                                                                                <?php } else { ?>
+                                                                                                                                                                                  <a class="btn btn-primary btn-sm btn-primary"  >
                                               
-                                                                      <i class="fa fa-file-o" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
-                                                        <?php }
+                                                                                                                                                                                  <i class="fa fa-file-o" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i>
+                                                                                                                                <?php }
 
 
-                                                        //fa-file-o
-                                                        ?>
-                                                         <a class="btn btn-primary btn-sm btn-success" href="etatversementcommande.php?idcommande=<?= $resultcommande[$i]['id'] ?>">
-                                                         <span class="icon"><i class="fa fa-usd" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i></span>
+                                                                                                                                //fa-file-o
+                                                                                                                                ?>
+                                                                                                                                 <a class="btn btn-primary btn-sm btn-success" href="etatversementcommande.php?idcommande=<?= $resultcommande[$i]['id'] ?>">
+                                                                                                                                 <span class="icon"><i class="fa fa-usd" style='font-size:<?= FONTSIZE ?>;color:blue' aria-hidden="true"></i></span>
                                         
                                        
-                                                    </td>
+                                                                                                                            </td>
 
 
-                                                    </td>
+                                                                                                                            </td>
 
 
 
 
-                                                </tr>
+                                                                                                                        </tr>
 
-                                            <?php
-                                            $total1 += $resultcommande[$i]['total'];
-                                            $totalqte += $resultcommande[$i]['quantite'];
+                                                                                                                    <?php
+                                                                                                                    $total1 += $resultcommande[$i]['total'];
+                                                                                                                    $totalqte += $resultcommande[$i]['quantite'];
                                     //$nombrecommandes+=1;
                                     // }
                                 } // fin di for
@@ -1364,13 +1398,13 @@ if (@$resultcommande != []) {
                             if ($_SESSION['user']['role'] == 'ADMIN') { ?>
                              
 
-                                    <td class="table-success"><?= number_format($totalqte, 0, ".", ".") ?></td>
+                                                                        <td class="table-success"><?= number_format($totalqte, 0, ".", ".") ?></td>
 
                               
-                                        <!-- <td class="table-primary"></td>
+                                                                            <!-- <td class="table-primary"></td>
                                 <td class="table-primary"></td> -->
-                                        <td class="table-primary"></td>
-                                        <td class="table-success"><?= number_format($total1, 2, ".", ".") ?></td>
+                                                                            <td class="table-primary"></td>
+                                                                            <td class="table-success"><?= number_format($total1, 2, ".", ".") ?></td>
                             <?php }
                             ?>
                              <td class="table-primary"></td>
@@ -1401,10 +1435,10 @@ if (@$resultcommande != []) {
         </div> -->
             <?php
             if ($_SESSION['user']['role'] == 'ADMIN' && @$compteur > 5) { ?>
-                        <button type="submit" class="btn btn-success" name="valider" value="envoyer">
-                            <span class="fa fa-sign-in"></span>
-                            Valider Selection Commandes
-                        </button>
+                                                            <button type="submit" class="btn btn-success" name="valider" value="envoyer">
+                                                                <span class="fa fa-sign-in"></span>
+                                                                Valider Selection Commandes
+                                                            </button>
             <?php } ?>
         </form>
 
