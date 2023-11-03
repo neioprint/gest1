@@ -335,9 +335,10 @@ require_once('./close.php');
               <a class="btn btn-primary btn-lg btn-success" href="indexcommande.php?niveau=<?= @$_SESSION['niveau'] ?>">
                 <i class='fa fa-undo' style='font-size:27px;color:black' aria-hidden='true'></i>
               </a>
-              <a class="btn btn-primary btn-lg btn-success"
-                href="./detailscommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
-                <i class='fa fa-desktop' style='font-size:27px;color:black' aria-hidden='true'></i></a>
+              <!-- <a class="btn btn-primary btn-lg btn-success"
+                href="./detailscommande.php?id=< ?= $resultcommande ?>&page=< ?= $page ?>">
+                <i class='fa fa-desktop' style='font-size:27px;color:black' aria-hidden='true'></i>
+              </a> -->
               <a class="btn btn-primary btn-lg" href="./editcommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
                 <i class='fa fa-pencil-square-o' style='font-size:27px;color:black' aria-hidden='true'></i>
               </a>
@@ -348,16 +349,17 @@ require_once('./close.php');
               <a class="btn btn-primary btn-lg btn-info"
                 href="./etatcommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
                 <i class='fa fa-desktop' style='font-size:27px;color:black' aria-hidden='true'></i>
-                <i class='fa fa-address-card' style='font-size:27px;color:black' aria-hidden='true'></i></a>
+                <!-- <i class='fa fa-address-card' style='font-size:27px;color:black' aria-hidden='true'></i> -->
+              </a>
               <a class="btn btn-primary btn-lg btn-info"
                 href="./editetatcommande.php?id=<?= $resultcommande ?>&page=<?= $page ?>">
                 <i class='fa fa-pencil-square-o' style='font-size:27px;color:black' aria-hidden='true'></i>
-                <i class='fa fa-address-card' style='font-size:27px;color:black' aria-hidden='true'></i>
+                <i class='fa fa-desktop' style='font-size:27px;color:black' aria-hidden='true'></i>
               </a>
-              <a class="btn btn-primary btn-lg btn-danger"
-                href="./tagger.php?id=<?= $resultcommande ?>&suite=9&page=<?= $page ?>">
+              <!-- <a class="btn btn-primary btn-lg btn-danger"
+                href="./tagger.php?id=< ?= $resultcommande ?>&suite=9&page=< ?= $page ?>">
                 <i class='fa fa-tag' style='font-size:27px;color:black' aria-hidden='true'></i>
-              </a>
+              </a> -->
             <?php } ?>
           </div>
           <?php $etatsuivi = $etat;
@@ -828,7 +830,7 @@ require_once('./close.php');
    
    <h4>Action </h4>
   `,
-          footer: "Operation  irréversible",
+          footer: "Operation irréversible",
           backdrop: true,
           heightAuto: false,
           showCancelButton: true,

@@ -10,9 +10,9 @@ require_once('connectcommande.php');
 
 $id = strip_tags($_GET['id']);
 $tag = strip_tags($_GET['tag']);
+$etatsuivi = strip_tags($_GET['etatsuivi']);
 
-
-if ($tag == 0) {
+if ($tag == 0 && $etatsuivi != 6) {
 
     // if ($_POST['etat'] != 6 && $_POST['tag'] == 0) {
     // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -348,3 +348,45 @@ if ($tag == 0) {
     </body>
 
 </html>
+<!-- <a href="delete.php?id=< ?php echo $row['id'];?>" class='del-btn'>Delete</a>
+                    </td>
+                </tr>
+                < ?php
+                      } //while condition closing bracket
+                    }  //if condition closing bracket
+                ?>
+        </table>
+        < ?php 
+    if(isset($_GET['m'])){ ?>
+    <div class="flash-data" data-flashdata="< ?php echo $_GET['m'];?>"></div>
+    < ?php } ?>
+    
+    <script>
+        $('.del-btn').on('click',function(e){
+            e.preventDefault();
+            const href = $(this).attr('href') 
+            Swal.fire({
+                title: 'Are you sure to delete?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        document.location.href = href;
+                        
+                    }
+                })
+         })
+
+         const flashdata = $('.flash-data').data('flashdata')
+         if(flashdata){
+             swal.fire({
+                 type : 'success',
+                 title : 'Record Deleted',
+                 text : 'Record has been deleted'
+             })
+         }
+    </script> -->
